@@ -183,6 +183,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
           }}>
             AgriQueue — Digital Procurement
           </div>
+        </div>
       </aside>
     </>
   );
