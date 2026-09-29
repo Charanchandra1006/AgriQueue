@@ -10,6 +10,8 @@ dist/
 dist-ssr/
 build/
 out/
+coverage/
+.eslintcache
 *.local
 
 # Environment variables & Sensitive Credentials
