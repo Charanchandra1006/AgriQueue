@@ -83,8 +83,7 @@ export const Navbar = ({ onMenuToggle }) => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <button
             onClick={onMenuToggle}
-            className="md:hidden"
-            style={{ ...iconBtnStyle, border: 'none', background: 'transparent' }}
+            className="flex md:hidden items-center justify-center p-2 rounded-[10px] text-[#606C38] cursor-pointer transition-all border-none bg-transparent"
             aria-label="Toggle Menu"
           >
             <Menu size={22} />

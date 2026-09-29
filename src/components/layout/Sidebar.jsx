@@ -85,19 +85,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
           </div>
           <button
             onClick={onClose}
-            className="md:hidden"
-            style={{
-              padding: '6px',
-              borderRadius: '8px',
-              background: 'rgba(255,255,255,0.07)',
-              color: 'rgba(254,250,224,0.7)',
-              border: 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'background 0.15s'
-            }}
+            className="flex md:hidden items-center justify-center p-[6px] rounded-lg border-none cursor-pointer transition-colors bg-white/5 hover:bg-white/10 text-[#FEFAE0]/70"
           >
             <X size={18} />
           </button>
