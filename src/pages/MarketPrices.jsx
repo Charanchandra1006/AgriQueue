@@ -22,28 +22,28 @@ import {
  */
 const getCropEmoji = (cropName) => {
   const name = String(cropName || '').toLowerCase();
-  if (name.includes('wheat')) return '🌾';
-  if (name.includes('paddy') || name.includes('rice')) return '🌾';
-  if (name.includes('cotton')) return '⚪';
-  if (name.includes('mustard')) return '🌼';
-  if (name.includes('barley')) return '🌾';
-  if (name.includes('gram') || name.includes('chana')) return '🧆';
-  if (name.includes('maize') || name.includes('makka') || name.includes('corn')) return '🌽';
-  if (name.includes('soybean') || name.includes('soya')) return '🌱';
-  if (name.includes('potato')) return '🥔';
-  if (name.includes('onion')) return '🧅';
-  if (name.includes('tomato')) return '🍅';
-  if (name.includes('carrot')) return '🥕';
-  if (name.includes('brinjal')) return '🍆';
-  if (name.includes('apple')) return '🍎';
-  if (name.includes('pineapple')) return '🍍';
-  if (name.includes('guava')) return '🍈';
-  if (name.includes('pomegranate')) return '🍎';
-  if (name.includes('watermelon') || name.includes('water melon')) return '🍉';
-  if (name.includes('lemon')) return '🍋';
-  if (name.includes('chilli')) return '🌶️';
-  if (name.includes('turmeric')) return '🧂';
-  return '🌾';
+  if (name.includes('wheat')) return '';
+  if (name.includes('paddy') || name.includes('rice')) return '';
+  if (name.includes('cotton')) return '';
+  if (name.includes('mustard')) return '';
+  if (name.includes('barley')) return '';
+  if (name.includes('gram') || name.includes('chana')) return '';
+  if (name.includes('maize') || name.includes('makka') || name.includes('corn')) return '';
+  if (name.includes('soybean') || name.includes('soya')) return '';
+  if (name.includes('potato')) return '';
+  if (name.includes('onion')) return '';
+  if (name.includes('tomato')) return '';
+  if (name.includes('carrot')) return '';
+  if (name.includes('brinjal')) return '';
+  if (name.includes('apple')) return '';
+  if (name.includes('pineapple')) return '';
+  if (name.includes('guava')) return '';
+  if (name.includes('pomegranate')) return '';
+  if (name.includes('watermelon') || name.includes('water melon')) return '';
+  if (name.includes('lemon')) return '';
+  if (name.includes('chilli')) return '️';
+  if (name.includes('turmeric')) return '';
+  return '';
 };
 
 /**
@@ -306,7 +306,7 @@ export const MarketPrices = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl md:text-3xl" role="img" aria-label="wheat">🌾</span>
+            <span className="text-2xl md:text-3xl" role="img" aria-label="wheat"></span>
             <h1 className="font-heading font-extrabold text-2xl md:text-3xl text-slate-800 tracking-tight">
               {t('market.pageHeading', 'Market Prices')}
             </h1>
@@ -315,7 +315,7 @@ export const MarketPrices = () => {
             </span>
             {sourceInfo.date && (
               <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-full">
-                📅 {formatReportedDate(sourceInfo.date, t('market.recently', 'Recently'))}
+                 {formatReportedDate(sourceInfo.date, t('market.recently', 'Recently'))}
               </span>
             )}
           </div>
@@ -340,7 +340,7 @@ export const MarketPrices = () => {
             className="text-xs font-bold shadow-xs cursor-pointer"
             onClick={() => navigate('/mandi-centers')}
           >
-            {t('market.viewMandiCentersBtn', '🏪 View Mandi Centers')}
+            {t('market.viewMandiCentersBtn', ' View Mandi Centers')}
           </Button>
         </div>
       </div>
@@ -354,7 +354,7 @@ export const MarketPrices = () => {
         }`}>
           <div className="flex items-center gap-2.5">
             <span className="w-8 h-8 rounded-xl bg-white border border-emerald-200/80 flex items-center justify-center text-sm shadow-2xs shrink-0">
-              📍
+              
             </span>
             <div>
               <div className="text-xs font-extrabold flex items-center gap-1.5">
@@ -400,7 +400,7 @@ export const MarketPrices = () => {
       <Card className="p-4 bg-gradient-to-r from-emerald-50/70 via-white to-primary-50/50 border-emerald-100 shadow-2xs rounded-2xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
           <span className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
-            <span>🚜</span>
+            <span></span>
             <span>{t('market.howToSellTitle', 'How to Sell Your Crop on AgriQueue')}</span>
           </span>
           <span className="text-[11px] font-semibold text-slate-400">
@@ -410,27 +410,27 @@ export const MarketPrices = () => {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
           <div className="p-2.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs text-center">
-            <span className="text-xl block">🌾</span>
+            <span className="text-xl block"></span>
             <span className="text-xs font-bold text-slate-800 mt-1 block">{t('market.step1ChooseCrop', 'Choose Crop')}</span>
           </div>
           <div className="p-2.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs text-center">
-            <span className="text-xl block">💰</span>
+            <span className="text-xl block"></span>
             <span className="text-xs font-bold text-slate-800 mt-1 block">{t('market.step2ComparePrice', 'Compare Price')}</span>
           </div>
           <div className="p-2.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs text-center">
-            <span className="text-xl block">🏪</span>
+            <span className="text-xl block"></span>
             <span className="text-xs font-bold text-slate-800 mt-1 block">{t('market.step3CheckMandi', 'Check Mandi')}</span>
           </div>
           <div className="p-2.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs text-center">
-            <span className="text-xl block">⏳</span>
+            <span className="text-xl block"></span>
             <span className="text-xs font-bold text-slate-800 mt-1 block">{t('market.step4CheckQueue', 'Check Queue')}</span>
           </div>
           <div className="p-2.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs text-center">
-            <span className="text-xl block">🎫</span>
+            <span className="text-xl block"></span>
             <span className="text-xs font-bold text-slate-800 mt-1 block">{t('market.step5BookSlot', 'Book Slot')}</span>
           </div>
           <div className="p-2.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs text-center">
-            <span className="text-xl block">🚜</span>
+            <span className="text-xl block"></span>
             <span className="text-xs font-bold text-slate-800 mt-1 block">{t('market.step6ArrangeTransport', 'Arrange Transport')}</span>
           </div>
         </div>
@@ -442,7 +442,7 @@ export const MarketPrices = () => {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-start md:items-center gap-3.5">
               <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-200 flex items-center justify-center text-2xl shrink-0 shadow-2xs">
-                ⭐
+                
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -464,7 +464,7 @@ export const MarketPrices = () => {
                   )}
                   <span className="text-xs font-bold text-slate-400">{t('market.at', 'at')}</span>
                   <span className="text-sm font-extrabold text-slate-800 flex items-center gap-1">
-                    🏪 {higherPriceItem.market_name}
+                     {higherPriceItem.market_name}
                   </span>
                   <span className="text-xs text-slate-500 font-medium">
                     ({higherPriceItem.district}, {higherPriceItem.state})
@@ -678,7 +678,7 @@ export const MarketPrices = () => {
           /* 7. NO DATA STATE */
           <div className="p-12 text-center text-slate-500">
             <div className="max-w-md mx-auto space-y-3">
-              <span className="text-4xl block">🌾</span>
+              <span className="text-4xl block"></span>
               <h3 className="font-bold text-slate-800 text-sm md:text-base">
                 {t('market.noGovtPriceReported', 'No government price reported for this crop in the selected area')}
               </h3>
@@ -693,7 +693,7 @@ export const MarketPrices = () => {
                     onClick={handleShowAllMandis}
                     className="text-xs font-bold"
                   >
-                    {t('market.viewAllAvailableMandisBtn', '🌐 View All Available Mandis')}
+                    {t('market.viewAllAvailableMandisBtn', ' View All Available Mandis')}
                   </Button>
                 )}
                 <Button
@@ -751,7 +751,7 @@ export const MarketPrices = () => {
                     {/* 2. Mandi Column */}
                     <div className="md:col-span-3">
                       <span className="text-xs font-bold text-slate-800 bg-slate-100/90 border border-slate-200/80 px-2.5 py-1 rounded-lg inline-block">
-                        🏪 {item.market_name}
+                         {item.market_name}
                       </span>
                       <span className="text-[11px] font-medium text-slate-400 block mt-0.5">
                         {item.district}, {item.state}
@@ -910,7 +910,7 @@ export const MarketPrices = () => {
                   <div className="p-3.5 bg-emerald-50/90 border border-emerald-200/90 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 shadow-2xs">
                     <div>
                       <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-950">
-                        <span>📌</span>
+                        <span></span>
                         <span>
                           {t('market.currentReportedRange', 'Current reported range:')}{' '}
                           <span className="text-emerald-800 font-black text-sm">

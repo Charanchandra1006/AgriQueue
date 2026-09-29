@@ -70,7 +70,7 @@ const getMandiNavigation = (mandi) => {
       type: 'UNAVAILABLE',
       hasLocation: false,
       hasDirections: false,
-      message: '📍 Exact location not available yet'
+      message: ' Exact location not available yet'
     };
   }
 
@@ -140,7 +140,7 @@ const getMandiNavigation = (mandi) => {
     type: 'UNAVAILABLE',
     hasLocation: false,
     hasDirections: false,
-    message: '📍 Exact location not available yet'
+    message: ' Exact location not available yet'
   };
 };
 
@@ -696,7 +696,7 @@ export const MandiCenters = () => {
         <div>
           <div className="flex items-center gap-2">
             <span className="text-2xl" role="img" aria-label="mandi">
-              🏪
+              
             </span>
             <h1 className="font-heading font-extrabold text-2xl md:text-3xl text-slate-800 tracking-tight">
               {t('mandi.centersHeading')}
@@ -735,7 +735,7 @@ export const MandiCenters = () => {
           className="p-4 bg-gradient-to-r from-emerald-50 via-white to-primary-50/40 border-2 border-emerald-400 shadow-sm rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-in fade-in"
         >
           <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
-            <span className="text-2xl p-2.5 bg-emerald-100 rounded-xl shrink-0">🏪</span>
+            <span className="text-2xl p-2.5 bg-emerald-100 rounded-xl shrink-0"></span>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-200">
@@ -819,7 +819,7 @@ export const MandiCenters = () => {
         </div>
       )}
 
-      {/* ================= 📍 MANDIS NEAR YOU / PROMINENT HERO SECTION ================= */}
+      {/* =================  MANDIS NEAR YOU / PROMINENT HERO SECTION ================= */}
       <div className="p-4 sm:p-5 bg-gradient-to-r from-emerald-50 via-white to-primary-50/40 border-2 border-emerald-400 shadow-sm rounded-2xl flex flex-col lg:flex-row lg:items-center justify-between gap-4 animate-in fade-in">
         <div className="flex items-start sm:items-center gap-3.5">
           <span
@@ -827,7 +827,7 @@ export const MandiCenters = () => {
             role="img"
             aria-label="pin"
           >
-            📍
+            
           </span>
           <div>
             <div className="flex flex-wrap items-center gap-2">
@@ -982,7 +982,7 @@ export const MandiCenters = () => {
                   }}
                   className="px-3 py-1.5 bg-white hover:bg-amber-100 border border-amber-300 hover:border-amber-400 rounded-xl text-xs font-extrabold text-amber-900 shadow-2xs transition-all cursor-pointer flex items-center gap-1.5 active:scale-98"
                 >
-                  <span>📍</span>
+                  <span></span>
                   <span>{opt.village} — {opt.mandal} {t('common.mandal')}</span>
                 </button>
               ))}
@@ -1082,7 +1082,7 @@ export const MandiCenters = () => {
           {/* Crop Filter */}
           {crops.length > 0 && (
             <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
-              <span className="text-slate-400">🌾 {t('common.crop')}:</span>
+              <span className="text-slate-400"> {t('common.crop')}:</span>
               <select
                 value={selectedCrop}
                 onChange={(e) => setSelectedCrop(e.target.value)}
@@ -1173,7 +1173,7 @@ export const MandiCenters = () => {
       {!isLoading && !error && displayMandis.length === 0 && (
         <Card className="p-8 text-center bg-white border-slate-200 rounded-2xl">
           <div className="max-w-md mx-auto space-y-3">
-            <span className="text-3xl">🌾</span>
+            <span className="text-3xl"></span>
             <h3 className="font-heading font-bold text-slate-800 text-lg">
               {t('mandi.noMatchingCentersFound')}
             </h3>
@@ -1222,7 +1222,7 @@ export const MandiCenters = () => {
 
                     {distanceText ? (
                       <span className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-300 shadow-2xs shrink-0">
-                        🚗 {distanceText}
+                         {distanceText}
                       </span>
                     ) : farmerDistrict &&
                       mandi.district?.toLowerCase() === farmerDistrict.toLowerCase() ? (
@@ -1241,7 +1241,7 @@ export const MandiCenters = () => {
                   {/* Mandi Name */}
                   <div className="flex items-start gap-2.5 min-w-0">
                     <span className="text-2xl shrink-0 mt-0.5" role="img" aria-label="mandi">
-                      🏪
+                      
                     </span>
                     <div className="min-w-0 flex-1">
                       <h2
@@ -1302,7 +1302,7 @@ export const MandiCenters = () => {
                           key={idx}
                           className="text-[11px] font-bold text-slate-600 bg-slate-100 border border-slate-200/70 px-2 py-0.5 rounded-md break-words"
                         >
-                          🌾 {comm}
+                           {comm}
                         </span>
                       ))}
                       {mandi.external.commodities.length > 3 && (
@@ -1328,7 +1328,7 @@ export const MandiCenters = () => {
                             className="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold py-2 px-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300 hover:text-slate-900 transition-all text-center no-underline cursor-pointer min-w-0 shadow-2xs"
                             title={t('mandi.openInGoogleMapsTitle')}
                           >
-                            <span className="shrink-0 text-xs">📍</span>
+                            <span className="shrink-0 text-xs"></span>
                             <span className="truncate">{t('mandi.viewLocationBtn')}</span>
                           </a>
                           <a
@@ -1338,7 +1338,7 @@ export const MandiCenters = () => {
                             className="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold py-2 px-2.5 rounded-xl border border-primary-200 bg-primary-50 text-primary-800 hover:bg-primary-100 hover:border-primary-300 transition-all text-center no-underline cursor-pointer min-w-0 shadow-2xs"
                             title={t('mandi.getDirectionsTitle')}
                           >
-                            <span className="shrink-0 text-xs">🧭</span>
+                            <span className="shrink-0 text-xs"></span>
                             <span className="truncate">{t('mandi.directionsBtn')}</span>
                           </a>
                         </div>
@@ -1347,7 +1347,7 @@ export const MandiCenters = () => {
                     return (
                       <div className="py-2 px-3 rounded-xl bg-slate-50 border border-dashed border-slate-200 text-center">
                         <span className="text-[11px] font-semibold text-slate-400 inline-flex items-center justify-center gap-1.5">
-                          <span>📍</span> {t('mandi.exactLocationNotAvailable')}
+                          <span></span> {t('mandi.exactLocationNotAvailable')}
                         </span>
                       </div>
                     );
@@ -1381,7 +1381,7 @@ export const MandiCenters = () => {
         </div>
       )}
 
-      {/* ================= 📍 "SELECT YOUR VILLAGE" MODAL (PERMISSION DENIED FALLBACK) ================= */}
+      {/* =================  "SELECT YOUR VILLAGE" MODAL (PERMISSION DENIED FALLBACK) ================= */}
       {isVillageModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
           <div
@@ -1391,7 +1391,7 @@ export const MandiCenters = () => {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/80">
               <div className="flex items-center gap-2">
-                <span className="text-xl">📍</span>
+                <span className="text-xl"></span>
                 <div>
                   <h3 className="font-heading font-bold text-base text-slate-900">
                     {t('mandi.villageModalTitle')}

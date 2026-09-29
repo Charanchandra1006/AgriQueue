@@ -33,7 +33,7 @@ import {
 const PROBLEM_CATEGORIES = [
   {
     id: 'token',
-    icon: '🎫',
+    icon: '',
     subProblemIds: [
       'token_not_showing',
       'qr_not_scanning',
@@ -43,7 +43,7 @@ const PROBLEM_CATEGORIES = [
   },
   {
     id: 'mandi',
-    icon: '🏪',
+    icon: '',
     subProblemIds: [
       'mandi_closed',
       'procurement_problem',
@@ -53,7 +53,7 @@ const PROBLEM_CATEGORIES = [
   },
   {
     id: 'transport',
-    icon: '🚜',
+    icon: '',
     subProblemIds: [
       'driver_not_arrived',
       'driver_cancelled',
@@ -63,7 +63,7 @@ const PROBLEM_CATEGORIES = [
   },
   {
     id: 'payment',
-    icon: '💰',
+    icon: '',
     subProblemIds: [
       'payment_delayed',
       'payment_discrepancy',
@@ -72,7 +72,7 @@ const PROBLEM_CATEGORIES = [
   },
   {
     id: 'other',
-    icon: '❓',
+    icon: '',
     subProblemIds: []
   }
 ];
@@ -402,7 +402,7 @@ export const Help = () => {
                 </div>
               </div>
 
-              {/* SECTION 2: 💬 CHAT WITH AGRIQUEUE ADMIN ON WHATSAPP */}
+              {/* SECTION 2:  CHAT WITH AGRIQUEUE ADMIN ON WHATSAPP */}
               <div className="pt-2">
                 <button
                   type="button"
@@ -410,7 +410,7 @@ export const Help = () => {
                   className="w-full py-3.5 px-6 rounded-2xl font-heading font-extrabold text-sm sm:text-base text-white shadow-md transition-all duration-200 cursor-pointer active:scale-[0.98] flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] border-none ring-4 ring-[#25D366]/20"
                 >
                   <MessageSquare className="h-5 w-5 fill-current" />
-                  <span>💬 {t('help.chatOnWhatsApp')}</span>
+                  <span> {t('help.chatOnWhatsApp')}</span>
                 </button>
                 <p className="text-center text-[11px] text-slate-400 font-medium mt-2">
                   {t('help.whatsAppDisclaimer')}
@@ -422,13 +422,13 @@ export const Help = () => {
 
         {/* Right 1 Column: Helpline Numbers & Quick Mandi Services */}
         <div className="space-y-6">
-          {/* SECTION 4: 📞 FARMER HELPLINE NUMBERS */}
+          {/* SECTION 4:  FARMER HELPLINE NUMBERS */}
           <Card className="border-slate-200 shadow-2xs overflow-hidden">
             <CardHeader className="border-b border-slate-100 pb-3 bg-slate-50/50">
               <div className="flex items-center gap-2">
                 <Phone className="h-5 w-5 text-primary-600" />
                 <h2 className="font-heading font-extrabold text-slate-850 text-base md:text-lg">
-                  📞 {t('help.farmerHelplineTitle')}
+                   {t('help.farmerHelplineTitle')}
                 </h2>
               </div>
               <p className="text-xs text-slate-500 font-medium">
@@ -441,7 +441,7 @@ export const Help = () => {
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                    🏛️ {t('help.govtKisanBadge')}
+                    ️ {t('help.govtKisanBadge')}
                   </span>
                 </div>
 
@@ -459,7 +459,7 @@ export const Help = () => {
                         {t('help.kisan24x7')}
                       </span>
                       <span className="font-heading font-black text-emerald-800 text-lg sm:text-xl block tracking-tight">
-                        📞 1800-180-1551
+                         1800-180-1551
                       </span>
                       <span className="text-[10px] text-emerald-700 font-semibold block">
                         {t('help.kisanCallSub')}
@@ -482,7 +482,7 @@ export const Help = () => {
                         {t('help.kisanShortCode')}
                       </span>
                       <span className="font-heading font-black text-blue-800 text-lg sm:text-xl block tracking-tight">
-                        📞 1551
+                         1551
                       </span>
                       <span className="text-[10px] text-blue-700 font-semibold block">
                         {t('help.kisanShortSub')}
@@ -495,7 +495,7 @@ export const Help = () => {
               {/* AgriQueue Platform Support (Explicitly distinguished from Government) */}
               <div className="pt-3 border-t border-slate-100 space-y-2.5">
                 <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-600 bg-slate-100 px-2 py-0.5 rounded block">
-                  ⚙️ {t('help.agriQueueDeskTitle')}
+                  ️ {t('help.agriQueueDeskTitle')}
                 </span>
                 <p className="text-[11px] text-slate-500 font-medium">
                   {t('help.agriQueueDeskDesc')}
@@ -560,7 +560,7 @@ export const Help = () => {
                 onClick={() => navigate('/mandi-centers')}
                 className="w-full text-left p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-primary-300 transition-colors flex items-center justify-between text-xs font-bold text-slate-700 cursor-pointer"
               >
-                <span>🏪 {t('help.browseMandisBtn')}</span>
+                <span> {t('help.browseMandisBtn')}</span>
                 <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
               </button>
               <button
@@ -568,7 +568,7 @@ export const Help = () => {
                 onClick={() => navigate('/book-slot')}
                 className="w-full text-left p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-primary-300 transition-colors flex items-center justify-between text-xs font-bold text-slate-700 cursor-pointer"
               >
-                <span>🎫 {t('help.bookSlotBtn')}</span>
+                <span> {t('help.bookSlotBtn')}</span>
                 <Calendar className="h-3.5 w-3.5 text-primary-600" />
               </button>
             </div>
@@ -576,7 +576,7 @@ export const Help = () => {
         </div>
       </div>
 
-      {/* SECTION 5: ❓ FREQUENTLY ASKED QUESTIONS (Below main support actions) */}
+      {/* SECTION 5:  FREQUENTLY ASKED QUESTIONS (Below main support actions) */}
       <Card className="border-slate-200 shadow-2xs">
         <CardHeader className="border-b border-slate-100 bg-slate-50/50 pb-3">
           <div className="flex items-center gap-2">

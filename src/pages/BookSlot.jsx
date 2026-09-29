@@ -231,10 +231,10 @@ export const BookSlot = () => {
                   {t('history.mandiCenter')}
                 </span>
                 <span className="font-extrabold text-white text-base block">
-                  🏪 {confirmedBooking.mandiName}
+                   {confirmedBooking.mandiName}
                 </span>
                 <span className="text-xs text-slate-400 block">
-                  📍 {currentMandi.external.location}, {currentMandi.external.district}, {currentMandi.external.state}
+                   {currentMandi.external.location}, {currentMandi.external.district}, {currentMandi.external.state}
                 </span>
               </div>
 
@@ -243,7 +243,7 @@ export const BookSlot = () => {
                   {t('booking.reservationSchedule')}
                 </span>
                 <span className="font-extrabold text-white text-base block">
-                  📅 {confirmedBooking.date}
+                   {confirmedBooking.date}
                 </span>
                 <span className="text-xs text-emerald-300 font-bold block">
                   {t('booking.timeSlotColon', { time: confirmedBooking.timeSlot })}
@@ -254,7 +254,7 @@ export const BookSlot = () => {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 text-xs">
               <div>
                 <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('common.crop')}</span>
-                <span className="font-extrabold text-white text-sm mt-0.5 block">🌾 {confirmedBooking.crop}</span>
+                <span className="font-extrabold text-white text-sm mt-0.5 block"> {confirmedBooking.crop}</span>
               </div>
               <div>
                 <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('common.quantity')}</span>
@@ -262,7 +262,7 @@ export const BookSlot = () => {
               </div>
               <div>
                 <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('booking.countAhead', { count: '' }).trim()}</span>
-                <span className="font-extrabold text-white text-sm mt-0.5 block">👥 {t('booking.countAhead', { count: confirmedBooking.farmersAhead })}</span>
+                <span className="font-extrabold text-white text-sm mt-0.5 block"> {t('booking.countAhead', { count: confirmedBooking.farmersAhead })}</span>
               </div>
               <div>
                 <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('dashboard.estWaitLabel')}</span>
@@ -329,7 +329,7 @@ export const BookSlot = () => {
           {/* Header Card */}
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-2xl" role="img" aria-label="ticket">🎫</span>
+              <span className="text-2xl" role="img" aria-label="ticket"></span>
               <h1 className="font-heading font-extrabold text-2xl md:text-3xl text-slate-800 tracking-tight">
                 {t('booking.slotReservationTitle')}
               </h1>
@@ -343,7 +343,7 @@ export const BookSlot = () => {
           <Card className="p-5 md:p-6 bg-gradient-to-br from-emerald-50/70 via-white to-white border-slate-200 shadow-2xs space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
               <div className="flex items-start gap-3">
-                <span className="text-3xl mt-0.5" role="img" aria-label="mandi">🏪</span>
+                <span className="text-3xl mt-0.5" role="img" aria-label="mandi"></span>
                 <div>
                   <h2 className="font-heading font-extrabold text-lg md:text-xl text-slate-850">
                     {currentMandi.external.name}
@@ -364,7 +364,7 @@ export const BookSlot = () => {
                   {isOpenNow ? t('mandi.openNow') : t('mandi.closed')}
                 </span>
                 <span className="text-xs font-bold text-primary-700 bg-primary-50 border border-primary-100 px-2.5 py-1 rounded-full">
-                  🎫 {t('booking.slotsToday', { count: currentMandi.agriQueue.availableSlots })}
+                   {t('booking.slotsToday', { count: currentMandi.agriQueue.availableSlots })}
                 </span>
               </div>
             </div>
@@ -425,7 +425,7 @@ export const BookSlot = () => {
                             : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                         }`}
                       >
-                        <span>🌾 {crop}</span>
+                        <span> {crop}</span>
                         {isSelected && <CheckCircle2 className="h-4 w-4 shrink-0" />}
                       </button>
                     );

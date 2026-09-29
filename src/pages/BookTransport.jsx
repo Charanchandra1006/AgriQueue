@@ -35,27 +35,27 @@ const VEHICLE_OPTIONS = [
   {
     id: 'Tractor Trolley',
     key: 'tractorTrolley',
-    emoji: '🚜'
+    emoji: ''
   },
   {
     id: 'Small Commercial Truck (Chota Hathi)',
     key: 'chotaHathi',
-    emoji: '🚚'
+    emoji: ''
   },
   {
     id: 'Heavy Duty 6-Wheeler Truck',
     key: 'heavyTruck',
-    emoji: '🚛'
+    emoji: ''
   }
 ];
 
 // 5-Stage Farmer Progress Lifecycle
 const PROGRESS_STEPS = [
-  { key: 'REQUESTED', icon: '📝' },
-  { key: 'DRIVER_ASSIGNED', icon: '👨🌾' },
-  { key: 'DRIVER_ARRIVING', icon: '🚚' },
-  { key: 'CROP_PICKED_UP', icon: '🌾' },
-  { key: 'COMPLETED', icon: '✅' }
+  { key: 'REQUESTED', icon: '' },
+  { key: 'DRIVER_ASSIGNED', icon: '' },
+  { key: 'DRIVER_ARRIVING', icon: '' },
+  { key: 'CROP_PICKED_UP', icon: '' },
+  { key: 'COMPLETED', icon: '' }
 ];
 
 export const BookTransport = () => {
@@ -309,7 +309,7 @@ export const BookTransport = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl" role="img" aria-label="tractor">🚜</span>
+            <span className="text-2xl" role="img" aria-label="tractor"></span>
             <h1 className="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 tracking-tight">
               {t('transport.pageTitle')}
             </h1>
@@ -334,7 +334,7 @@ export const BookTransport = () => {
       {!activeBooking ? (
         <Card className="p-8 sm:p-12 text-center bg-gradient-to-br from-amber-50/40 via-white to-slate-50 border border-amber-200 rounded-3xl shadow-xs max-w-2xl mx-auto space-y-6 animate-in zoom-in-95 duration-200">
           <div className="h-16 w-16 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mx-auto text-3xl shadow-2xs">
-            ⚠️
+            ️
           </div>
 
           <div className="space-y-2">
@@ -351,7 +351,7 @@ export const BookTransport = () => {
 
           <div className="p-4 bg-white rounded-2xl border border-slate-200/80 text-left space-y-2 max-w-md mx-auto text-xs text-slate-600">
             <p className="font-bold text-slate-800 flex items-center gap-1.5">
-              <span>🌾</span>
+              <span></span>
               <span>{t('transport.prerequisite.whyTitle')}</span>
             </p>
             <ul className="list-disc pl-5 space-y-1 text-slate-500 font-medium">
@@ -368,7 +368,7 @@ export const BookTransport = () => {
               className="w-full sm:w-auto px-6 py-3 font-bold text-sm shadow-md"
               onClick={() => navigate('/mandi-centers')}
             >
-              <span>🏪 {t('transport.prerequisite.bookSlotBtn')}</span>
+              <span> {t('transport.prerequisite.bookSlotBtn')}</span>
               <ArrowRight className="h-4 w-4 ml-1.5" />
             </Button>
             <Button
@@ -400,7 +400,7 @@ export const BookTransport = () => {
                   </span>
                 </div>
                 <h2 className="font-heading font-black text-xl sm:text-2xl mt-0.5">
-                  🚜 {t('transport.active.bookedTitle')}
+                   {t('transport.active.bookedTitle')}
                 </h2>
                 <p className="text-xs text-emerald-100 font-medium mt-0.5">
                   {t('transport.active.referenceId', { id: activeTransport.transportBookingId })}
@@ -411,7 +411,7 @@ export const BookTransport = () => {
             {/* Simulated Demo Driver Badge */}
             <div className="text-right self-start sm:self-center">
               <span className="px-3 py-1 bg-white/15 border border-white/20 rounded-full text-[11px] font-semibold text-emerald-100 block">
-                🧪 {t('transport.active.demoPool')}
+                 {t('transport.active.demoPool')}
               </span>
             </div>
           </div>
@@ -451,7 +451,7 @@ export const BookTransport = () => {
                       <span className="text-lg">{step.icon}</span>
                       {isPassed ? (
                         <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">
-                          ✓
+                          
                         </span>
                       ) : isCurrent ? (
                         <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping"></span>
@@ -488,7 +488,7 @@ export const BookTransport = () => {
                     className="text-xs font-bold py-1.5 px-3 shadow-2xs"
                     onClick={handleAssignDemoDriver}
                   >
-                    {isActionLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : '👨🌾'}
+                    {isActionLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : ''}
                     {t('transport.active.simulateDriverBtn')}
                   </Button>
                 )}
@@ -501,7 +501,7 @@ export const BookTransport = () => {
                     className="text-xs font-bold py-1.5 px-3 shadow-2xs"
                     onClick={() => handleStepStatus()}
                   >
-                    {isActionLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : '⏭️'}
+                    {isActionLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : '️'}
                     {t('transport.active.nextStatusBtn')}
                   </Button>
                 )}
@@ -537,7 +537,7 @@ export const BookTransport = () => {
             {/* Vehicle & Produce Details */}
             <Card className="p-5 border-slate-200 shadow-2xs rounded-2xl space-y-4">
               <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5">
-                <span className="text-xl">🌾</span>
+                <span className="text-xl"></span>
                 <h4 className="font-heading font-bold text-sm text-slate-800 uppercase tracking-wider">
                   {t('transport.active.vehicleCropTitle')}
                 </h4>
@@ -555,13 +555,13 @@ export const BookTransport = () => {
                   <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                     <span className="text-slate-400 font-bold uppercase text-[10px] block">{t('transport.active.cropLabel')}</span>
                     <span className="font-extrabold text-slate-800 text-xs mt-0.5 block">
-                      🌾 {activeTransport.cropName}
+                       {activeTransport.cropName}
                     </span>
                   </div>
                   <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                     <span className="text-slate-400 font-bold uppercase text-[10px] block">{t('transport.active.quantityLabel')}</span>
                     <span className="font-extrabold text-emerald-700 text-xs mt-0.5 block">
-                      ⚖️ {activeTransport.estimatedQuantity} {t('transport.form.quintalsUnit')}
+                      ️ {activeTransport.estimatedQuantity} {t('transport.form.quintalsUnit')}
                     </span>
                   </div>
                 </div>
@@ -569,10 +569,10 @@ export const BookTransport = () => {
                 <div className="pt-1">
                   <span className="text-slate-400 font-bold uppercase text-[10px] block">{t('transport.active.pickupScheduleLabel')}</span>
                   <span className="font-bold text-slate-800 text-xs mt-0.5 block">
-                    📅 {activeTransport.pickupDate}
+                     {activeTransport.pickupDate}
                   </span>
                   <span className="text-slate-500 font-medium text-xs block">
-                    🕐 {activeTransport.pickupTime}
+                     {activeTransport.pickupTime}
                   </span>
                 </div>
               </div>
@@ -581,7 +581,7 @@ export const BookTransport = () => {
             {/* Destination Mandi Details */}
             <Card className="p-5 border-slate-200 shadow-2xs rounded-2xl space-y-4">
               <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5">
-                <span className="text-xl">🏪</span>
+                <span className="text-xl"></span>
                 <h4 className="font-heading font-bold text-sm text-slate-800 uppercase tracking-wider">
                   {t('transport.active.destMandiTitle')}
                 </h4>
@@ -617,7 +617,7 @@ export const BookTransport = () => {
                 <div className="pt-1">
                   <span className="text-slate-400 font-bold uppercase text-[10px] block">{t('transport.active.registeredSlotLabel')}</span>
                   <span className="font-bold text-slate-800 text-xs mt-0.5 block">
-                    🕐 {activeBooking.slot?.formattedTime || 'Standard Slot'}
+                     {activeBooking.slot?.formattedTime || 'Standard Slot'}
                   </span>
                 </div>
               </div>
@@ -626,7 +626,7 @@ export const BookTransport = () => {
             {/* Pickup & Driver Assignment */}
             <Card className="p-5 border-slate-200 shadow-2xs rounded-2xl space-y-4">
               <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5">
-                <span className="text-xl">📍</span>
+                <span className="text-xl"></span>
                 <h4 className="font-heading font-bold text-sm text-slate-800 uppercase tracking-wider">
                   {t('transport.active.pickupDriverTitle')}
                 </h4>
@@ -698,7 +698,7 @@ export const BookTransport = () => {
           <Card className="p-5 sm:p-6 bg-gradient-to-br from-emerald-50/50 via-white to-white border-2 border-emerald-500/80 rounded-2xl shadow-xs space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-100 pb-3">
               <div className="flex items-center gap-2.5">
-                <span className="p-2 bg-emerald-600 text-white rounded-xl text-lg shrink-0">🏪</span>
+                <span className="p-2 bg-emerald-600 text-white rounded-xl text-lg shrink-0"></span>
                 <div>
                   <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 block">
                     {t('transport.form.destMandiHeader')}
@@ -711,7 +711,7 @@ export const BookTransport = () => {
 
               <div className="flex items-center gap-2 self-start sm:self-center">
                 <Badge variant="success" className="px-3 py-1 font-bold text-xs">
-                  ✓ {t('transport.form.slotConfirmedBadge')}
+                   {t('transport.form.slotConfirmedBadge')}
                 </Badge>
               </div>
             </div>
@@ -721,7 +721,7 @@ export const BookTransport = () => {
               <div className="p-2.5 bg-white rounded-xl border border-slate-200/80">
                 <span className="text-slate-400 font-bold uppercase text-[9px] block">{t('transport.form.mandiLocationLabel')}</span>
                 <span className="font-bold text-slate-800 text-xs mt-0.5 block truncate">
-                  📍 {activeBooking.mandi?.location || `${activeBooking.mandi?.district}, ${activeBooking.mandi?.state}`}
+                   {activeBooking.mandi?.location || `${activeBooking.mandi?.district}, ${activeBooking.mandi?.state}`}
                 </span>
               </div>
 
@@ -742,7 +742,7 @@ export const BookTransport = () => {
               <div className="p-2.5 bg-white rounded-xl border border-slate-200/80">
                 <span className="text-slate-400 font-bold uppercase text-[9px] block">{t('transport.form.slotTimeLabel')}</span>
                 <span className="font-bold text-slate-800 text-xs mt-0.5 block truncate">
-                  🕐 {activeBooking.slot?.formattedTime || 'Scheduled Slot'}
+                   {activeBooking.slot?.formattedTime || 'Scheduled Slot'}
                 </span>
               </div>
             </div>
@@ -757,7 +757,7 @@ export const BookTransport = () => {
           <Card className="p-5 sm:p-6 border-slate-200 shadow-2xs rounded-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <span className="text-lg">🌾</span>
+                <span className="text-lg"></span>
                 <h3 className="font-heading font-bold text-sm text-slate-800 uppercase tracking-wider">
                   {t('transport.form.cropLoadTitle')}
                 </h3>
@@ -773,7 +773,7 @@ export const BookTransport = () => {
                 </label>
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-lg">🌾</span>
+                    <span className="text-lg"></span>
                     <span className="font-bold text-slate-800 text-sm">{cropName}</span>
                   </div>
                   <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">
@@ -843,7 +843,7 @@ export const BookTransport = () => {
           <Card className="p-5 sm:p-6 border-slate-200 shadow-2xs rounded-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <span className="text-lg">📍</span>
+                <span className="text-lg"></span>
                 <h3 className="font-heading font-bold text-sm text-slate-800 uppercase tracking-wider">
                   {t('transport.form.pickupLocationTitle')}
                 </h3>
@@ -856,7 +856,7 @@ export const BookTransport = () => {
                 onClick={handleOpenLocationModal}
               >
                 <MapPin className="h-3.5 w-3.5 text-primary-600" />
-                <span>📍 {t('transport.form.changePickupBtn')}</span>
+                <span> {t('transport.form.changePickupBtn')}</span>
               </Button>
             </div>
 
@@ -877,7 +877,7 @@ export const BookTransport = () => {
 
               <div className="shrink-0">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-800 text-xs font-bold rounded-full border border-emerald-200">
-                  <span>✓</span>
+                  <span></span>
                   <span>{t('transport.form.officialHierarchyBadge')}</span>
                 </span>
               </div>
@@ -913,7 +913,7 @@ export const BookTransport = () => {
                         <span className="text-3xl">{veh.emoji}</span>
                         {isSelected ? (
                           <span className="h-6 w-6 rounded-full bg-primary-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
-                            ✓
+                            
                           </span>
                         ) : (
                           <span className="h-6 w-6 rounded-full border border-slate-300 bg-white"></span>
@@ -938,7 +938,7 @@ export const BookTransport = () => {
                     <div className="pt-2 border-t border-slate-100 space-y-1">
                       {getVehicleFeatures(veh.key).map((feat, fIdx) => (
                         <div key={fIdx} className="text-[11px] text-slate-500 flex items-center gap-1.5 font-medium">
-                          <span className="text-primary-600 font-bold">✓</span>
+                          <span className="text-primary-600 font-bold"></span>
                           <span>{feat}</span>
                         </div>
                       ))}
@@ -953,7 +953,7 @@ export const BookTransport = () => {
           <Card className="p-5 sm:p-6 border-slate-200 shadow-2xs rounded-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <span className="text-lg">🕐</span>
+                <span className="text-lg"></span>
                 <h3 className="font-heading font-bold text-sm text-slate-800 uppercase tracking-wider">
                   {t('transport.form.pickupScheduleTitle')}
                 </h3>
@@ -1006,7 +1006,7 @@ export const BookTransport = () => {
 
           {/* STEP 6: DRIVER DISPATCH INFORMATION NOTE */}
           <div className="p-4 bg-slate-100/70 rounded-2xl border border-slate-200 flex items-start gap-3 text-xs text-slate-600">
-            <span className="text-xl shrink-0">🟢</span>
+            <span className="text-xl shrink-0"></span>
             <div className="space-y-0.5">
               <p className="font-bold text-slate-800">
                 {t('transport.form.autoDriverTitle')}
@@ -1036,7 +1036,7 @@ export const BookTransport = () => {
                 </>
               ) : (
                 <>
-                  <span>🚜 {t('transport.form.submitBtn')}</span>
+                  <span> {t('transport.form.submitBtn')}</span>
                   <ArrowRight className="h-5 w-5" />
                 </>
               )}
@@ -1051,7 +1051,7 @@ export const BookTransport = () => {
           <Card className="w-full max-w-lg bg-white rounded-3xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
             <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 pb-4 bg-slate-50">
               <div className="flex items-center gap-2">
-                <span className="text-xl">📍</span>
+                <span className="text-xl"></span>
                 <CardTitle className="text-base font-heading font-bold text-slate-900">
                   {t('transport.modal.title')}
                 </CardTitle>

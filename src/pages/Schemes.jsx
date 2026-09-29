@@ -200,7 +200,7 @@ export const Schemes = () => {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
-          <span className="text-2xl md:text-3xl" role="img" aria-label="schemes">🏛️</span>
+          <span className="text-2xl md:text-3xl" role="img" aria-label="schemes">️</span>
           <h1 className="font-heading font-extrabold text-2xl md:text-3xl text-slate-800 tracking-tight">
             {t('schemes.pageTitle', 'Government Schemes')}
           </h1>
@@ -218,7 +218,7 @@ export const Schemes = () => {
           className="flex items-center justify-between p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-xl text-xs font-semibold shadow-2xs animate-in fade-in"
         >
           <div className="flex items-center gap-2">
-            <span className="text-base">🏛️</span>
+            <span className="text-base">️</span>
             <span>{portalNotice}</span>
           </div>
           <button
@@ -287,7 +287,7 @@ export const Schemes = () => {
         {filteredSchemes.length === 0 ? (
           <Card className="p-12 text-center bg-white border-slate-200 rounded-2xl">
             <div className="max-w-sm mx-auto space-y-2">
-              <span className="text-3xl">🏛️</span>
+              <span className="text-3xl">️</span>
               <p className="font-bold text-slate-800 text-base">
                 {t('schemes.emptyTitle', 'No schemes match your search')}
               </p>
@@ -331,7 +331,7 @@ export const Schemes = () => {
                   {/* Scheme Name - Official scheme names such as PM-KISAN, PMFBY, SMAM, PDMC are kept untranslated */}
                   <div>
                     <h2 className="font-heading font-extrabold text-lg md:text-xl text-slate-900 tracking-tight flex items-center gap-2">
-                      <span>🏛️</span>
+                      <span>️</span>
                       <span>{scheme.title}</span>
                     </h2>
                     <p className="text-xs md:text-sm text-slate-500 font-medium leading-relaxed mt-1">
@@ -344,7 +344,7 @@ export const Schemes = () => {
                     {/* 1. Key Benefits */}
                     <div className="p-3.5 bg-emerald-50/50 border border-emerald-100 rounded-xl space-y-1">
                       <span className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
-                        <span>💰</span>
+                        <span></span>
                         <span>{t('schemes.keyBenefits', 'Key Benefits')}</span>
                       </span>
                       <p className="text-xs font-semibold text-slate-700 leading-snug pt-0.5 flex items-start gap-1.5">
@@ -356,7 +356,7 @@ export const Schemes = () => {
                     {/* 2. Eligibility */}
                     <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1">
                       <span className="text-[11px] font-extrabold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-                        <span>👨‍🌾</span>
+                        <span>‍</span>
                         <span>{t('schemes.eligibility', 'Eligibility')}</span>
                       </span>
                       <p className="text-xs font-semibold text-slate-700 leading-snug pt-0.5 flex items-start gap-1.5">
@@ -368,7 +368,7 @@ export const Schemes = () => {
                     {/* 3. Documents Needed */}
                     <div className="p-3.5 bg-amber-50/40 border border-amber-200/70 rounded-xl space-y-1">
                       <span className="text-[11px] font-extrabold text-amber-900 uppercase tracking-wider flex items-center gap-1.5">
-                        <span>📄</span>
+                        <span></span>
                         <span>{t('schemes.documentsNeeded', 'Documents Needed')}</span>
                       </span>
                       {getSchemeDocs(scheme).length > 0 ? (
@@ -403,7 +403,7 @@ export const Schemes = () => {
                         className="w-full justify-center text-xs font-bold shadow-xs py-2.5 flex items-center gap-1.5 cursor-pointer"
                         onClick={() => handleApplyOnline(scheme)}
                       >
-                        <span>🟢 {t('schemes.applyOnline', 'Apply Online')}</span>
+                        <span> {t('schemes.applyOnline', 'Apply Online')}</span>
                         <ExternalLink className="h-3.5 w-3.5" />
                       </Button>
                       <span className="block text-[10px] text-emerald-700 font-bold mt-1 text-center">
@@ -418,7 +418,7 @@ export const Schemes = () => {
                         disabled
                         className="w-full justify-center text-xs font-bold py-2.5 opacity-50 cursor-not-allowed bg-slate-200 text-slate-500 border-none"
                       >
-                        <span>🟢 {t('schemes.applyOnline', 'Apply Online')}</span>
+                        <span> {t('schemes.applyOnline', 'Apply Online')}</span>
                       </Button>
                       <span className="block text-[10px] text-amber-700 font-semibold mt-1 text-center">
                         {t('schemes.applicationNotAvailable', 'Official application link is not available yet.')}
@@ -434,7 +434,7 @@ export const Schemes = () => {
                       className="w-full justify-center text-xs font-bold border-slate-200 text-slate-700 hover:bg-slate-50 py-2.5 flex items-center gap-1.5 cursor-pointer"
                       onClick={() => handleViewGuidelines(scheme)}
                     >
-                      <span>📘 {t('schemes.viewGuidelines', 'View Guidelines')}</span>
+                      <span> {t('schemes.viewGuidelines', 'View Guidelines')}</span>
                       <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
                     </Button>
                     <span className="block text-[10px] text-slate-400 font-medium mt-1 text-center">
@@ -449,7 +449,7 @@ export const Schemes = () => {
                     className="w-full justify-center text-xs font-bold border-slate-200 text-slate-700 hover:bg-slate-50 py-2.5 flex items-center gap-1.5 cursor-pointer"
                     onClick={() => setSelectedScheme(scheme)}
                   >
-                    <span>📄 {t('schemes.viewDetails', 'View Details')}</span>
+                    <span> {t('schemes.viewDetails', 'View Details')}</span>
                   </Button>
                 </div>
               </div>
@@ -475,7 +475,7 @@ export const Schemes = () => {
             <div className="flex items-start justify-between p-5 border-b border-slate-100 bg-slate-50/70">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl">🏛️</span>
+                  <span className="text-xl">️</span>
                   <span className="text-xs font-bold text-primary-600 uppercase tracking-wider">
                     {t('schemes.modal.title', 'Scheme Details')}
                   </span>
@@ -512,7 +512,7 @@ export const Schemes = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 <div className="p-3.5 bg-emerald-50/60 border border-emerald-100 rounded-xl space-y-1">
                   <span className="text-xs font-extrabold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
-                    <span>💰</span>
+                    <span></span>
                     <span>{t('schemes.keyBenefits', 'Key Benefits')}</span>
                   </span>
                   <p className="text-xs font-semibold text-slate-700 leading-snug pt-1 flex items-start gap-1.5">
@@ -523,7 +523,7 @@ export const Schemes = () => {
 
                 <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1">
                   <span className="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-                    <span>👨‍🌾</span>
+                    <span>‍</span>
                     <span>{t('schemes.eligibility', 'Eligibility')}</span>
                   </span>
                   <p className="text-xs font-semibold text-slate-700 leading-snug pt-1 flex items-start gap-1.5">
@@ -536,7 +536,7 @@ export const Schemes = () => {
               {/* Documents Required */}
               <div className="p-3.5 bg-amber-50/50 border border-amber-200/70 rounded-xl space-y-2">
                 <span className="text-xs font-extrabold text-amber-900 uppercase tracking-wider flex items-center gap-1.5">
-                  <span>📄</span>
+                  <span></span>
                   <span>{t('schemes.documentsNeeded', 'Documents Needed')}</span>
                 </span>
                 <ul className="space-y-1.5 pt-0.5">
@@ -552,7 +552,7 @@ export const Schemes = () => {
               {/* How to Apply Section */}
               <div className="p-3.5 bg-blue-50/50 border border-blue-100 rounded-xl space-y-2">
                 <span className="text-xs font-extrabold text-blue-900 uppercase tracking-wider flex items-center gap-1.5">
-                  <span>📝</span>
+                  <span></span>
                   <span>{t('schemes.modal.howToApply', 'How to Apply')}</span>
                 </span>
                 <ol className="space-y-1.5 text-xs font-medium text-slate-700 list-decimal list-inside">
@@ -601,7 +601,7 @@ export const Schemes = () => {
                 className="text-xs font-bold border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center gap-1.5 cursor-pointer"
                 onClick={() => handleViewGuidelines(selectedScheme)}
               >
-                <span>📘 {t('schemes.viewGuidelines', 'View Guidelines')}</span>
+                <span> {t('schemes.viewGuidelines', 'View Guidelines')}</span>
                 <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
               </Button>
               {selectedScheme.applyUrl && (
@@ -611,7 +611,7 @@ export const Schemes = () => {
                   className="text-xs font-bold flex items-center gap-1.5 shadow-xs cursor-pointer"
                   onClick={() => handleApplyOnline(selectedScheme)}
                 >
-                  <span>🟢 {t('schemes.applyOnline', 'Apply Online')}</span>
+                  <span> {t('schemes.applyOnline', 'Apply Online')}</span>
                   <ExternalLink className="h-3.5 w-3.5" />
                 </Button>
               )}

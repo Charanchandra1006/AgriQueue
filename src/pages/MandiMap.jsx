@@ -408,7 +408,7 @@ export const MandiMap = () => {
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; line-height: 1.4; min-width: 240px; padding: 2px;">
           <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; margin-bottom: 4px;">
             <strong style="color: #1e293b; font-size: 14px; font-weight: 800;">
-              🏪 ${mandi.name}
+               ${mandi.name}
             </strong>
           </div>
           
@@ -422,14 +422,14 @@ export const MandiMap = () => {
             }; color: ${status.isOpen ? '#059669' : '#e11d48'}; border: 1px solid ${
               status.isOpen ? '#a7f3d0' : '#fecdd3'
             };">
-              ${status.isOpen ? `🟢 ${t('mandi.openNow')}` : `🔴 ${t('mandi.closed')}`}
+              ${status.isOpen ? ` ${t('mandi.openNow')}` : ` ${t('mandi.closed')}`}
             </span>
             ${distance ? `
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; background-color: #f0f9ff; padding: 2px 6px; border-radius: 6px;">
-              📍 ${distance}
+               ${distance}
             </span>` : ''}
             <span style="font-size: 10px; color: #059669; font-weight: 700; background-color: #f0fdf4; padding: 2px 6px; border-radius: 6px; border: 1px solid #bbf7d0;">
-              ✓ ${t('mandi.verifiedGps')}
+               ${t('mandi.verifiedGps')}
             </span>
           </div>
 
@@ -460,7 +460,7 @@ export const MandiMap = () => {
                 rel="noopener noreferrer"
                 style="flex: 1; text-align: center; background-color: #f8fafc; color: #334155; border: 1px solid #cbd5e1; padding: 6px 8px; border-radius: 8px; font-size: 11px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"
               >
-                📍 ${t('mandi.viewLocation')}
+                 ${t('mandi.viewLocation')}
               </a>
               <a
                 href="${googleMapsDirUrl}"
@@ -468,7 +468,7 @@ export const MandiMap = () => {
                 rel="noopener noreferrer"
                 style="flex: 1; text-align: center; background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; padding: 6px 8px; border-radius: 8px; font-size: 11px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"
               >
-                🧭 ${t('mandi.directions')}
+                 ${t('mandi.directions')}
               </a>
             </div>
             <div style="display: flex; gap: 6px;">
@@ -476,7 +476,7 @@ export const MandiMap = () => {
                 onclick="window.__agriNavigate('/book-slot?mandi=${mandi.id}')"
                 style="flex: 1; text-align: center; background-color: #0284c7; color: white; border: none; padding: 6px 8px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
               >
-                📅 ${t('mandi.bookSlot')}
+                 ${t('mandi.bookSlot')}
               </button>
               <button
                 onclick="window.__agriNavigate('/mandi-centers/${mandi.id}')"
@@ -553,7 +553,7 @@ export const MandiMap = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl" role="img" aria-label="map">🗺️</span>
+            <span className="text-2xl" role="img" aria-label="map">️</span>
             <h1 className="font-heading font-extrabold text-2xl md:text-3xl text-slate-800 tracking-tight">
               {t('mandi.mapHeading')}
             </h1>
@@ -569,7 +569,7 @@ export const MandiMap = () => {
           className="shrink-0 self-start sm:self-center font-bold text-sm shadow-xs"
           onClick={() => navigate('/mandi-centers')}
         >
-          🏪 {t('mandi.viewAllCenters')}
+           {t('mandi.viewAllCenters')}
         </Button>
       </div>
 
@@ -621,7 +621,7 @@ export const MandiMap = () => {
             <div className="flex flex-wrap items-center gap-2">
               {/* State Filter */}
               <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
-                <span className="text-slate-400">📍 {t('mandi.filterState')}:</span>
+                <span className="text-slate-400"> {t('mandi.filterState')}:</span>
                 <select
                   value={selectedState}
                   onChange={(e) => {
@@ -639,7 +639,7 @@ export const MandiMap = () => {
 
               {/* District Filter */}
               <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
-                <span className="text-slate-400">📍 {t('mandi.filterDistrict')}:</span>
+                <span className="text-slate-400"> {t('mandi.filterDistrict')}:</span>
                 <select
                   value={selectedDistrict}
                   onChange={(e) => setSelectedDistrict(e.target.value)}
@@ -655,7 +655,7 @@ export const MandiMap = () => {
               {/* Crop Filter */}
               {crops.length > 0 && (
                 <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
-                  <span className="text-slate-400">🌾 {t('mandi.filterCrop')}:</span>
+                  <span className="text-slate-400"> {t('mandi.filterCrop')}:</span>
                   <select
                     value={selectedCrop}
                     onChange={(e) => setSelectedCrop(e.target.value)}
@@ -678,7 +678,7 @@ export const MandiMap = () => {
                     : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                 }`}
               >
-                <span>🟢 {t('mandi.openNow')}</span>
+                <span> {t('mandi.openNow')}</span>
               </button>
 
               {/* Reset Filter Button */}
@@ -809,7 +809,7 @@ export const MandiMap = () => {
           <Card className="p-4 border-slate-200 shadow-2xs bg-white space-y-2.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                <span>📍 {t('mandi.quickJump')}</span>
+                <span> {t('mandi.quickJump')}</span>
                 <span className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-bold">
                   {filteredMandis.length}
                 </span>
@@ -847,7 +847,7 @@ export const MandiMap = () => {
                           : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
                       }`}
                     >
-                      <span>🏪 {mandi.name}</span>
+                      <span> {mandi.name}</span>
                       <span className="text-[10px] text-slate-500 font-normal">
                         ({mandi.district}, {mandi.state})
                       </span>

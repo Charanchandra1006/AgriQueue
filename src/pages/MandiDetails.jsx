@@ -197,7 +197,7 @@ export const MandiDetails = () => {
 
         <Card className="p-8 text-center bg-white rounded-2xl border-slate-200">
           <div className="max-w-md mx-auto space-y-4">
-            <span className="text-4xl">🔍</span>
+            <span className="text-4xl"></span>
             <h2 className="text-xl font-heading font-bold text-slate-800">
               {error || t('mandi.mandiNotFound')}
             </h2>
@@ -352,7 +352,7 @@ export const MandiDetails = () => {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="text-3xl shrink-0" role="img" aria-label="mandi">🏪</span>
+              <span className="text-3xl shrink-0" role="img" aria-label="mandi"></span>
               <span className={`px-3 py-1 rounded-full text-xs font-bold border flex items-center gap-1.5 ${
                 status.isOpen
                   ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
@@ -540,7 +540,7 @@ export const MandiDetails = () => {
                     key={idx}
                     className="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-1 rounded-lg transition-colors"
                   >
-                    🌾 {comm}
+                     {comm}
                   </span>
                 ))}
               </div>
@@ -643,7 +643,7 @@ export const MandiDetails = () => {
               {distance && (
                 <div className="flex justify-between py-1">
                   <span className="text-slate-400">{t('common.distance')}</span>
-                  <span className="font-extrabold text-emerald-700">🚗 {distance}</span>
+                  <span className="font-extrabold text-emerald-700"> {distance}</span>
                 </div>
               )}
             </div>
