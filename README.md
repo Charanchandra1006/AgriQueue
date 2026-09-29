@@ -43,30 +43,29 @@ AgriQueue is a full-stack web platform that empowers farmers to digitally regist
 
 ### 1. Clone & Install
 
-```bash
-# Install frontend dependencies
-npm install
+You can easily install everything from the root folder:
 
-# Install backend dependencies
-cd server
-npm install
-cd ..
+```bash
+# Installs dependencies for both frontend and backend
+npm run install:all
 ```
+
+*(Alternatively, you can `cd frontend && npm install` and `cd backend && npm install` manually).*
 
 ### 2. Configure Environment
 
-**Frontend** — copy and fill `d:\AgriQueue\.env`:
+**Frontend** — copy and fill `frontend/.env`:
 ```bash
-cp .env.example .env
+cp frontend/.env.example frontend/.env
 ```
 ```env
 VITE_API_URL=http://localhost:5000/api
 VITE_ADMIN_WHATSAPP_NUMBER=91XXXXXXXXXX   # Optional
 ```
 
-**Backend** — copy and fill `server/.env`:
+**Backend** — copy and fill `backend/.env`:
 ```bash
-cp server/.env.example server/.env
+cp backend/.env.example backend/.env
 ```
 ```env
 PORT=5000
@@ -91,7 +90,7 @@ GEMINI_API_KEY=
 ### 3. Initialize the Database
 
 ```bash
-cd server
+cd backend
 
 # Test your DB connection first
 npm run test-db
@@ -111,14 +110,9 @@ npm run db:check-integrity
 
 ### 4. Start the Application
 
-Open **two** terminal windows:
+You can start both servers simultaneously from the root directory:
 
 ```bash
-# Terminal 1: Start Backend (Express on port 5000)
-cd server
-npm run dev
-
-# Terminal 2: Start Frontend (Vite on port 5173)
 npm run dev
 ```
 
@@ -130,23 +124,20 @@ Open your browser at **http://localhost:5173**
 
 ```
 AgriQueue/
-├── src/                        # React Frontend
-│   ├── pages/                  # 14 full-page views
-│   ├── components/             # Reusable UI components
-│   ├── context/AppContext.jsx  # Global state management
-│   ├── services/api.js         # HTTP client for backend API
-│   └── i18n/                   # Multilingual support (en/hi/pa/te)
+├── frontend/                   # React Frontend
+│   ├── src/                    # 14 full-page views & components
+│   ├── public/                 # Assets & icons
+│   ├── package.json
+│   └── vite.config.js
 │
-├── server/                     # Express Backend
+├── backend/                    # Express Backend
 │   ├── index.js                # Entry point + WebSocket
 │   ├── config/db.js            # TiDB connection pool
 │   ├── routes/                 # 7 REST API route files
 │   ├── services/               # Gemini AI + market prices logic
 │   └── database/               # Schema, seeders, integrity checker
 │
-├── .env.example                # Frontend env template
-├── server/.env.example         # Backend env template
-└── package.json
+└── package.json                # Root package.json (concurrently runner)
 ```
 
 ---
@@ -186,7 +177,7 @@ The AgriQueue Voice Agent uses **Gemini Live** to provide real-time multilingual
 - Can search mandis, check slot availability, and book slots — all via voice
 - Features an **UNBREAKABLE confirmation gate** — never books without explicit farmer verbal consent
 
-> Requires a valid `GEMINI_API_KEY` in `server/.env`
+> Requires a valid `GEMINI_API_KEY` in `backend/.env`
 
 ---
 
@@ -201,14 +192,20 @@ The AgriQueue Voice Agent uses **Gemini Live** to provide real-time multilingual
 
 ## 📦 Available Scripts
 
-### Root (Frontend)
+### Root (Run in `D:\AgriQueue`)
+| Script | Action |
+|---|---|
+| `npm run install:all` | Install deps for both frontend and backend |
+| `npm run dev` | Start both Vite and Express concurrently |
+
+### Frontend (Run in `frontend/`)
 | Script | Action |
 |---|---|
 | `npm run dev` | Start Vite dev server |
 | `npm run build` | Production build |
 | `npm run lint` | Run Oxlint |
 
-### Server (Backend)
+### Backend (Run in `backend/`)
 | Script | Action |
 |---|---|
 | `npm run dev` | Start Express with hot-reload |
