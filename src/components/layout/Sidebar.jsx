@@ -176,15 +176,13 @@ export const Sidebar = ({ isOpen, onClose }) => {
           <div style={{
             marginTop: '0.75rem',
             padding: '0 0.5rem',
-            fontSize: '0.6rem',
-            color: 'rgba(254,250,224,0.2)',
+            fontSize: '0.62rem',
+            color: 'rgba(254,250,224,0.3)',
             fontWeight: 500,
-            letterSpacing: '0.06em',
-            textTransform: 'uppercase'
+            letterSpacing: '0.04em'
           }}>
-            Powered by Google Gemini AI
+            AgriQueue — Digital Procurement
           </div>
-        </div>
       </aside>
     </>
   );

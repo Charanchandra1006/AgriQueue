@@ -366,11 +366,10 @@ export const Onboarding = () => {
           <div style={cardStyle}>
             {/* Copper hero band */}
             <div style={{
-              background: 'linear-gradient(135deg, #283618 0%, #606C38 100%)',
+              background: '#283618',
               padding: '2rem 2rem 1.5rem',
               textAlign: 'center',
             }}>
-              <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>🌾</div>
               <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.5rem', color: '#FEFAE0', margin: 0, lineHeight: 1.25 }}>
                 {getT('welcomeTitle')}
               </h1>
@@ -383,22 +382,22 @@ export const Onboarding = () => {
               {/* Benefits */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', marginBottom: '1.75rem' }}>
                 {[
-                  { icon: '🗺️', text: getT('benefit1') },
-                  { icon: '🎫', text: getT('benefit2') },
-                  { icon: '📋', text: getT('benefit3') },
+                  { icon: <MapPin size={18} style={{ color: '#606C38' }} />, text: getT('benefit1') },
+                  { icon: <Check size={18} style={{ color: '#606C38' }} />, text: getT('benefit2') },
+                  { icon: <Globe size={18} style={{ color: '#606C38' }} />, text: getT('benefit3') },
                 ].map((b, i) => (
                   <div key={i} style={{
                     display: 'flex', alignItems: 'center', gap: '0.875rem',
                     padding: '0.75rem 0.875rem',
                     background: 'rgba(96,108,56,0.06)',
                     border: '1px solid rgba(96,108,56,0.12)',
-                    borderRadius: '12px',
+                    borderRadius: '8px',
                     animation: `fadeUp ${0.3 + i * 0.08}s ease forwards`,
                     opacity: 0,
                     animationFillMode: 'forwards',
                   }}>
-                    <span style={{ fontSize: '1.2rem', flexShrink: 0 }}>{b.icon}</span>
-                    <span style={{ fontSize: '0.875rem', fontWeight: 500, color: '#3c4424', lineHeight: 1.4 }}>{b.text}</span>
+                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{b.icon}</span>
+                    <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#3c4424', lineHeight: 1.4 }}>{b.text}</span>
                     <ChevronRight size={14} style={{ marginLeft: 'auto', color: '#a09472', flexShrink: 0 }} />
                   </div>
                 ))}
@@ -532,7 +531,7 @@ export const Onboarding = () => {
                   padding: '0.625rem 0.875rem',
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
                 }}>
-                  <span style={{ fontSize: '1rem' }}>💡</span>
+                  <span style={{ fontSize: '1rem' }}></span>
                   <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#7c5020' }}>{getT('demoOtpNotice')}</span>
                 </div>
 
