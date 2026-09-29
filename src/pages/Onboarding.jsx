@@ -1,28 +1,213 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useApp } from '../context/AppContext';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent } from '../components/ui/Card';
-import { Sprout, Globe, User, Phone, MapPin, Check, Key } from 'lucide-react';
+import { Globe, User, Phone, MapPin, Check, Key, ChevronRight, Sprout, ArrowRight } from 'lucide-react';
 import { locationData } from '../mock/locationData';
 import { getFarmer } from '../services/api';
 
+/* -------------------------------------------------------
+   Onboarding — Rustic Copper Harvest Design
+   Steps: 1-Welcome  2-Language  3-Phone  4-OTP  5-Profile
+   ------------------------------------------------------- */
+
+const localT = {
+  en: {
+    welcomeTitle: "Welcome to AgriQueue",
+    welcomeSubtitle: "Your digital companion for smarter farming and easier mandi procurement.",
+    benefit1: "Find verified mandi centers near you",
+    benefit2: "Book a digital procurement slot",
+    benefit3: "Access government farming services",
+    getStarted: "Get Started",
+    chooseLanguage: "Choose Your Language",
+    chooseLanguageSub: "Select the language you're most comfortable with.",
+    continue: "Continue",
+    loginTitle: "Login to AgriQueue",
+    loginSubtitle: "Enter your registered mobile number to continue.",
+    phoneLabel: "Mobile Number (10 digits)",
+    phonePlaceholder: "e.g. 9876543210",
+    sendOtp: "Send OTP",
+    demoOtpNotice: "Demo OTP: 123456",
+    verifyTitle: "Verify Your Number",
+    verifySubtitle: "Enter the 6-digit OTP sent to your mobile.",
+    otpLabel: "6-Digit OTP",
+    otpPlaceholder: "Enter 6-digit code",
+    verifyOtp: "Verify OTP",
+    changePhone: "Change Number",
+    profileTitle: "Farmer Profile",
+    profileSubtitle: "Tell us about yourself so we can serve you better.",
+    nameLabel: "Your Name",
+    namePlaceholder: "Enter your full name",
+    stateLabel: "State",
+    districtLabel: "District",
+    villageLabel: "Village / Town",
+    villagePlaceholder: "Enter your village or town",
+    completeBtn: "Complete Registration",
+    backBtn: "Back",
+    errPhoneInvalid: "Enter a valid 10-digit Indian mobile number.",
+    errOtpInvalid: "Invalid OTP. Please enter the demo code 123456.",
+    errNameRequired: "Your name is required.",
+    errStateRequired: "Please select a state.",
+    errDistrictRequired: "Please select a district.",
+    errVillageRequired: "Village or town is required.",
+  },
+  hi: {
+    welcomeTitle: "AgriQueue में आपका स्वागत है",
+    welcomeSubtitle: "स्मार्ट खेती और आसान मंडी खरीद के लिए आपका डिजिटल साथी।",
+    benefit1: "नजदीकी मंडियां खोजें",
+    benefit2: "डिजिटल स्लॉट बुक करें",
+    benefit3: "सरकारी योजनाओं का लाभ उठाएं",
+    getStarted: "शुरू करें",
+    chooseLanguage: "अपनी भाषा चुनें",
+    chooseLanguageSub: "आगे बढ़ने के लिए एक भाषा चुनें।",
+    continue: "जारी रखें",
+    loginTitle: "लॉगिन करें",
+    loginSubtitle: "अपना पंजीकृत मोबाइल नंबर दर्ज करें।",
+    phoneLabel: "मोबाइल नंबर (10 अंक)",
+    phonePlaceholder: "जैसे: 9876543210",
+    sendOtp: "ओटीपी भेजें",
+    demoOtpNotice: "डेमो ओटीपी: 123456",
+    verifyTitle: "नंबर सत्यापित करें",
+    verifySubtitle: "6-अंकीय ओटीपी दर्ज करें।",
+    otpLabel: "6-अंकीय ओटीपी",
+    otpPlaceholder: "6-अंकीय कोड",
+    verifyOtp: "ओटीपी सत्यापित करें",
+    changePhone: "नंबर बदलें",
+    profileTitle: "किसान प्रोफाइल",
+    profileSubtitle: "आपकी जानकारी दर्ज करें।",
+    nameLabel: "किसान का नाम",
+    namePlaceholder: "पूरा नाम दर्ज करें",
+    stateLabel: "राज्य",
+    districtLabel: "जिला",
+    villageLabel: "गांव",
+    villagePlaceholder: "गांव का नाम",
+    completeBtn: "पंजीकरण पूरा करें",
+    backBtn: "वापस",
+    errPhoneInvalid: "सही मोबाइल नंबर दर्ज करें।",
+    errOtpInvalid: "गलत ओटीपी। डेमो कोड 123456 दर्ज करें।",
+    errNameRequired: "नाम आवश्यक है।",
+    errStateRequired: "राज्य चुनें।",
+    errDistrictRequired: "जिला चुनें।",
+    errVillageRequired: "गांव आवश्यक है।",
+  },
+  pa: {
+    welcomeTitle: "AgriQueue ਵਿੱਚ ਸੁਆਗਤ ਹੈ",
+    welcomeSubtitle: "ਸਮਾਰਟ ਖੇਤੀ ਲਈ ਤੁਹਾਡਾ ਡਿਜੀਟਲ ਸਾਥੀ।",
+    benefit1: "ਨੇੜਲੀਆਂ ਮੰਡੀਆਂ ਲੱਭੋ",
+    benefit2: "ਡਿਜੀਟਲ ਸਲਾਟ ਬੁੱਕ ਕਰੋ",
+    benefit3: "ਸਰਕਾਰੀ ਸੇਵਾਵਾਂ ਦਾ ਲਾਭ ਲਓ",
+    getStarted: "ਸ਼ੁਰੂ ਕਰੋ",
+    chooseLanguage: "ਭਾਸ਼ਾ ਚੁਣੋ",
+    chooseLanguageSub: "ਅੱਗੇ ਵਧਣ ਲਈ ਭਾਸ਼ਾ ਚੁਣੋ।",
+    continue: "ਜਾਰੀ ਰੱਖੋ",
+    loginTitle: "ਲਾਗਇਨ ਕਰੋ",
+    loginSubtitle: "ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ।",
+    phoneLabel: "ਮੋਬਾਈਲ ਨੰਬਰ",
+    phonePlaceholder: "ਜਿਵੇਂ: 9876543210",
+    sendOtp: "ਓਟੀਪੀ ਭੇਜੋ",
+    demoOtpNotice: "ਡੈਮੋ ਓਟੀਪੀ: 123456",
+    verifyTitle: "ਨੰਬਰ ਪੁਸ਼ਟੀ ਕਰੋ",
+    verifySubtitle: "6-ਅੰਕੀ ਓਟੀਪੀ ਦਰਜ ਕਰੋ।",
+    otpLabel: "6-ਅੰਕੀ ਓਟੀਪੀ",
+    otpPlaceholder: "6-ਅੰਕੀ ਕੋਡ",
+    verifyOtp: "ਓਟੀਪੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    changePhone: "ਨੰਬਰ ਬਦਲੋ",
+    profileTitle: "ਕਿਸਾਨ ਪ੍ਰੋਫਾਈਲ",
+    profileSubtitle: "ਆਪਣੀ ਜਾਣਕਾਰੀ ਦਰਜ ਕਰੋ।",
+    nameLabel: "ਕਿਸਾਨ ਦਾ ਨਾਮ",
+    namePlaceholder: "ਪੂਰਾ ਨਾਮ ਦਰਜ ਕਰੋ",
+    stateLabel: "ਸੂਬਾ",
+    districtLabel: "ਜ਼ਿਲ੍ਹਾ",
+    villageLabel: "ਪਿੰਡ",
+    villagePlaceholder: "ਪਿੰਡ ਦਾ ਨਾਮ",
+    completeBtn: "ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਪੂਰੀ ਕਰੋ",
+    backBtn: "ਪਿੱਛੇ",
+    errPhoneInvalid: "ਸਹੀ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ।",
+    errOtpInvalid: "ਗਲਤ ਓਟੀਪੀ। ਡੈਮੋ ਕੋਡ 123456 ਦਰਜ ਕਰੋ।",
+    errNameRequired: "ਨਾਮ ਲੋੜੀਂਦਾ ਹੈ।",
+    errStateRequired: "ਸੂਬਾ ਚੁਣੋ।",
+    errDistrictRequired: "ਜ਼ਿਲ੍ਹਾ ਚੁਣੋ।",
+    errVillageRequired: "ਪਿੰਡ ਲੋੜੀਂਦਾ ਹੈ।",
+  },
+  te: {
+    welcomeTitle: "AgriQueue కి స్వాగతం",
+    welcomeSubtitle: "స్మార్ట్ వ్యవసాయం కోసం మీ డిజిటల్ తోడు.",
+    benefit1: "సమీప మండీలను కనుగొనండి",
+    benefit2: "డిజిటల్ స్లాట్ బుక్ చేసుకోండి",
+    benefit3: "ప్రభుత్వ పథకాలు పొందండి",
+    getStarted: "ప్రారంభించండి",
+    chooseLanguage: "భాషను ఎంచుకోండి",
+    chooseLanguageSub: "కొనసాగడానికి భాషను ఎంచుకోండి.",
+    continue: "కొనసాగించండి",
+    loginTitle: "లాగిన్ అవ్వండి",
+    loginSubtitle: "మీ మొబైల్ సంఖ్యను నమోదు చేయండి.",
+    phoneLabel: "మొబైల్ సంఖ్య",
+    phonePlaceholder: "ఉదా: 9876543210",
+    sendOtp: "OTP పంపండి",
+    demoOtpNotice: "డెమో OTP: 123456",
+    verifyTitle: "సంఖ్యను ధృవీకరించండి",
+    verifySubtitle: "6-అంకెల OTPని నమోదు చేయండి.",
+    otpLabel: "6-అంకెల OTP",
+    otpPlaceholder: "6-అంకెల కోడ్",
+    verifyOtp: "OTP ధృవీకరించండి",
+    changePhone: "సంఖ్య మార్చండి",
+    profileTitle: "రైతు ప్రొఫైల్",
+    profileSubtitle: "మీ వివరాలను నమోదు చేయండి.",
+    nameLabel: "రైతు పేరు",
+    namePlaceholder: "పూర్తి పేరు",
+    stateLabel: "రాష్ట్రం",
+    districtLabel: "జిల్లా",
+    villageLabel: "గ్రామం",
+    villagePlaceholder: "గ్రామం పేరు",
+    completeBtn: "నమోదును పూర్తి చేయండి",
+    backBtn: "వెనుకకు",
+    errPhoneInvalid: "సరైన మొబైల్ సంఖ్యను నమోదు చేయండి.",
+    errOtpInvalid: "తప్పు OTP. డెమో కోడ్ 123456 నమోదు చేయండి.",
+    errNameRequired: "పేరు తప్పనిసరి.",
+    errStateRequired: "రాష్ట్రం ఎంచుకోండి.",
+    errDistrictRequired: "జిల్లా ఎంచుకోండి.",
+    errVillageRequired: "గ్రామం తప్పనిసరి.",
+  }
+};
+
+const languages = [
+  { code: 'en', label: 'English',   sub: 'English'  },
+  { code: 'hi', label: 'हिन्दी',    sub: 'Hindi'    },
+  { code: 'pa', label: 'ਪੰਜਾਬੀ',  sub: 'Punjabi'  },
+  { code: 'te', label: 'తెలుగు',   sub: 'Telugu'   },
+];
+
+/* Shared input style */
+const inputStyle = (hasError) => ({
+  width: '100%',
+  background: 'rgba(255, 254, 248, 0.95)',
+  border: `1.5px solid ${hasError ? '#c0392b' : '#d4c9a8'}`,
+  borderRadius: '10px',
+  padding: '0.75rem 1rem',
+  fontSize: '0.9rem',
+  fontFamily: 'var(--font-sans)',
+  fontWeight: 500,
+  color: '#1c1f16',
+  outline: 'none',
+  transition: 'all 0.15s ease',
+});
+
+const labelStyle = {
+  display: 'block',
+  fontSize: '0.65rem',
+  fontWeight: 700,
+  color: '#8a7d60',
+  letterSpacing: '0.08em',
+  textTransform: 'uppercase',
+  marginBottom: '6px',
+};
+
 export const Onboarding = () => {
-  const { 
-    language, 
-    setLanguage, 
-    isProfileCompleted, 
-    completeRegistration, 
-    loginSession, 
-    profile,
-    t
+  const {
+    language, setLanguage, isProfileCompleted,
+    completeRegistration, loginSession, profile, t
   } = useApp();
 
-  // Decide initial step based on whether the farmer registration already exists.
-  const [step, setStep] = useState(() => {
-    return isProfileCompleted ? 3 : 1;
-  });
-
-  // Form states
+  const [step, setStep] = useState(() => isProfileCompleted ? 3 : 1);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState(isProfileCompleted ? (profile?.phone || '') : '');
   const [state, setState] = useState('');
@@ -30,227 +215,38 @@ export const Onboarding = () => {
   const [village, setVillage] = useState('');
   const [otp, setOtp] = useState('');
 
-  // Dropdown combobox states
   const [stateSearch, setStateSearch] = useState('');
   const [districtSearch, setDistrictSearch] = useState('');
   const [isStateOpen, setIsStateOpen] = useState(false);
   const [isDistrictOpen, setIsDistrictOpen] = useState(false);
-
-  // References for click-outside triggers
   const stateRef = useRef(null);
   const districtRef = useRef(null);
 
-  // Error states
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const languages = [
-    { code: 'en', label: 'English', sub: 'English' },
-    { code: 'hi', label: 'हिन्दी', sub: 'Hindi' },
-    { code: 'pa', label: 'ਪੰਜਾਬੀ', sub: 'Punjabi' },
-    { code: 'te', label: 'తెలుగు', sub: 'Telugu' }
-  ];
-
-  // Simple localized translations for onboarding controls
-  const localT = {
-    en: {
-      appName: "AgriQueue",
-      welcomeTitle: "Welcome to AgriQueue",
-      welcomeSubtitle: "Your digital companion for smarter farming and easier mandi procurement.",
-      benefit1: "Find nearby mandis",
-      benefit2: "Book a procurement slot",
-      benefit3: "Access farmer services",
-      getStarted: "Get Started",
-      chooseLanguage: "Choose Your Language",
-      chooseLanguageSub: "Select a language to proceed.",
-      continue: "Continue",
-      loginTitle: "Login to AgriQueue",
-      loginSubtitle: "Enter your registered mobile number to proceed.",
-      phoneLabel: "Mobile Number (10 digits)",
-      phonePlaceholder: "e.g. 9876543210",
-      sendOtp: "Send OTP",
-      demoOtpNotice: "Prototype Demo OTP: 123456",
-      verifyTitle: "Verify Mobile Number",
-      verifySubtitle: "Enter the 6-digit OTP sent to your mobile number.",
-      otpLabel: "6-Digit OTP",
-      otpPlaceholder: "Enter 6-digit code",
-      verifyOtp: "Verify OTP",
-      changePhone: "Change Mobile Number",
-      profileTitle: "Farmer Profile",
-      profileSubtitle: "Please fill in your basic details to start using AgriQueue.",
-      nameLabel: "Farmer Name",
-      namePlaceholder: "Enter your full name",
-      stateLabel: "State",
-      districtLabel: "District",
-      villageLabel: "Village",
-      villagePlaceholder: "Enter your village name",
-      completeBtn: "Complete Registration",
-      backBtn: "Back",
-      errPhoneInvalid: "Enter a valid 10-digit Indian mobile number.",
-      errOtpInvalid: "Invalid OTP. Please enter the demo code 123456.",
-      errNameRequired: "Farmer name is required.",
-      errStateRequired: "State is required.",
-      errDistrictRequired: "District is required.",
-      errVillageRequired: "Village is required."
-    },
-    hi: {
-      appName: "AgriQueue",
-      welcomeTitle: "AgriQueue में आपका स्वागत है",
-      welcomeSubtitle: "स्मार्ट खेती और आसान खरीद के लिए आपका डिजिटल साथी।",
-      benefit1: "आस-पास की मंडियों का पता लगाएं",
-      benefit2: "खरीद स्लॉट बुक करें",
-      benefit3: "किसान सेवाओं तक पहुंचें",
-      getStarted: "शुरू करें",
-      chooseLanguage: "अपनी भाषा चुनें",
-      chooseLanguageSub: "आगे बढ़ने के लिए एक भाषा चुनें।",
-      continue: "जारी रखें",
-      loginTitle: "AgriQueue में लॉगिन करें",
-      loginSubtitle: "आगे बढ़ने के लिए अपना पंजीकृत मोबाइल नंबर दर्ज करें।",
-      phoneLabel: "मोबाइल नंबर (10 अंक)",
-      phonePlaceholder: "जैसे: 9876543210",
-      sendOtp: "ओटीपी भेजें",
-      demoOtpNotice: "डेमो ओटीपी: 123456",
-      verifyTitle: "मोबाइल नंबर सत्यापित करें",
-      verifySubtitle: "आपके मोबाइल नंबर पर भेजा गया 6-अंकीय ओटीपी दर्ज करें।",
-      otpLabel: "6-अंकीय ओटीपी",
-      otpPlaceholder: "6-अंकीय कोड दर्ज करें",
-      verifyOtp: "ओटीपी सत्यापित करें",
-      changePhone: "मोबाइल नंबर बदलें",
-      profileTitle: "किसान प्रोफाइल",
-      profileSubtitle: "AgriQueue का उपयोग शुरू करने के लिए कृपया अपना विवरण भरें।",
-      nameLabel: "किसान का नाम",
-      namePlaceholder: "अपना पूरा नाम दर्ज करें",
-      stateLabel: "राज्य",
-      districtLabel: "जिला",
-      villageLabel: "गांव",
-      villagePlaceholder: "अपने गांव का नाम दर्ज करें",
-      completeBtn: "पंजीकरण पूरा करें",
-      backBtn: "पीछे जाएं",
-      errPhoneInvalid: "एक वैध 10-अंकीय भारतीय मोबाइल नंबर दर्ज करें।",
-      errOtpInvalid: "अमान्य ओटीपी। कृपया डेमो कोड 123456 दर्ज करें।",
-      errNameRequired: "किसान का नाम आवश्यक है।",
-      errStateRequired: "राज्य आवश्यक है।",
-      errDistrictRequired: "जिला आवश्यक है।",
-      errVillageRequired: "गांव आवश्यक है।"
-    },
-    pa: {
-      appName: "AgriQueue",
-      welcomeTitle: "AgriQueue ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
-      welcomeSubtitle: "ਸਮਾਰਟ ਖੇਤੀ ਅਤੇ ਆਸਾਨ ਮੰਡੀ ਖਰੀਦ ਲਈ ਤੁਹਾਡਾ ਡਿਜੀਟਲ ਸਾਥੀ।",
-      benefit1: "ਨੇੜਲੀਆਂ ਮੰਡੀਆਂ ਦਾ ਪਤਾ ਲਗਾਓ",
-      benefit2: "ਖਰੀਦ ਸਲਾਟ ਬੁੱਕ ਕਰੋ",
-      benefit3: "ਕਿਸਾਨ ਸੇਵਾਵਾਂ ਦਾ ਲਾਭ ਲਓ",
-      getStarted: "ਸ਼ੁਰੂ ਕਰੋ",
-      chooseLanguage: "ਆਪਣੀ ਭਾਸ਼า ਚੁਣੋ",
-      chooseLanguageSub: "ਅੱਗੇ ਵਧਣ ਲਈ ਇੱਕ ਭਾਸ਼ਾ ਚੁਣੋ।",
-      continue: "ਜਾਰੀ ਰੱਖੋ",
-      loginTitle: "AgriQueue ਵਿੱਚ ਲਾਗਇਨ ਕਰੋ",
-      loginSubtitle: "ਅੱਗੇ ਵਧਣ ਲਈ ਆਪਣਾ ਰਜਿਸਟਰਡ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ।",
-      phoneLabel: "ਮੋਬਾਈਲ ਨੰਬਰ (10 ਅੰਕ)",
-      phonePlaceholder: "ਜਿਵੇਂ: 9876543210",
-      sendOtp: "ਓਟੀਪੀ ਭੇਜੋ",
-      demoOtpNotice: "ਡੈਮੋ ਓਟੀਪੀ: 123456",
-      verifyTitle: "ਮੋਬਾਈਲ ਨੰਬਰ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
-      verifySubtitle: "ਆਪਣੇ ਮੋਬਾਈਲ ਨੰਬਰ 'ਤੇ ਭੇਜਿਆ 6-ਅੰਕੀ ਓਟੀਪੀ ਦਰਜ ਕਰੋ।",
-      otpLabel: "6-ਅੰਕੀ ਓਟੀਪੀ",
-      otpPlaceholder: "6-ਅੰਕੀ ਕੋਡ ਦਰਜ ਕਰੋ",
-      verifyOtp: "ਓਟੀਪੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
-      changePhone: "ਮੋਬਾਈਲ ਨੰਬਰ ਬਦਲੋ",
-      profileTitle: "ਕਿਸਾਨ ਪ੍ਰੋਫਾਈਲ",
-      profileSubtitle: "AgriQueue ਦੀ ਵਰਤੋਂ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਵੇਰਵਾ ਭਰੋ।",
-      nameLabel: "ਕਿਸਾਨ ਦਾ ਨਾਮ",
-      namePlaceholder: "ਆਪਣਾ ਪੂਰਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      stateLabel: "ਸੂਬਾ",
-      districtLabel: "ਜ਼ਿਲ੍ਹਾ",
-      villageLabel: "ਪਿੰਡ",
-      villagePlaceholder: "ਆਪਣੇ ਪਿੰਡ ਦਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      completeBtn: "ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਪੂਰੀ ਕਰੋ",
-      backBtn: "ਪਿੱਛੇ ਜਾਓ",
-      errPhoneInvalid: "ਸਹੀ 10-ਅੰਕਾਂ ਦਾ ਭਾਰਤੀ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ।",
-      errOtpInvalid: "ਗਲਤ ਓਟੀਪੀ। ਕਿਰਪਾ ਕਰਕੇ ਡੈਮੋ ਕੋਡ 123456 ਦਰਜ ਕਰੋ।",
-      errNameRequired: "ਕਿਸਾਨ ਦਾ ਨਾਮ ਲੋੜੀਂਦਾ ਹੈ।",
-      errStateRequired: "ਸੂਬਾ ਲੋੜੀਂਦਾ ਹੈ।",
-      errDistrictRequired: "ਜ਼ਿਲ੍ਹਾ ਲੋੜੀਂਦਾ ਹੈ।",
-      errVillageRequired: "ਪਿੰਡ ਲੋੜੀਂਦਾ ਹੈ।"
-    },
-    te: {
-      appName: "AgriQueue",
-      welcomeTitle: "AgriQueue కి స్వాగతం",
-      welcomeSubtitle: "స్మార్ట్ వ్యవసాయం మరియు సులభమైన మండి కొనుగోలు కోసం మీ డిజిటల్ తోడు.",
-      benefit1: "సమీప మండీలను కనుగొనండి",
-      benefit2: "కొనుగోలు స్లాట్ బుక్ చేసుకోండి",
-      benefit3: "రైతు సేవలను పొందండి",
-      getStarted: "ప్రారంభించండి",
-      chooseLanguage: "మీ భాషను ఎంచుకోండి",
-      chooseLanguageSub: "కొనసాగడానికి ఒక భాషను ఎంచుకోండి.",
-      continue: "కొనసాగించండి",
-      loginTitle: "AgriQueue కి లాగిన్ అవ్వండి",
-      loginSubtitle: "కొనసాగడానికి మీ నమోదిత మొబైల్ సంఖ్యను నమోదు చేయండి.",
-      phoneLabel: "మొబైల్ సంఖ్య (10 అంకెలు)",
-      phonePlaceholder: "ఉదా: 9876543210",
-      sendOtp: "OTP పంపండి",
-      demoOtpNotice: "డెమో OTP: 123456",
-      verifyTitle: "మొబైల్ సంఖ్యను ధృవీకరించండి",
-      verifySubtitle: "మీ మొబైల్ సంఖ్యకు పంపిన 6-అంకెల OTPని నమోదు చేయండి.",
-      otpLabel: "6-అంకెల OTP",
-      otpPlaceholder: "6-అంకెల కోడ్ నమోదు చేయండి",
-      verifyOtp: "OTP ధృవీకరించండి",
-      changePhone: "మొబైల్ సంఖ్యను మార్చండి",
-      profileTitle: "రైతు ప్రొఫైల్",
-      profileSubtitle: "AgriQueue ని ఉపయోగించడం ప్రారంభించడానికి దయచేసి మీ వివరాలను నింపండి.",
-      nameLabel: "రైతు పేరు",
-      namePlaceholder: "మీ పూర్తి పేరు నమోదు చేయండి",
-      stateLabel: "రాష్ట్రం",
-      districtLabel: "జిల్లా",
-      villageLabel: "గ్రామం",
-      villagePlaceholder: "మీ గ్రామం పేరు నమోదు చేయండి",
-      completeBtn: "నమోదును పూర్తి చేయండి",
-      backBtn: "వెనుకకు",
-      errPhoneInvalid: "సరైన 10 అంకెల మొబైల్ సంఖ్యను నమోదు చేయండి.",
-      errOtpInvalid: "తప్పు OTP. దయచేసి డెమో కోడ్ 123456 నమోదు చేయండి.",
-      errNameRequired: "రైతు పేరు తప్పనిసరి.",
-      errStateRequired: "రాష్ట్రం తప్పనిసరి.",
-      errDistrictRequired: "జిల్లా తప్పనిసరి.",
-      errVillageRequired: "గ్రామం తప్పనిసరి."
-    }
-  };
 
   const getT = (key) => {
     const dict = localT[language] || localT.en;
     return dict[key] || localT.en[key] || key;
   };
 
-  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (stateRef.current && !stateRef.current.contains(e.target)) {
-        setIsStateOpen(false);
-      }
-      if (districtRef.current && !districtRef.current.contains(e.target)) {
-        setIsDistrictOpen(false);
-      }
+      if (stateRef.current && !stateRef.current.contains(e.target)) setIsStateOpen(false);
+      if (districtRef.current && !districtRef.current.contains(e.target)) setIsDistrictOpen(false);
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Filter list of states locally
   const statesList = Object.keys(locationData);
-  const filteredStates = statesList.filter(s =>
-    s.toLowerCase().includes(stateSearch.toLowerCase())
-  );
-
-  // Filter list of districts based on selected state locally
+  const filteredStates = statesList.filter(s => s.toLowerCase().includes(stateSearch.toLowerCase()));
   const districtsList = state ? (locationData[state] || []) : [];
-  const filteredDistricts = districtsList.filter(d =>
-    d.toLowerCase().includes(districtSearch.toLowerCase())
-  );
+  const filteredDistricts = districtsList.filter(d => d.toLowerCase().includes(districtSearch.toLowerCase()));
 
-  // Step 3: Handle Mobile verification request
   const handleSendOtp = (e) => {
     e.preventDefault();
-    const phoneRegex = /^[6-9]\d{9}$/;
-    if (!phoneRegex.test(phone.trim())) {
+    if (!/^[6-9]\d{9}$/.test(phone.trim())) {
       setErrors({ phone: getT('errPhoneInvalid') });
       return;
     }
@@ -258,7 +254,6 @@ export const Onboarding = () => {
     setStep(4);
   };
 
-  // Step 4: Verify mock OTP
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     if (otp !== '123456') {
@@ -266,533 +261,527 @@ export const Onboarding = () => {
       return;
     }
     setErrors({});
-
-    // Check if user has an existing profile in MySQL for this phone
     try {
       const existing = await getFarmer(phone);
       if (existing.success && existing.data) {
-        // Returning user with registered profile in MySQL
         await loginSession(existing.data, phone);
         return;
       }
-    } catch (err) {
-      console.warn('Could not query farmer profile:', err);
-    }
-
+    } catch (_) {}
     if (isProfileCompleted && profile?.phone === phone && profile?.farmerId) {
-      // Local profile matching current phone
       await loginSession(profile, phone);
     } else {
-      // New farmer -> proceed to Step 5 to complete profile
       setStep(5);
     }
   };
 
-  // Step 5: Profile form validation & submit
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = {};
-    if (!name.trim()) newErrors.name = getT('errNameRequired');
-    if (!state.trim()) newErrors.state = getT('errStateRequired');
-    if (!district.trim()) newErrors.district = getT('errDistrictRequired');
-    if (!village.trim()) newErrors.village = getT('errVillageRequired');
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+    const errs = {};
+    if (!name.trim()) errs.name = getT('errNameRequired');
+    if (!state.trim()) errs.state = getT('errStateRequired');
+    if (!district.trim()) errs.district = getT('errDistrictRequired');
+    if (!village.trim()) errs.village = getT('errVillageRequired');
+    if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setIsSubmitting(true);
     try {
       await completeRegistration({ name, phone, state, district, village });
-    } catch (err) {
-      console.error('Registration failed:', err);
+    } catch (_) {
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  /* === Card shell === */
+  const cardStyle = {
+    background: '#fffef8',
+    borderRadius: '20px',
+    border: '1.5px solid #e0d8be',
+    boxShadow: '0 8px 40px rgba(40, 54, 24, 0.10), 0 2px 8px rgba(40, 54, 24, 0.06)',
+    overflow: 'hidden',
+    animation: 'fadeUp 0.35s ease forwards',
+  };
+
   return (
-    <div className="min-h-screen bg-[#f6f8f6] flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 font-sans">
-      {/* AgriQueue Logo / Branding */}
-      <div className="flex items-center gap-2 mb-6 select-none">
-        <div className="p-2 bg-primary-600 rounded-xl text-white shadow-xs">
-          <Sprout className="h-6 w-6" />
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(160deg, #FEFAE0 0%, #f5edcc 40%, #ede0b8 100%)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '1.5rem',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      {/* Decorative background circles */}
+      <div style={{
+        position: 'absolute', width: '500px', height: '500px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(96,108,56,0.08) 0%, transparent 70%)',
+        top: '-150px', right: '-100px', pointerEvents: 'none'
+      }} />
+      <div style={{
+        position: 'absolute', width: '400px', height: '400px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(188,108,37,0.07) 0%, transparent 70%)',
+        bottom: '-100px', left: '-80px', pointerEvents: 'none'
+      }} />
+
+      {/* Logo */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1.75rem', animation: 'fadeIn 0.4s ease forwards' }}>
+        <div style={{
+          width: '42px', height: '42px', borderRadius: '12px',
+          background: 'linear-gradient(135deg, #DDA15E, #BC6C25)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 4px 16px rgba(188,108,37,0.3)',
+        }}>
+          <Sprout size={22} color="white" />
         </div>
-        <span className="font-heading font-extrabold text-2xl tracking-tight text-slate-800">
-          Agri<span className="text-primary-600">Queue</span>
-        </span>
+        <div>
+          <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.45rem', color: '#283618', letterSpacing: '-0.02em' }}>
+            Agri<span style={{ color: '#BC6C25' }}>Queue</span>
+          </span>
+          <div style={{ fontSize: '0.58rem', color: '#8a7d60', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: '-2px' }}>
+            Kisan Digital Portal
+          </div>
+        </div>
       </div>
 
-      <div className="w-full max-w-md">
-        {/* Step 1: Welcome Intro */}
+      {/* Step progress dots */}
+      <div style={{ display: 'flex', gap: '6px', marginBottom: '1.25rem' }}>
+        {[1,2,3,4,5].map(s => (
+          <div key={s} style={{
+            width: s === step ? '24px' : '7px', height: '7px',
+            borderRadius: '999px',
+            background: s < step ? '#606C38' : s === step ? '#BC6C25' : '#d4c9a8',
+            transition: 'all 0.3s ease',
+          }} />
+        ))}
+      </div>
+
+      <div style={{ width: '100%', maxWidth: '440px' }}>
+
+        {/* ——— STEP 1: WELCOME ——— */}
         {step === 1 && (
-          <Card className="border-slate-100 shadow-xl rounded-3xl overflow-hidden bg-white animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <CardContent className="p-6 sm:p-8 text-center space-y-8">
-              <div className="space-y-3">
-                <span className="text-4xl block" role="img" aria-label="Sprout emoji">🌾</span>
-                <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-800 leading-tight">
-                  {getT('welcomeTitle')}
-                </h1>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed">
-                  {getT('welcomeSubtitle')}
-                </p>
-              </div>
+          <div style={cardStyle}>
+            {/* Copper hero band */}
+            <div style={{
+              background: 'linear-gradient(135deg, #283618 0%, #606C38 100%)',
+              padding: '2rem 2rem 1.5rem',
+              textAlign: 'center',
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>🌾</div>
+              <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.5rem', color: '#FEFAE0', margin: 0, lineHeight: 1.25 }}>
+                {getT('welcomeTitle')}
+              </h1>
+              <p style={{ color: 'rgba(254,250,224,0.7)', fontSize: '0.85rem', marginTop: '0.5rem', lineHeight: 1.5 }}>
+                {getT('welcomeSubtitle')}
+              </p>
+            </div>
 
-              {/* Minimal bullet items */}
-              <div className="space-y-3.5 text-left max-w-sm mx-auto">
-                <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-100/50">
-                  <span className="text-xl shrink-0" role="img" aria-label="Map icon">🗺️</span>
-                  <p className="text-xs sm:text-sm font-semibold text-slate-700 leading-normal">
-                    {getT('benefit1')}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-100/50">
-                  <span className="text-xl shrink-0" role="img" aria-label="Ticket icon">🎫</span>
-                  <p className="text-xs sm:text-sm font-semibold text-slate-700 leading-normal">
-                    {getT('benefit2')}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-100/50">
-                  <span className="text-xl shrink-0" role="img" aria-label="Plant icon">🌾</span>
-                  <p className="text-xs sm:text-sm font-semibold text-slate-700 leading-normal">
-                    {getT('benefit3')}
-                  </p>
-                </div>
+            <div style={{ padding: '1.5rem 1.75rem 2rem' }}>
+              {/* Benefits */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', marginBottom: '1.75rem' }}>
+                {[
+                  { icon: '🗺️', text: getT('benefit1') },
+                  { icon: '🎫', text: getT('benefit2') },
+                  { icon: '📋', text: getT('benefit3') },
+                ].map((b, i) => (
+                  <div key={i} style={{
+                    display: 'flex', alignItems: 'center', gap: '0.875rem',
+                    padding: '0.75rem 0.875rem',
+                    background: 'rgba(96,108,56,0.06)',
+                    border: '1px solid rgba(96,108,56,0.12)',
+                    borderRadius: '12px',
+                    animation: `fadeUp ${0.3 + i * 0.08}s ease forwards`,
+                    opacity: 0,
+                    animationFillMode: 'forwards',
+                  }}>
+                    <span style={{ fontSize: '1.2rem', flexShrink: 0 }}>{b.icon}</span>
+                    <span style={{ fontSize: '0.875rem', fontWeight: 500, color: '#3c4424', lineHeight: 1.4 }}>{b.text}</span>
+                    <ChevronRight size={14} style={{ marginLeft: 'auto', color: '#a09472', flexShrink: 0 }} />
+                  </div>
+                ))}
               </div>
 
               <Button
                 variant="primary"
-                size="lg"
-                className="w-full text-sm sm:text-base py-4 rounded-2xl font-bold tracking-wide shadow-md shadow-primary-500/10 cursor-pointer min-h-[50px]"
                 onClick={() => setStep(2)}
+                style={{ width: '100%', minHeight: '52px', fontSize: '0.95rem', borderRadius: '12px' }}
               >
                 {getT('getStarted')}
+                <ArrowRight size={16} style={{ marginLeft: '8px' }} />
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
-        {/* Step 2: Language Setup */}
+        {/* ——— STEP 2: LANGUAGE ——— */}
         {step === 2 && (
-          <Card className="border-slate-100 shadow-xl rounded-3xl overflow-hidden bg-white animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <CardContent className="p-6 sm:p-8 space-y-6">
-              <div className="text-center space-y-2">
-                <Globe className="h-9 w-9 text-primary-600 mx-auto mb-1" />
-                <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-slate-800 leading-tight">
+          <div style={cardStyle}>
+            <div style={{ padding: '1.75rem' }}>
+              <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                <div style={{
+                  width: '48px', height: '48px', borderRadius: '14px',
+                  background: 'linear-gradient(135deg, rgba(96,108,56,0.12), rgba(96,108,56,0.06))',
+                  border: '1.5px solid rgba(96,108,56,0.15)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 1rem',
+                }}>
+                  <Globe size={22} style={{ color: '#606C38' }} />
+                </div>
+                <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.3rem', color: '#283618', margin: 0 }}>
                   {getT('chooseLanguage')}
                 </h1>
-                <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
+                <p style={{ color: '#8a7d60', fontSize: '0.82rem', marginTop: '0.375rem' }}>
                   {getT('chooseLanguageSub')}
                 </p>
               </div>
 
-              {/* Custom selection grid */}
-              <div className="grid grid-cols-2 gap-3 pt-1">
-                {languages.map((lang) => (
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.625rem', marginBottom: '1.5rem' }}>
+                {languages.map(lang => (
                   <button
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`p-3.5 rounded-2xl border text-center transition-all duration-200 cursor-pointer flex flex-col items-center justify-center min-h-[86px] ${
-                      language === lang.code
-                        ? 'border-primary-500 bg-primary-50/25 text-primary-750 shadow-2xs'
-                        : 'border-slate-100 bg-slate-50 hover:bg-slate-100/50 hover:border-slate-200 text-slate-700'
-                    }`}
+                    style={{
+                      padding: '1rem 0.75rem',
+                      borderRadius: '12px',
+                      border: language === lang.code ? '2px solid #606C38' : '1.5px solid #e0d8be',
+                      background: language === lang.code ? 'rgba(96,108,56,0.09)' : 'rgba(255,254,248,0.8)',
+                      cursor: 'pointer',
+                      textAlign: 'center',
+                      transition: 'all 0.15s ease',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px',
+                    }}
                   >
-                    <span className="font-heading font-bold text-sm sm:text-base block leading-none">
-                      {lang.label}
-                    </span>
-                    <span className="text-[10px] sm:text-xs text-slate-405 font-medium block mt-1">
-                      {lang.sub}
-                    </span>
+                    <span style={{
+                      fontFamily: 'var(--font-heading)',
+                      fontWeight: 700, fontSize: '1rem',
+                      color: language === lang.code ? '#283618' : '#5c6245',
+                    }}>{lang.label}</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 500, color: '#a09472' }}>{lang.sub}</span>
                     {language === lang.code && (
-                      <span className="mt-1 p-0.5 rounded-full bg-primary-600 text-white text-[8px]">
-                        <Check className="h-3 w-3" />
-                      </span>
+                      <div style={{
+                        marginTop: '4px', width: '20px', height: '20px', borderRadius: '50%',
+                        background: '#606C38', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      }}>
+                        <Check size={12} color="white" />
+                      </div>
                     )}
                   </button>
                 ))}
               </div>
 
-              <div className="flex gap-3 pt-3">
-                <Button
-                  variant="outline"
-                  className="flex-1 text-sm py-3 rounded-xl text-slate-650 cursor-pointer min-h-[48px]"
-                  onClick={() => setStep(1)}
-                >
+              <div style={{ display: 'flex', gap: '0.625rem' }}>
+                <Button variant="outline" onClick={() => setStep(1)} style={{ flex: 1, minHeight: '48px' }}>
                   {getT('backBtn')}
                 </Button>
-                <Button
-                  variant="primary"
-                  className="flex-1 text-sm py-3 rounded-xl cursor-pointer min-h-[48px]"
-                  onClick={() => setStep(3)}
-                >
+                <Button variant="primary" onClick={() => setStep(3)} style={{ flex: 1, minHeight: '48px' }}>
                   {getT('continue')}
                 </Button>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
-        {/* Step 3: Mobile Number login screen */}
+        {/* ——— STEP 3: PHONE ——— */}
         {step === 3 && (
-          <Card className="border-slate-100 shadow-xl rounded-3xl overflow-hidden bg-white animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <CardContent className="p-6 sm:p-8 space-y-6">
-              <div className="text-center space-y-2">
-                <div className="mx-auto bg-slate-50 p-2.5 rounded-full w-11 h-11 flex items-center justify-center text-primary-650 border border-slate-100/80 mb-1">
-                  <User className="h-5.5 w-5.5" />
+          <div style={cardStyle}>
+            <div style={{ padding: '1.75rem' }}>
+              <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                <div style={{
+                  width: '48px', height: '48px', borderRadius: '14px',
+                  background: 'linear-gradient(135deg, rgba(188,108,37,0.12), rgba(188,108,37,0.06))',
+                  border: '1.5px solid rgba(188,108,37,0.15)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 1rem',
+                }}>
+                  <Phone size={22} style={{ color: '#BC6C25' }} />
                 </div>
-                <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-slate-800 leading-tight">
+                <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.3rem', color: '#283618', margin: 0 }}>
                   {getT('loginTitle')}
                 </h1>
-                <p className="text-xs text-slate-400 font-semibold max-w-xs mx-auto">
+                <p style={{ color: '#8a7d60', fontSize: '0.82rem', marginTop: '0.375rem' }}>
                   {getT('loginSubtitle')}
                 </p>
               </div>
 
-              <form onSubmit={handleSendOtp} className="space-y-4">
-                <div className="space-y-1.5">
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest" htmlFor="login-phone">
-                    {getT('phoneLabel')}
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" />
+              <form onSubmit={handleSendOtp} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div>
+                  <label style={labelStyle}>{getT('phoneLabel')}</label>
+                  <div style={{ position: 'relative' }}>
+                    <Phone size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#a09472' }} />
                     <input
-                      id="login-phone"
                       type="tel"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                      onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                       placeholder={getT('phonePlaceholder')}
-                      className={`w-full pl-10 pr-4 py-3.5 bg-slate-50 border rounded-xl text-sm font-semibold text-slate-750 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary-500/20 ${
-                        errors.phone ? 'border-rose-350 focus:border-rose-500' : 'border-slate-105 focus:border-primary-500'
-                      }`}
+                      style={{ ...inputStyle(!!errors.phone), paddingLeft: '2.25rem' }}
+                      onFocus={e => { e.target.style.borderColor = '#606C38'; e.target.style.boxShadow = '0 0 0 3px rgba(96,108,56,0.12)'; }}
+                      onBlur={e => { e.target.style.borderColor = errors.phone ? '#c0392b' : '#d4c9a8'; e.target.style.boxShadow = 'none'; }}
                     />
                   </div>
-                  {errors.phone && <p className="text-rose-600 text-xs font-bold">{errors.phone}</p>}
+                  {errors.phone && <p style={{ color: '#c0392b', fontSize: '0.75rem', fontWeight: 600, marginTop: '4px' }}>{errors.phone}</p>}
                 </div>
 
-                {/* Demonstration Alert banner */}
-                <div className="bg-amber-50 border border-amber-100 rounded-2xl p-3 text-center flex items-center justify-center gap-1.5 shadow-2xs">
-                  <span className="text-base">💡</span>
-                  <p className="text-xs font-bold text-amber-800 leading-tight">
-                    {getT('demoOtpNotice')}
-                  </p>
+                {/* Demo hint */}
+                <div style={{
+                  background: 'rgba(221,161,94,0.12)',
+                  border: '1px solid rgba(221,161,94,0.3)',
+                  borderRadius: '10px',
+                  padding: '0.625rem 0.875rem',
+                  display: 'flex', alignItems: 'center', gap: '0.5rem',
+                }}>
+                  <span style={{ fontSize: '1rem' }}>💡</span>
+                  <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#7c5020' }}>{getT('demoOtpNotice')}</span>
                 </div>
 
-                <div className="flex gap-3 pt-2">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="flex-1 text-sm py-3 rounded-xl text-slate-650 cursor-pointer min-h-[48px]"
-                    onClick={() => setStep(2)}
-                  >
+                <div style={{ display: 'flex', gap: '0.625rem', marginTop: '0.25rem' }}>
+                  <Button type="button" variant="outline" onClick={() => setStep(2)} style={{ flex: 1, minHeight: '48px' }}>
                     {getT('backBtn')}
                   </Button>
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    className="flex-1 text-sm py-3 rounded-xl cursor-pointer min-h-[48px] font-bold"
-                  >
+                  <Button type="submit" variant="primary" style={{ flex: 1, minHeight: '48px' }}>
                     {getT('sendOtp')}
                   </Button>
                 </div>
               </form>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
-        {/* Step 4: OTP verification */}
+        {/* ——— STEP 4: OTP ——— */}
         {step === 4 && (
-          <Card className="border-slate-100 shadow-xl rounded-3xl overflow-hidden bg-white animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <CardContent className="p-6 sm:p-8 space-y-6">
-              <div className="text-center space-y-2">
-                <div className="mx-auto bg-slate-50 p-2.5 rounded-full w-11 h-11 flex items-center justify-center text-primary-650 border border-slate-100/80 mb-1">
-                  <Key className="h-5.5 w-5.5" />
+          <div style={cardStyle}>
+            <div style={{ padding: '1.75rem' }}>
+              <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                <div style={{
+                  width: '48px', height: '48px', borderRadius: '14px',
+                  background: 'rgba(96,108,56,0.1)',
+                  border: '1.5px solid rgba(96,108,56,0.15)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 1rem',
+                }}>
+                  <Key size={22} style={{ color: '#606C38' }} />
                 </div>
-                <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-slate-800 leading-tight">
+                <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.3rem', color: '#283618', margin: 0 }}>
                   {getT('verifyTitle')}
                 </h1>
-                <p className="text-xs text-slate-450 font-semibold max-w-xs mx-auto">
+                <p style={{ color: '#8a7d60', fontSize: '0.82rem', marginTop: '0.375rem' }}>
                   {getT('verifySubtitle')}
                 </p>
               </div>
 
-              <form onSubmit={handleVerifyOtp} className="space-y-4">
-                <div className="space-y-1.5">
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest" htmlFor="login-otp">
-                    {getT('otpLabel')}
-                  </label>
-                  <div className="relative">
-                    <Key className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" />
-                    <input
-                      id="login-otp"
-                      type="tel"
-                      value={otp}
-                      onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                      placeholder={getT('otpPlaceholder')}
-                      className={`w-full pl-10 pr-4 py-3.5 bg-slate-50 border rounded-xl text-center text-lg font-heading font-bold tracking-widest text-slate-755 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary-500/20 ${
-                        errors.otp ? 'border-rose-350 focus:border-rose-500' : 'border-slate-105 focus:border-primary-500'
-                      }`}
-                    />
-                  </div>
-                  {errors.otp && <p className="text-rose-600 text-xs font-bold text-center">{errors.otp}</p>}
+              <form onSubmit={handleVerifyOtp} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div>
+                  <label style={labelStyle}>{getT('otpLabel')}</label>
+                  <input
+                    type="tel"
+                    value={otp}
+                    onChange={e => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                    placeholder={getT('otpPlaceholder')}
+                    style={{
+                      ...inputStyle(!!errors.otp),
+                      textAlign: 'center',
+                      fontSize: '1.35rem',
+                      fontWeight: 800,
+                      fontFamily: 'var(--font-heading)',
+                      letterSpacing: '0.35em',
+                    }}
+                    onFocus={e => { e.target.style.borderColor = '#606C38'; e.target.style.boxShadow = '0 0 0 3px rgba(96,108,56,0.12)'; }}
+                    onBlur={e => { e.target.style.borderColor = errors.otp ? '#c0392b' : '#d4c9a8'; e.target.style.boxShadow = 'none'; }}
+                  />
+                  {errors.otp && <p style={{ color: '#c0392b', fontSize: '0.75rem', fontWeight: 600, marginTop: '4px', textAlign: 'center' }}>{errors.otp}</p>}
                 </div>
 
-                {/* Demo OTP Notice */}
-                <div className="bg-amber-50 border border-amber-100 rounded-2xl p-2.5 text-center text-xs font-bold text-amber-800 shadow-2xs">
+                <div style={{
+                  background: 'rgba(221,161,94,0.12)', border: '1px solid rgba(221,161,94,0.3)',
+                  borderRadius: '10px', padding: '0.625rem 0.875rem', textAlign: 'center',
+                  fontSize: '0.78rem', fontWeight: 600, color: '#7c5020',
+                }}>
                   {getT('demoOtpNotice')}
                 </div>
 
-                <div className="space-y-2 pt-2">
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    className="w-full text-sm py-3.5 rounded-xl cursor-pointer min-h-[48px] font-bold"
-                  >
-                    {getT('verifyOtp')}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full text-sm py-3.5 rounded-xl cursor-pointer min-h-[48px] text-slate-550 border-slate-105"
-                    onClick={() => {
-                      setOtp('');
-                      setErrors({});
-                      setStep(3);
-                    }}
-                  >
-                    {getT('changePhone')}
-                  </Button>
-                </div>
+                <Button type="submit" variant="primary" style={{ width: '100%', minHeight: '50px' }}>
+                  {getT('verifyOtp')}
+                </Button>
+                <Button
+                  type="button" variant="outline"
+                  onClick={() => { setOtp(''); setErrors({}); setStep(3); }}
+                  style={{ width: '100%', minHeight: '46px' }}
+                >
+                  {getT('changePhone')}
+                </Button>
               </form>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
-        {/* Step 5: Farmer Profile Details */}
+        {/* ——— STEP 5: PROFILE ——— */}
         {step === 5 && (
-          <Card className="border-slate-100 shadow-xl rounded-3xl overflow-hidden bg-white animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <CardContent className="p-6 sm:p-8 space-y-6">
-              <div className="text-center space-y-2">
-                <div className="mx-auto bg-slate-50 p-2.5 rounded-full w-11 h-11 flex items-center justify-center text-primary-650 border border-slate-100/80 mb-1">
-                  <User className="h-5.5 w-5.5" />
-                </div>
-                <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-slate-800 leading-tight">
+          <div style={cardStyle}>
+            <div style={{
+              background: 'linear-gradient(135deg, #283618 0%, #606C38 100%)',
+              padding: '1.25rem 1.75rem',
+              display: 'flex', alignItems: 'center', gap: '0.75rem',
+            }}>
+              <User size={18} color="rgba(254,250,224,0.8)" />
+              <div>
+                <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.15rem', color: '#FEFAE0', margin: 0 }}>
                   {getT('profileTitle')}
                 </h1>
-                <p className="text-xs text-slate-400 font-semibold max-w-xs mx-auto">
+                <p style={{ color: 'rgba(254,250,224,0.6)', fontSize: '0.75rem', margin: 0, marginTop: '2px' }}>
                   {getT('profileSubtitle')}
                 </p>
               </div>
+            </div>
 
-              <form onSubmit={handleProfileSubmit} className="space-y-4">
-                {/* Farmer Name */}
-                <div className="space-y-1.5">
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest" htmlFor="register-name">
-                    {getT('nameLabel')} *
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" />
+            <form onSubmit={handleProfileSubmit} style={{ padding: '1.5rem 1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {/* Name */}
+              <div>
+                <label style={labelStyle}>{getT('nameLabel')} *</label>
+                <div style={{ position: 'relative' }}>
+                  <User size={15} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#a09472' }} />
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    placeholder={getT('namePlaceholder')}
+                    style={{ ...inputStyle(!!errors.name), paddingLeft: '2.25rem' }}
+                    onFocus={e => { e.target.style.borderColor = '#606C38'; e.target.style.boxShadow = '0 0 0 3px rgba(96,108,56,0.12)'; }}
+                    onBlur={e => { e.target.style.borderColor = errors.name ? '#c0392b' : '#d4c9a8'; e.target.style.boxShadow = 'none'; }}
+                  />
+                </div>
+                {errors.name && <p style={{ color: '#c0392b', fontSize: '0.72rem', fontWeight: 600, marginTop: '4px' }}>{errors.name}</p>}
+              </div>
+
+              {/* State & District */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                {/* State */}
+                <div ref={stateRef} style={{ position: 'relative' }}>
+                  <label style={labelStyle}>{getT('stateLabel')} *</label>
+                  <div style={{ position: 'relative' }}>
+                    <MapPin size={14} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#a09472' }} />
                     <input
-                      id="register-name"
                       type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder={getT('namePlaceholder')}
-                      className={`w-full pl-10 pr-4 py-3 bg-slate-50 border rounded-xl text-sm font-semibold text-slate-750 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary-500/20 ${
-                        errors.name ? 'border-rose-350 focus:border-rose-500' : 'border-slate-105 focus:border-primary-500'
-                      }`}
+                      value={stateSearch}
+                      onClick={() => setIsStateOpen(true)}
+                      onChange={e => { setStateSearch(e.target.value); setIsStateOpen(true); if (!e.target.value) { setState(''); setDistrict(''); setDistrictSearch(''); } }}
+                      placeholder="Search..."
+                      style={{ ...inputStyle(!!errors.state), paddingLeft: '1.875rem', fontSize: '0.8rem' }}
+                      onFocus={e => { e.target.style.borderColor = '#606C38'; e.target.style.boxShadow = '0 0 0 3px rgba(96,108,56,0.12)'; setIsStateOpen(true); }}
+                      onBlur={e => { e.target.style.borderColor = errors.state ? '#c0392b' : '#d4c9a8'; e.target.style.boxShadow = 'none'; }}
                     />
                   </div>
-                  {errors.name && <p className="text-rose-600 text-xs font-bold">{errors.name}</p>}
+                  {isStateOpen && (
+                    <div style={{
+                      position: 'absolute', zIndex: 50, width: '100%', top: 'calc(100% + 4px)',
+                      maxHeight: '200px', overflowY: 'auto',
+                      background: '#fffef8', border: '1.5px solid #e0d8be',
+                      borderRadius: '12px', boxShadow: '0 8px 24px rgba(40,54,24,0.12)',
+                    }}>
+                      {filteredStates.length === 0 ? (
+                        <div style={{ padding: '0.75rem 1rem', fontSize: '0.8rem', color: '#a09472' }}>No results</div>
+                      ) : filteredStates.map(st => (
+                        <button key={st} type="button" onClick={() => { setState(st); setStateSearch(st); setIsStateOpen(false); setDistrict(''); setDistrictSearch(''); setErrors(p => ({ ...p, state: '' })); }}
+                          style={{
+                            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                            width: '100%', padding: '0.6rem 0.875rem',
+                            background: state === st ? 'rgba(96,108,56,0.08)' : 'transparent',
+                            border: 'none', cursor: 'pointer',
+                            fontSize: '0.82rem', fontWeight: state === st ? 700 : 500,
+                            color: state === st ? '#283618' : '#5c6245',
+                            textAlign: 'left', transition: 'background 0.1s'
+                          }}>
+                          <span>{st}</span>
+                          {state === st && <Check size={13} style={{ color: '#606C38' }} />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {errors.state && <p style={{ color: '#c0392b', fontSize: '0.68rem', fontWeight: 600, marginTop: '3px' }}>{errors.state}</p>}
                 </div>
 
-                {/* State, District searchable comboboxes */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  
-                  {/* Searchable State Dropdown */}
-                  <div ref={stateRef} className="relative space-y-1.5">
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest" htmlFor="register-state">
-                      {getT('stateLabel')} *
-                    </label>
-                    
-                    <div className="relative">
-                      <MapPin className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" />
-                      <input
-                        id="register-state"
-                        type="text"
-                        value={stateSearch}
-                        onClick={() => setIsStateOpen(true)}
-                        onChange={(e) => {
-                          setStateSearch(e.target.value);
-                          setIsStateOpen(true);
-                          if (!e.target.value) {
-                            setState('');
-                            setDistrict('');
-                            setDistrictSearch('');
-                          }
-                        }}
-                        placeholder={t('searchStatePlaceholder')}
-                        className={`w-full pl-10 pr-10 py-3 bg-slate-50 border rounded-xl text-sm font-semibold text-slate-755 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary-500/20 ${
-                          errors.state ? 'border-rose-350 focus:border-rose-500' : 'border-slate-105 focus:border-primary-500'
-                        }`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setIsStateOpen(!isStateOpen)}
-                        className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 cursor-pointer focus:outline-none"
-                      >
-                        <span className="text-[10px]">▼</span>
-                      </button>
-                    </div>
-
-                    {isStateOpen && (
-                      <div className="absolute z-50 w-full mt-1 max-h-56 overflow-y-auto bg-white border border-slate-150 rounded-xl shadow-lg py-1 animate-in fade-in slide-in-from-top-1 duration-150">
-                        {filteredStates.length === 0 ? (
-                          <div className="px-4 py-2.5 text-xs font-semibold text-slate-400">
-                            {t('noStateFound')}
-                          </div>
-                        ) : (
-                          filteredStates.map((st) => (
-                            <button
-                              key={st}
-                              type="button"
-                              onClick={() => {
-                                setState(st);
-                                setStateSearch(st);
-                                setIsStateOpen(false);
-                                setDistrict('');
-                                setDistrictSearch('');
-                                setErrors(prev => ({ ...prev, state: '' }));
-                              }}
-                              className="w-full text-left px-4 py-2.5 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-primary-700 cursor-pointer flex justify-between items-center"
-                            >
-                              <span>{st}</span>
-                              {state === st && <Check className="h-3.5 w-3.5 text-primary-600" />}
-                            </button>
-                          ))
-                        )}
-                      </div>
-                    )}
-                    {errors.state && <p className="text-rose-600 text-xs font-bold">{errors.state}</p>}
-                  </div>
-
-                  {/* Dependent Searchable District Dropdown */}
-                  <div ref={districtRef} className="relative space-y-1.5">
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest" htmlFor="register-district">
-                      {getT('districtLabel')} *
-                    </label>
-
-                    <div className="relative">
-                      <MapPin className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" />
-                      <input
-                        id="register-district"
-                        type="text"
-                        disabled={!state}
-                        value={state ? districtSearch : ''}
-                        onClick={() => state && setIsDistrictOpen(true)}
-                        onChange={(e) => {
-                          setDistrictSearch(e.target.value);
-                          setIsDistrictOpen(true);
-                          if (!e.target.value) {
-                            setDistrict('');
-                          }
-                        }}
-                        placeholder={state ? t('searchDistrictPlaceholder') : t('selectStateFirst')}
-                        className={`w-full pl-10 pr-10 py-3 border rounded-xl text-sm font-semibold text-slate-755 focus:outline-none focus:ring-2 focus:ring-primary-500/20 ${
-                          !state 
-                            ? 'bg-slate-100 text-slate-400 border-slate-100 cursor-not-allowed select-none' 
-                            : errors.district 
-                              ? 'bg-slate-50 border-rose-350 focus:border-rose-500 focus:bg-white' 
-                              : 'bg-slate-50 border-slate-105 focus:border-primary-500 focus:bg-white'
-                        }`}
-                      />
-                      <button
-                        type="button"
-                        disabled={!state}
-                        onClick={() => setIsDistrictOpen(!isDistrictOpen)}
-                        className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 cursor-pointer focus:outline-none disabled:opacity-40"
-                      >
-                        <span className="text-[10px]">▼</span>
-                      </button>
-                    </div>
-
-                    {state && isDistrictOpen && (
-                      <div className="absolute z-50 w-full mt-1 max-h-56 overflow-y-auto bg-white border border-slate-150 rounded-xl shadow-lg py-1 animate-in fade-in slide-in-from-top-1 duration-150">
-                        {filteredDistricts.length === 0 ? (
-                          <div className="px-4 py-2.5 text-xs font-semibold text-slate-400">
-                            {t('noDistrictFound')}
-                          </div>
-                        ) : (
-                          filteredDistricts.map((dst) => (
-                            <button
-                              key={dst}
-                              type="button"
-                              onClick={() => {
-                                setDistrict(dst);
-                                setDistrictSearch(dst);
-                                setIsDistrictOpen(false);
-                                setErrors(prev => ({ ...prev, district: '' }));
-                              }}
-                              className="w-full text-left px-4 py-2.5 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-primary-700 cursor-pointer flex justify-between items-center"
-                            >
-                              <span>{dst}</span>
-                              {district === dst && <Check className="h-3.5 w-3.5 text-primary-600" />}
-                            </button>
-                          ))
-                        )}
-                      </div>
-                    )}
-                    {errors.district && <p className="text-rose-600 text-xs font-bold">{errors.district}</p>}
-                  </div>
-
-                </div>
-
-                {/* Village free-text field */}
-                <div className="space-y-1.5">
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest" htmlFor="register-village">
-                    {getT('villageLabel')} *
-                  </label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" />
+                {/* District */}
+                <div ref={districtRef} style={{ position: 'relative' }}>
+                  <label style={labelStyle}>{getT('districtLabel')} *</label>
+                  <div style={{ position: 'relative' }}>
+                    <MapPin size={14} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#a09472' }} />
                     <input
-                      id="register-village"
                       type="text"
-                      value={village}
-                      onChange={(e) => setVillage(e.target.value)}
-                      placeholder={getT('villagePlaceholder')}
-                      className={`w-full pl-10 pr-4 py-3 bg-slate-50 border rounded-xl text-sm font-semibold text-slate-750 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary-500/20 ${
-                        errors.village ? 'border-rose-350 focus:border-rose-500' : 'border-slate-105 focus:border-primary-500'
-                      }`}
+                      disabled={!state}
+                      value={state ? districtSearch : ''}
+                      onClick={() => state && setIsDistrictOpen(true)}
+                      onChange={e => { setDistrictSearch(e.target.value); setIsDistrictOpen(true); if (!e.target.value) setDistrict(''); }}
+                      placeholder={state ? 'Search...' : 'Select state first'}
+                      style={{ ...inputStyle(!!errors.district), paddingLeft: '1.875rem', fontSize: '0.8rem', opacity: !state ? 0.5 : 1, cursor: !state ? 'not-allowed' : 'text' }}
+                      onFocus={e => { if (state) { e.target.style.borderColor = '#606C38'; e.target.style.boxShadow = '0 0 0 3px rgba(96,108,56,0.12)'; setIsDistrictOpen(true); } }}
+                      onBlur={e => { e.target.style.borderColor = errors.district ? '#c0392b' : '#d4c9a8'; e.target.style.boxShadow = 'none'; }}
                     />
                   </div>
-                  {errors.village && <p className="text-rose-600 text-xs font-bold">{errors.village}</p>}
+                  {state && isDistrictOpen && (
+                    <div style={{
+                      position: 'absolute', zIndex: 50, width: '100%', top: 'calc(100% + 4px)',
+                      maxHeight: '200px', overflowY: 'auto',
+                      background: '#fffef8', border: '1.5px solid #e0d8be',
+                      borderRadius: '12px', boxShadow: '0 8px 24px rgba(40,54,24,0.12)',
+                    }}>
+                      {filteredDistricts.length === 0 ? (
+                        <div style={{ padding: '0.75rem 1rem', fontSize: '0.8rem', color: '#a09472' }}>No results</div>
+                      ) : filteredDistricts.map(dst => (
+                        <button key={dst} type="button" onClick={() => { setDistrict(dst); setDistrictSearch(dst); setIsDistrictOpen(false); setErrors(p => ({ ...p, district: '' })); }}
+                          style={{
+                            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                            width: '100%', padding: '0.6rem 0.875rem',
+                            background: district === dst ? 'rgba(96,108,56,0.08)' : 'transparent',
+                            border: 'none', cursor: 'pointer',
+                            fontSize: '0.82rem', fontWeight: district === dst ? 700 : 500,
+                            color: district === dst ? '#283618' : '#5c6245',
+                            textAlign: 'left', transition: 'background 0.1s'
+                          }}>
+                          <span>{dst}</span>
+                          {district === dst && <Check size={13} style={{ color: '#606C38' }} />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {errors.district && <p style={{ color: '#c0392b', fontSize: '0.68rem', fontWeight: 600, marginTop: '3px' }}>{errors.district}</p>}
                 </div>
+              </div>
 
-                <div className="flex gap-3 pt-3">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="flex-1 text-sm py-3 rounded-xl text-slate-650 cursor-pointer min-h-[48px]"
-                    onClick={() => setStep(4)}
-                  >
-                    {getT('backBtn')}
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    disabled={isSubmitting}
-                    className="flex-1 text-sm py-3 rounded-xl cursor-pointer min-h-[48px] font-bold"
-                  >
-                    {isSubmitting ? '...' : getT('completeBtn')}
-                  </Button>
+              {/* Village */}
+              <div>
+                <label style={labelStyle}>{getT('villageLabel')} *</label>
+                <div style={{ position: 'relative' }}>
+                  <MapPin size={15} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#a09472' }} />
+                  <input
+                    type="text"
+                    value={village}
+                    onChange={e => setVillage(e.target.value)}
+                    placeholder={getT('villagePlaceholder')}
+                    style={{ ...inputStyle(!!errors.village), paddingLeft: '2.25rem' }}
+                    onFocus={e => { e.target.style.borderColor = '#606C38'; e.target.style.boxShadow = '0 0 0 3px rgba(96,108,56,0.12)'; }}
+                    onBlur={e => { e.target.style.borderColor = errors.village ? '#c0392b' : '#d4c9a8'; e.target.style.boxShadow = 'none'; }}
+                  />
                 </div>
-              </form>
-            </CardContent>
-          </Card>
+                {errors.village && <p style={{ color: '#c0392b', fontSize: '0.72rem', fontWeight: 600, marginTop: '4px' }}>{errors.village}</p>}
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.625rem', marginTop: '0.25rem' }}>
+                <Button type="button" variant="outline" onClick={() => setStep(4)} style={{ flex: '0 0 auto', minWidth: '90px', minHeight: '48px' }}>
+                  {getT('backBtn')}
+                </Button>
+                <Button type="submit" variant="primary" disabled={isSubmitting} style={{ flex: 1, minHeight: '50px', fontSize: '0.9rem' }}>
+                  {isSubmitting ? '...' : getT('completeBtn')}
+                </Button>
+              </div>
+            </form>
+          </div>
         )}
+
+        {/* Bottom trust note */}
+        <p style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.72rem', color: '#a09472', fontWeight: 500 }}>
+          🔒 Your data is private and never shared · Digital tokens are free
+        </p>
       </div>
     </div>
   );

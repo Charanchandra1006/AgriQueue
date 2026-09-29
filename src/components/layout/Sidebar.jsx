@@ -1,99 +1,202 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { X, Sprout } from 'lucide-react';
+import { X, Sprout, LayoutDashboard, Map, Building2, TrendingUp, FileText, Truck, HelpCircle, LogOut } from 'lucide-react';
+
+const navItems = [
+  { name: 'dashboard',     path: '/',              Icon: LayoutDashboard },
+  { name: 'mandiMap',      path: '/mandi-map',     Icon: Map             },
+  { name: 'mandiCenters',  path: '/mandi-centers', Icon: Building2       },
+  { name: 'marketPrices',  path: '/market-prices', Icon: TrendingUp      },
+  { name: 'schemes',       path: '/schemes',        Icon: FileText        },
+  { name: 'bookTransport', path: '/book-transport', Icon: Truck           },
+  { name: 'help',          path: '/help',           Icon: HelpCircle      },
+];
 
 export const Sidebar = ({ isOpen, onClose }) => {
   const { t, logout } = useApp();
 
-  const navItems = [
-    { name: t('common.dashboard'), path: '/', emoji: '🏠' },
-    { name: t('common.mandiMap'), path: '/mandi-map', emoji: '🗺️' },
-    { name: t('common.mandiCenters'), path: '/mandi-centers', emoji: '🏪' },
-    { name: t('common.marketPrices'), path: '/market-prices', emoji: '💰' },
-    { name: t('common.schemes'), path: '/schemes', emoji: '📋' },
-    { name: t('common.bookTransport'), path: '/book-transport', emoji: '🚜' },
-    { name: t('common.help'), path: '/help', emoji: '🆘' },
-    { name: t('common.logout'), action: 'logout', emoji: '🚪' },
-  ];
-
-  const linkClass = ({ isActive }) =>
-    `flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-150 ${
-      isActive
-        ? 'bg-primary-600 text-white font-semibold shadow-xs shadow-primary-500/10'
-        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-    }`;
-
   return (
     <>
-      {/* Mobile Sidebar Overlay */}
+      {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-xs md:hidden transition-opacity duration-300"
+          className="fixed inset-0 z-40 md:hidden"
+          style={{ background: 'rgba(28, 31, 22, 0.55)', backdropFilter: 'blur(3px)' }}
           onClick={onClose}
         />
       )}
 
-      {/* Sidebar container */}
+      {/* Sidebar */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-40 flex flex-col w-72 bg-white border-r border-slate-100 transition-transform duration-300 ease-in-out md:sticky md:translate-x-0 ${
+        style={{
+          width: '272px',
+          background: '#283618',
+          borderRight: 'none',
+          display: 'flex',
+          flexDirection: 'column',
+          transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}
+        className={`fixed top-0 bottom-0 left-0 z-40 md:sticky md:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Header Branding */}
-        <div className="flex items-center justify-between h-[72px] px-6 border-b border-slate-50">
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-primary-600 rounded-lg text-white">
-              <Sprout className="h-6 w-6" />
+        {/* Logo / Branding */}
+        <div style={{ 
+          padding: '1.25rem 1.5rem',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          minHeight: '72px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+            <div style={{
+              width: '36px', height: '36px',
+              borderRadius: '10px',
+              background: 'linear-gradient(135deg, #DDA15E, #BC6C25)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 2px 8px rgba(188,108,37,0.4)',
+              flexShrink: 0
+            }}>
+              <Sprout size={18} color="white" />
             </div>
             <div>
-              <span className="font-heading font-extrabold text-xl tracking-tight text-slate-800">
-                Agri<span className="text-primary-600">Queue</span>
+              <span style={{ 
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 700,
+                fontSize: '1.2rem',
+                color: '#FEFAE0',
+                letterSpacing: '-0.02em'
+              }}>
+                Agri<span style={{ color: '#DDA15E' }}>Queue</span>
               </span>
+              <div style={{ 
+                fontSize: '0.58rem', 
+                color: 'rgba(254,250,224,0.45)',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                marginTop: '-1px'
+              }}>
+                Kisan Digital Portal
+              </div>
             </div>
           </div>
-          
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 md:hidden"
-            aria-label="Close sidebar"
+            className="md:hidden"
+            style={{
+              padding: '6px',
+              borderRadius: '8px',
+              background: 'rgba(255,255,255,0.07)',
+              color: 'rgba(254,250,224,0.7)',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'background 0.15s'
+            }}
           >
-            <X className="h-6 w-6" />
+            <X size={18} />
           </button>
         </div>
 
-        {/* Scrollable Navigation */}
-        <nav className="flex-1 overflow-y-auto p-4">
-          <ul className="space-y-1">
+        {/* Navigation Links */}
+        <nav style={{ flex: 1, overflowY: 'auto', padding: '0.75rem 0.75rem' }}>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {navItems.map((item) => (
-              <li key={item.path || item.action}>
-                {item.action === 'logout' ? (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onClose();
-                      logout();
-                    }}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-150 text-slate-600 hover:bg-rose-50 hover:text-rose-600 cursor-pointer text-left"
-                  >
-                    <span className="text-lg leading-none shrink-0" role="img" aria-label={item.name}>
-                      {item.emoji}
-                    </span>
-                    <span>{item.name}</span>
-                  </button>
-                ) : (
-                  <NavLink to={item.path} className={linkClass} onClick={onClose}>
-                    <span className="text-lg leading-none shrink-0" role="img" aria-label={item.name}>
-                      {item.emoji}
-                    </span>
-                    <span>{item.name}</span>
-                  </NavLink>
-                )}
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  end={item.path === '/'}
+                  onClick={onClose}
+                  style={({ isActive }) => ({
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    padding: '0.625rem 0.875rem',
+                    borderRadius: '10px',
+                    textDecoration: 'none',
+                    fontWeight: isActive ? 700 : 500,
+                    fontSize: '0.875rem',
+                    fontFamily: 'var(--font-sans)',
+                    color: isActive ? '#FEFAE0' : 'rgba(254,250,224,0.6)',
+                    background: isActive 
+                      ? 'linear-gradient(135deg, rgba(221,161,94,0.18) 0%, rgba(188,108,37,0.1) 100%)'
+                      : 'transparent',
+                    borderLeft: isActive ? '2.5px solid #DDA15E' : '2.5px solid transparent',
+                    transition: 'all 0.15s ease',
+                    letterSpacing: '0.01em'
+                  })}
+                >
+                  {({ isActive }) => (
+                    <>
+                      <item.Icon
+                        size={17}
+                        style={{ 
+                          color: isActive ? '#DDA15E' : 'rgba(254,250,224,0.45)',
+                          flexShrink: 0,
+                          transition: 'color 0.15s'
+                        }}
+                      />
+                      <span>{t(`common.${item.name}`)}</span>
+                    </>
+                  )}
+                </NavLink>
               </li>
             ))}
           </ul>
         </nav>
 
+        {/* Logout at bottom */}
+        <div style={{ padding: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+          <button
+            onClick={() => { onClose(); logout(); }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              width: '100%',
+              padding: '0.625rem 0.875rem',
+              borderRadius: '10px',
+              background: 'transparent',
+              color: 'rgba(254,250,224,0.45)',
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              textAlign: 'left',
+              transition: 'all 0.15s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'rgba(220,80,60,0.12)';
+              e.currentTarget.style.color = '#f4a090';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = 'rgba(254,250,224,0.45)';
+            }}
+          >
+            <LogOut size={17} style={{ flexShrink: 0 }} />
+            <span>{t('common.logout')}</span>
+          </button>
+
+          {/* Bottom brand tagline */}
+          <div style={{
+            marginTop: '0.75rem',
+            padding: '0 0.5rem',
+            fontSize: '0.6rem',
+            color: 'rgba(254,250,224,0.2)',
+            fontWeight: 500,
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase'
+          }}>
+            Powered by Google Gemini AI
+          </div>
+        </div>
       </aside>
     </>
   );

@@ -1,28 +1,14 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import {
-  Menu,
-  Bell,
-  Globe,
-  ChevronDown,
-  User,
-  LogOut,
-  Settings,
-  ShieldCheck,
-  CheckCheck
+  Menu, Bell, Globe, ChevronDown, User, LogOut, Settings, ShieldCheck, CheckCheck
 } from 'lucide-react';
 import { ProfileModal } from '../profile/ProfileModal';
 
 export const Navbar = ({ onMenuToggle }) => {
   const {
-    language,
-    setLanguage,
-    profile,
-    notifications,
-    unreadCount,
-    markAllNotificationsAsRead,
-    logout,
-    t
+    language, setLanguage, profile, notifications,
+    unreadCount, markAllNotificationsAsRead, logout, t
   } = useApp();
 
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -32,84 +18,134 @@ export const Navbar = ({ onMenuToggle }) => {
 
   const languages = [
     { code: 'en', label: 'English' },
-    { code: 'hi', label: 'हिन्दी (Hindi)' },
-    { code: 'pa', label: 'ਪੰਜਾਬੀ (Punjabi)' },
-    { code: 'te', label: 'తెలుగు (Telugu)' }
+    { code: 'hi', label: 'हिन्दी' },
+    { code: 'pa', label: 'ਪੰਜਾਬੀ' },
+    { code: 'te', label: 'తెలుగు' },
   ];
 
-  const getLanguageLabel = (code) => {
-    return languages.find(l => l.code === code)?.label || 'English';
-  };
+  const getLangLabel = (code) => languages.find(l => l.code === code)?.label || 'EN';
 
   const getInitials = (name) => {
-    if (!name || typeof name !== 'string') return '';
+    if (!name) return '';
     const parts = name.trim().split(/\s+/);
-    if (parts.length === 1) {
-      return parts[0].substring(0, 2).toUpperCase();
-    }
-    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    return parts.length === 1
+      ? parts[0].substring(0, 2).toUpperCase()
+      : (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  };
+
+  const headerStyle = {
+    position: 'sticky',
+    top: 0,
+    zIndex: 30,
+    height: '72px',
+    background: 'rgba(255, 254, 248, 0.92)',
+    backdropFilter: 'blur(12px)',
+    WebkitBackdropFilter: 'blur(12px)',
+    borderBottom: '1.5px solid #e6dfc5',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '0 1.25rem',
+    boxShadow: '0 1px 8px 0 rgba(40, 54, 24, 0.06)',
+  };
+
+  const dropdownStyle = {
+    position: 'absolute',
+    right: 0,
+    top: 'calc(100% + 8px)',
+    background: '#fffef8',
+    border: '1.5px solid #e6dfc5',
+    borderRadius: '14px',
+    boxShadow: '0 8px 32px rgba(40, 54, 24, 0.12)',
+    zIndex: 50,
+    overflow: 'hidden',
+    animation: 'fadeUp 0.2s ease forwards',
+  };
+
+  const iconBtnStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '8px',
+    borderRadius: '10px',
+    background: 'transparent',
+    border: '1.5px solid #e6dfc5',
+    color: '#606C38',
+    cursor: 'pointer',
+    transition: 'all 0.15s ease',
+    position: 'relative',
   };
 
   return (
     <>
-      <header className="sticky top-0 z-30 flex items-center justify-between h-[72px] px-4 md:px-6 bg-white/80 backdrop-blur-md border-b border-slate-100">
-        {/* Mobile Toggle & Search */}
-        <div className="flex items-center gap-3">
+      <header style={headerStyle}>
+        {/* Left: Menu + Welcome */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <button
             onClick={onMenuToggle}
-            className="p-2 rounded-xl text-slate-600 hover:bg-slate-100 md:hidden cursor-pointer"
+            className="md:hidden"
+            style={{ ...iconBtnStyle, border: 'none', background: 'transparent' }}
             aria-label="Toggle Menu"
           >
-            <Menu className="h-6 w-6" />
+            <Menu size={22} />
           </button>
-          
-          {/* Welcome Text */}
+
           <div className="hidden sm:block">
-            <p className="text-sm font-medium text-slate-400">{t('nav.welcome')},</p>
-            <p className="font-heading font-bold text-slate-800 -mt-0.5">{profile.name}</p>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, color: '#a09472', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              {t('nav.welcome')}
+            </p>
+            <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1rem', color: '#283618', marginTop: '-1px' }}>
+              {profile.name}
+            </p>
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-2">
+        {/* Right: Actions */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+
           {/* Language Selector */}
-          <div className="relative">
+          <div style={{ position: 'relative' }}>
             <button
-              onClick={() => {
-                setIsLangOpen(!isLangOpen);
-                setIsNotifOpen(false);
-                setIsProfileOpen(false);
+              onClick={() => { setIsLangOpen(!isLangOpen); setIsNotifOpen(false); setIsProfileOpen(false); }}
+              style={{
+                ...iconBtnStyle,
+                gap: '0.375rem',
+                padding: '7px 12px',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                color: '#606C38',
               }}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-800 text-sm font-semibold cursor-pointer border border-slate-100"
             >
-              <Globe className="h-4.5 w-4.5 text-slate-400" />
-              <span className="hidden md:inline">{getLanguageLabel(language)}</span>
-              <span className="md:hidden uppercase">{language}</span>
-              <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`} />
+              <Globe size={15} style={{ color: '#DDA15E' }} />
+              <span className="hidden sm:inline">{getLangLabel(language)}</span>
+              <span className="sm:hidden" style={{ textTransform: 'uppercase', fontSize: '0.7rem' }}>{language}</span>
+              <ChevronDown size={13} style={{ transition: 'transform 0.2s', transform: isLangOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
             </button>
 
             {isLangOpen && (
               <>
-                <div className="fixed inset-0 z-10" onClick={() => setIsLangOpen(false)} />
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-100 rounded-2xl shadow-xl z-20 py-2 animate-in fade-in slide-in-from-top-3 duration-200">
-                  <span className="block px-4 py-1.5 text-xs font-semibold text-slate-400 uppercase tracking-widest">
-                    {t('nav.changeLanguage')}
-                  </span>
-                  {languages.map((lang) => (
+                <div className="fixed inset-0 z-40" onClick={() => setIsLangOpen(false)} />
+                <div style={{ ...dropdownStyle, width: '180px' }} className="z-50">
+                  <div style={{ padding: '0.5rem 1rem 0.25rem', fontSize: '0.62rem', fontWeight: 700, color: '#a09472', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    Language
+                  </div>
+                  {languages.map(lang => (
                     <button
                       key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code);
-                        setIsLangOpen(false);
+                      onClick={() => { setLanguage(lang.code); setIsLangOpen(false); }}
+                      style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                        width: '100%', padding: '0.625rem 1rem',
+                        background: language === lang.code ? 'rgba(96,108,56,0.08)' : 'transparent',
+                        color: language === lang.code ? '#283618' : '#5c6245',
+                        border: 'none', cursor: 'pointer',
+                        fontFamily: 'var(--font-sans)', fontWeight: language === lang.code ? 700 : 500,
+                        fontSize: '0.85rem', textAlign: 'left',
+                        transition: 'background 0.12s'
                       }}
-                      className={`flex items-center justify-between w-full px-4 py-2.5 text-sm text-left font-medium cursor-pointer ${
-                        language === lang.code
-                          ? 'text-primary-600 bg-primary-50/50'
-                          : 'text-slate-700 hover:bg-slate-50'
-                      }`}
                     >
                       <span>{lang.label}</span>
-                      {language === lang.code && <ShieldCheck className="h-4 w-4 text-primary-600" />}
+                      {language === lang.code && <ShieldCheck size={14} style={{ color: '#606C38' }} />}
                     </button>
                   ))}
                 </div>
@@ -118,19 +154,22 @@ export const Navbar = ({ onMenuToggle }) => {
           </div>
 
           {/* Notifications */}
-          <div className="relative">
+          <div style={{ position: 'relative' }}>
             <button
-              onClick={() => {
-                setIsNotifOpen(!isNotifOpen);
-                setIsLangOpen(false);
-                setIsProfileOpen(false);
-              }}
-              className="relative p-2.5 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-800 cursor-pointer border border-slate-100"
-              aria-label="View notifications"
+              onClick={() => { setIsNotifOpen(!isNotifOpen); setIsLangOpen(false); setIsProfileOpen(false); }}
+              style={{ ...iconBtnStyle }}
+              aria-label="Notifications"
             >
-              <Bell className="h-5 w-5" />
+              <Bell size={18} />
               {unreadCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white ring-2 ring-white">
+                <span style={{
+                  position: 'absolute', top: '4px', right: '4px',
+                  width: '18px', height: '18px', borderRadius: '50%',
+                  background: '#BC6C25', color: 'white',
+                  fontSize: '10px', fontWeight: 700,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  border: '2px solid #fffef8'
+                }}>
                   {unreadCount}
                 </span>
               )}
@@ -138,41 +177,53 @@ export const Navbar = ({ onMenuToggle }) => {
 
             {isNotifOpen && (
               <>
-                <div className="fixed inset-0 z-10" onClick={() => setIsNotifOpen(false)} />
-                <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white border border-slate-100 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200">
-                  <div className="flex items-center justify-between px-4 py-3 bg-slate-50 border-b border-slate-100">
-                    <span className="font-heading font-semibold text-slate-800">{t('nav.notifications')}</span>
+                <div className="fixed inset-0 z-40" onClick={() => setIsNotifOpen(false)} />
+                <div style={{ ...dropdownStyle, width: '340px', maxHeight: '400px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }} className="z-50">
+                  <div style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    padding: '0.75rem 1rem',
+                    borderBottom: '1.5px solid #e6dfc5',
+                    background: 'rgba(254,250,224,0.5)'
+                  }}>
+                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, color: '#283618', fontSize: '0.9rem' }}>
+                      {t('nav.notifications')}
+                    </span>
                     {unreadCount > 0 && (
                       <button
-                        onClick={() => markAllNotificationsAsRead()}
-                        className="flex items-center gap-1 text-xs font-semibold text-primary-600 hover:text-primary-700 cursor-pointer"
+                        onClick={markAllNotificationsAsRead}
+                        style={{
+                          display: 'flex', alignItems: 'center', gap: '4px',
+                          fontSize: '0.72rem', fontWeight: 700, color: '#606C38',
+                          background: 'none', border: 'none', cursor: 'pointer'
+                        }}
                       >
-                        <CheckCheck className="h-3.5 w-3.5" />
-                        <span>{t('nav.markAllRead')}</span>
+                        <CheckCheck size={13} />
+                        {t('nav.markAllRead')}
                       </button>
                     )}
                   </div>
-
-                  <div className="max-h-80 overflow-y-auto divide-y divide-slate-50">
+                  <div style={{ overflowY: 'auto', maxHeight: '300px' }}>
                     {notifications.length === 0 ? (
-                      <div className="py-8 text-center text-slate-400 text-sm">
-                        {t('nav.noNotifications')}
+                      <div style={{ padding: '2rem', textAlign: 'center', color: '#a09472', fontSize: '0.82rem', fontWeight: 500 }}>
+                        🌾 {t('nav.noNotifications')}
                       </div>
                     ) : (
-                      notifications.map((notif) => (
+                      notifications.map(notif => (
                         <div
                           key={notif.id}
-                          className={`p-4 transition-colors ${
-                            notif.read ? 'bg-white' : 'bg-primary-50/20'
-                          }`}
+                          style={{
+                            padding: '0.875rem 1rem',
+                            borderBottom: '1px solid #f0e8d0',
+                            background: notif.read ? 'transparent' : 'rgba(221,161,94,0.06)'
+                          }}
                         >
-                          <div className="flex items-start justify-between gap-2">
-                            <span className={`font-semibold text-sm ${notif.read ? 'text-slate-700' : 'text-slate-900'}`}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
+                            <span style={{ fontWeight: 600, fontSize: '0.82rem', color: '#283618' }}>
                               {notif.titleKey ? t(notif.titleKey) : notif.title}
                             </span>
-                            <span className="text-[10px] text-slate-400 whitespace-nowrap">{notif.time}</span>
+                            <span style={{ fontSize: '0.65rem', color: '#a09472', whiteSpace: 'nowrap' }}>{notif.time}</span>
                           </div>
-                          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                          <p style={{ fontSize: '0.75rem', color: '#5c6245', marginTop: '2px', lineHeight: '1.4' }}>
                             {notif.messageKey ? t(notif.messageKey) : notif.message}
                           </p>
                         </div>
@@ -184,81 +235,113 @@ export const Navbar = ({ onMenuToggle }) => {
             )}
           </div>
 
-          {/* Profile Dropdown */}
-          <div className="relative">
+          {/* Profile Button */}
+          <div style={{ position: 'relative' }}>
             <button
-              onClick={() => {
-                setIsProfileOpen(!isProfileOpen);
-                setIsLangOpen(false);
-                setIsNotifOpen(false);
+              onClick={() => { setIsProfileOpen(!isProfileOpen); setIsLangOpen(false); setIsNotifOpen(false); }}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                padding: '5px 10px 5px 5px',
+                borderRadius: '12px',
+                border: '1.5px solid #e6dfc5',
+                background: 'transparent',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
               }}
-              className="flex items-center gap-2 p-1 pl-2.5 rounded-xl border border-slate-100 hover:bg-slate-100 hover:border-slate-200 transition-colors cursor-pointer"
             >
-              <div className="text-right hidden md:block">
-                <p className="text-xs font-bold text-slate-800 leading-tight">{profile.name}</p>
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
-                  {profile.farmerId || t('nav.noId')}
+              <div style={{
+                width: '34px', height: '34px', borderRadius: '8px',
+                background: 'linear-gradient(135deg, #606C38, #283618)',
+                color: 'white',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 800, fontSize: '0.72rem',
+                flexShrink: 0
+              }}>
+                {getInitials(profile?.name) || <User size={15} />}
+              </div>
+              <div className="hidden md:block" style={{ textAlign: 'left', lineHeight: 1.2 }}>
+                <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#283618' }}>{profile.name}</p>
+                <p style={{ fontSize: '0.62rem', color: '#a09472', fontWeight: 600, letterSpacing: '0.04em' }}>
+                  {profile.farmerId || 'Farmer'}
                 </p>
               </div>
-              {profile.avatarUrl && !profile.avatarUrl.includes('unsplash.com') ? (
-                <img
-                  src={profile.avatarUrl}
-                  alt={profile.name || 'Farmer Profile'}
-                  className="w-9 h-9 rounded-full object-cover ring-2 ring-emerald-500/20"
-                />
-              ) : (
-                <div className="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-heading font-extrabold text-xs shadow-xs ring-2 ring-emerald-500/20 shrink-0">
-                  {getInitials(profile?.name) || <User className="h-4 w-4 text-white" />}
-                </div>
-              )}
+              <ChevronDown size={13} style={{ color: '#a09472', transition: 'transform 0.2s', transform: isProfileOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
             </button>
 
             {isProfileOpen && (
               <>
-                <div className="fixed inset-0 z-10" onClick={() => setIsProfileOpen(false)} />
-                <div className="absolute right-0 mt-2 w-64 bg-white border border-slate-100 rounded-2xl shadow-xl z-20 py-2.5 animate-in fade-in slide-in-from-top-3 duration-200">
-                  <div className="px-4 py-3 border-b border-slate-50 mb-2">
-                    <p className="font-heading font-bold text-slate-800 text-base">{profile.name}</p>
-                    <p className="text-xs text-slate-400 font-semibold">{profile.phone}</p>
-                    <p className="text-[11px] text-primary-600 font-extrabold mt-0.5">
-                      {t('nav.farmerId')}: {profile.farmerId || t('nav.noId')}
+                <div className="fixed inset-0 z-40" onClick={() => setIsProfileOpen(false)} />
+                <div style={{ ...dropdownStyle, width: '250px' }} className="z-50">
+                  {/* Profile header */}
+                  <div style={{
+                    padding: '0.875rem 1rem',
+                    borderBottom: '1.5px solid #e6dfc5',
+                    background: 'rgba(254,250,224,0.5)'
+                  }}>
+                    <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '0.95rem', color: '#283618' }}>
+                      {profile.name}
                     </p>
-                    <div className="mt-2.5 p-2 bg-slate-50 rounded-xl border border-slate-100/50">
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('nav.location')}</p>
-                      <p className="text-xs font-semibold text-slate-700">{profile.village}, {profile.district}, {profile.state}</p>
+                    <p style={{ fontSize: '0.72rem', color: '#a09472', fontWeight: 600, marginTop: '1px' }}>{profile.phone}</p>
+                    <span style={{ 
+                      display: 'inline-block', marginTop: '6px',
+                      background: 'rgba(96,108,56,0.1)', color: '#606C38',
+                      border: '1px solid rgba(96,108,56,0.2)',
+                      borderRadius: '999px', padding: '2px 8px',
+                      fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.04em'
+                    }}>
+                      {t('nav.farmerId')}: {profile.farmerId || '—'}
+                    </span>
+                    <div style={{ marginTop: '8px', padding: '6px 8px', background: 'rgba(254,250,224,0.8)', borderRadius: '8px', border: '1px solid #e6dfc5' }}>
+                      <p style={{ fontSize: '0.62rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Location</p>
+                      <p style={{ fontSize: '0.78rem', fontWeight: 600, color: '#283618', marginTop: '2px' }}>
+                        {[profile.village, profile.district, profile.state].filter(Boolean).join(', ')}
+                      </p>
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      setIsProfileOpen(false);
-                      setIsProfileModalOpen(true);
-                    }}
-                    className="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 cursor-pointer"
-                  >
-                    <User className="h-4 w-4 text-slate-400" />
-                    <span>{t('nav.myProfile')}</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setIsProfileOpen(false);
-                      setIsProfileModalOpen(true);
-                    }}
-                    className="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 cursor-pointer"
-                  >
-                    <Settings className="h-4 w-4 text-slate-400" />
-                    <span>{t('nav.settings')}</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setIsProfileOpen(false);
-                      logout();
-                    }}
-                    className="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium text-rose-600 hover:bg-rose-50 cursor-pointer border-t border-slate-50 mt-1.5 pt-2.5"
-                  >
-                    <LogOut className="h-4 w-4" />
-                    <span>{t('common.logout')}</span>
-                  </button>
+                  {/* Actions */}
+                  {[
+                    { label: t('nav.myProfile'), Icon: User },
+                    { label: t('nav.settings'), Icon: Settings },
+                  ].map(({ label, Icon }) => (
+                    <button
+                      key={label}
+                      onClick={() => { setIsProfileOpen(false); setIsProfileModalOpen(true); }}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: '0.625rem',
+                        width: '100%', padding: '0.625rem 1rem',
+                        background: 'none', border: 'none', cursor: 'pointer',
+                        color: '#5c6245', fontFamily: 'var(--font-sans)',
+                        fontWeight: 500, fontSize: '0.85rem', textAlign: 'left',
+                        transition: 'background 0.12s'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = 'rgba(96,108,56,0.06)'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'none'}
+                    >
+                      <Icon size={15} style={{ color: '#a09472' }} />
+                      <span>{label}</span>
+                    </button>
+                  ))}
+
+                  <div style={{ borderTop: '1px solid #e6dfc5' }}>
+                    <button
+                      onClick={() => { setIsProfileOpen(false); logout(); }}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: '0.625rem',
+                        width: '100%', padding: '0.625rem 1rem',
+                        background: 'none', border: 'none', cursor: 'pointer',
+                        color: '#bc4c35', fontFamily: 'var(--font-sans)',
+                        fontWeight: 600, fontSize: '0.85rem', textAlign: 'left',
+                        transition: 'background 0.12s'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = 'rgba(188,76,53,0.06)'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'none'}
+                    >
+                      <LogOut size={15} />
+                      <span>{t('common.logout')}</span>
+                    </button>
+                  </div>
                 </div>
               </>
             )}
@@ -266,11 +349,7 @@ export const Navbar = ({ onMenuToggle }) => {
         </div>
       </header>
 
-      {/* Farmer Profile Modal */}
-      <ProfileModal
-        isOpen={isProfileModalOpen}
-        onClose={() => setIsProfileModalOpen(false)}
-      />
+      <ProfileModal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} />
     </>
   );
 };
