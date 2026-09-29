@@ -166,7 +166,8 @@ export const Dashboard = () => {
       {/* ================= 1. WELCOME / FARMER HEADER ================= */}
       <div style={{ background: '#fffef8', border: '1.5px solid #e6dfc5', borderRadius: '16px', padding: '1.1rem 1.25rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', boxShadow: '0 2px 12px rgba(40,54,24,0.06)' }}>
         <div>
-          <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.25rem', color: '#283618', margin: 0, letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.25rem', color: '#283618', margin: 0, letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span role="img" aria-label="waving hand" style={{ fontSize: '1.15rem' }}>👋</span>
             {t('dashboard.namaste', { name: profile?.name || t('dashboard.defaultFarmer') })}
           </h1>
           <p style={{ fontSize: '0.82rem', color: '#8a7d60', fontWeight: 500, marginTop: '2px' }}>
