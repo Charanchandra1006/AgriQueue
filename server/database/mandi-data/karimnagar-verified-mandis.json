@@ -1,0 +1,959 @@
+[
+  {
+    "name": "Karimnagar Agricultural Market Committee (AMC)",
+    "district": "Karimnagar",
+    "mandal": "Karimnagar",
+    "village": "Karimnagar",
+    "location": "Karkhanagadda, Kothapally Road, Karimnagar - 505001",
+    "latitude": 18.4386,
+    "longitude": 79.1288,
+    "center_type": "APMC / Market Committee",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton",
+      "Chillies",
+      "Vegetables"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Karimnagar Principal Market Yard",
+    "district": "Karimnagar",
+    "mandal": "Karimnagar",
+    "village": "Karimnagar",
+    "location": "Agricultural Market Yard, Karkhanagadda, Karimnagar",
+    "latitude": 18.439,
+    "longitude": 79.1292,
+    "center_type": "Principal Market Yard",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Groundnut",
+      "Pulses"
+    ],
+    "source_name": "Department of Agricultural Marketing, Karimnagar",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Mankammathota Rythu Bazar",
+    "district": "Karimnagar",
+    "mandal": "Karimnagar",
+    "village": "Karimnagar",
+    "location": "Mankammathota, Karimnagar - 505001",
+    "latitude": 18.4325,
+    "longitude": 79.131,
+    "center_type": "Other verified agricultural market facility",
+    "commodities": [
+      "Vegetables",
+      "Fruits",
+      "Leafy Greens",
+      "Direct Farmer-to-Consumer Produce"
+    ],
+    "source_name": "Telangana Agricultural Marketing Department (Rythu Bazar Division)",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Karimnagar PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Karimnagar",
+    "village": "Karimnagar",
+    "location": "Karimnagar Primary Agricultural Cooperative Society Yard",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy (Grade-A)",
+      "Paddy (Common)"
+    ],
+    "source_name": "Telangana State Civil Supplies Corporation / District Administration Karimnagar",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Kothapally Agricultural Market Yard",
+    "district": "Karimnagar",
+    "mandal": "Kothapally",
+    "village": "Kothapalli(Haveli)",
+    "location": "Near Bypass Road, Kothapalli Haveli",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Sub-Yard",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Vegetables"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Kothapally PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Kothapally",
+    "village": "Kothapalli(Haveli)",
+    "location": "Kothapally PACS Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Elgandal PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Kothapally",
+    "village": "Elgandal",
+    "location": "Elgandal Village Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Nagunur Agricultural Market Facility",
+    "district": "Karimnagar",
+    "mandal": "Karimnagar Rural",
+    "village": "Nagunur",
+    "location": "Nagunur Road, Karimnagar Rural",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Other verified agricultural market facility",
+    "commodities": [
+      "Paddy",
+      "Maize"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Bommakal PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Karimnagar Rural",
+    "village": "Bommakal",
+    "location": "Bommakal Cooperative Complex",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Durshed PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Karimnagar Rural",
+    "village": "Durshed",
+    "location": "Durshed Village Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Chamanpalli PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Karimnagar Rural",
+    "village": "Chamanpalli",
+    "location": "Chamanpalli Village Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Manakondur Agricultural Market Committee (AMC)",
+    "district": "Karimnagar",
+    "mandal": "Manakondur",
+    "village": "Manakondur",
+    "location": "Main Road, Manakondur - 505505",
+    "latitude": 18.4017477,
+    "longitude": 79.1848585,
+    "center_type": "APMC / Market Committee",
+    "commodities": [
+      "Paddy",
+      "Cotton",
+      "Maize",
+      "Chilli"
+    ],
+    "source_name": "OpenStreetMap (Node 3535535566) & Telangana State Agricultural Marketing Department",
+    "source_url": "https://www.openstreetmap.org/node/3535535566",
+    "source_updated_at": "2026-09-16"
+  },
+  {
+    "name": "Manakondur Principal Market Yard",
+    "district": "Karimnagar",
+    "mandal": "Manakondur",
+    "village": "Manakondur",
+    "location": "AMC Yard, Manakondur",
+    "latitude": 18.4017477,
+    "longitude": 79.1848585,
+    "center_type": "Principal Market Yard",
+    "commodities": [
+      "Paddy",
+      "Cotton",
+      "Maize"
+    ],
+    "source_name": "OpenStreetMap (Node 3535535566) & Telangana State Agricultural Marketing Department",
+    "source_url": "https://www.openstreetmap.org/node/3535535566",
+    "source_updated_at": "2026-09-16"
+  },
+  {
+    "name": "Manakondur PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Manakondur",
+    "village": "Manakondur",
+    "location": "Manakondur PACS Yard",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Vedurugattu PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Manakondur",
+    "village": "Vedurugattu",
+    "location": "Vedurugattu Village Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Thimmapur Agricultural Market Sub-Yard",
+    "district": "Karimnagar",
+    "mandal": "Thimmapur",
+    "village": "Thimmapur",
+    "location": "Rajiv Rahadari, Thimmapur",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Sub-Yard",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Thimmapur PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Thimmapur",
+    "village": "Thimmapur",
+    "location": "Thimmapur PACS Godown",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Nustulapur PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Thimmapur",
+    "village": "Nustulapur",
+    "location": "Nustulapur Junction",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Ganneruvaram Agricultural Market Sub-Yard",
+    "district": "Karimnagar",
+    "mandal": "Ganneruvaram",
+    "village": "Ganneruvaram",
+    "location": "Main Road, Ganneruvaram",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Sub-Yard",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Ganneruvaram PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Ganneruvaram",
+    "village": "Ganneruvaram",
+    "location": "Ganneruvaram PACS Premises",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Paruvella PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Ganneruvaram",
+    "village": "Paruvella",
+    "location": "Paruvella Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Gangadhara Agricultural Market Committee (AMC)",
+    "district": "Karimnagar",
+    "mandal": "Gangadhara",
+    "village": "Gangadhara",
+    "location": "Station Road, Gangadhara - 505445",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "APMC / Market Committee",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton",
+      "Turmeric"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Gangadhara Principal Market Yard",
+    "district": "Karimnagar",
+    "mandal": "Gangadhara",
+    "village": "Gangadhara",
+    "location": "Gangadhara Market Yard",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Principal Market Yard",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Gangadhara PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Gangadhara",
+    "village": "Gangadhara",
+    "location": "Gangadhara PACS Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Kurky PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Gangadhara",
+    "village": "Kurky",
+    "location": "Kurky Village Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Ramadugu Agricultural Market Sub-Yard",
+    "district": "Karimnagar",
+    "mandal": "Ramadugu",
+    "village": "Ramadugu",
+    "location": "Ramadugu Main Road",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Sub-Yard",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Ramadugu PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Ramadugu",
+    "village": "Ramadugu",
+    "location": "Ramadugu PACS Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Deshrajpalli PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Ramadugu",
+    "village": "Deshrajpalli",
+    "location": "Deshrajpalli Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Choppadandi Agricultural Market Committee (AMC)",
+    "district": "Karimnagar",
+    "mandal": "Choppadandi",
+    "village": "Choppadandi",
+    "location": "Choppadandi Town - 505415",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "APMC / Market Committee",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Choppadandi Principal Market Yard",
+    "district": "Karimnagar",
+    "mandal": "Choppadandi",
+    "village": "Choppadandi",
+    "location": "AMC Market Yard, Choppadandi",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Principal Market Yard",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Choppadandi PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Choppadandi",
+    "village": "Choppadandi",
+    "location": "Choppadandi PACS Complex",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Gumlapur PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Choppadandi",
+    "village": "Gumlapur",
+    "location": "Gumlapur Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Chigurumamidi Agricultural Market Sub-Yard",
+    "district": "Karimnagar",
+    "mandal": "Chigurumamidi",
+    "village": "Chigurumamidi",
+    "location": "Main Road, Chigurumamidi",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Sub-Yard",
+    "commodities": [
+      "Paddy",
+      "Maize",
+      "Cotton"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Mulkanoor Cooperative Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Chigurumamidi",
+    "village": "Mulkanoor",
+    "location": "Mulkanoor Cooperative Society Campus",
+    "latitude": 18.077592,
+    "longitude": 79.3583687,
+    "center_type": "Procurement Center",
+    "commodities": [
+      "Paddy",
+      "Seeds",
+      "Cotton",
+      "Dairy"
+    ],
+    "source_name": "OpenStreetMap (Way 1082311913 / Rythu Vedika 1082311932) & Mulkanoor Cooperative Society",
+    "source_url": "https://www.openstreetmap.org/way/1082311913",
+    "source_updated_at": "2026-09-16"
+  },
+  {
+    "name": "Chigurumamidi PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Chigurumamidi",
+    "village": "Chigurumamidi",
+    "location": "Chigurumamidi PACS",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Huzurabad Agricultural Market Committee (AMC)",
+    "district": "Karimnagar",
+    "mandal": "Huzurabad",
+    "village": "Huzurabad",
+    "location": "Warangal-Karimnagar Highway, Huzurabad - 505468",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "APMC / Market Committee",
+    "commodities": [
+      "Paddy",
+      "Cotton",
+      "Maize",
+      "Chilli",
+      "Pulses"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Huzurabad Principal Market Yard",
+    "district": "Karimnagar",
+    "mandal": "Huzurabad",
+    "village": "Huzurabad",
+    "location": "AMC Complex, Huzurabad",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Principal Market Yard",
+    "commodities": [
+      "Paddy",
+      "Cotton",
+      "Maize"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Huzurabad Rythu Bazar",
+    "district": "Karimnagar",
+    "mandal": "Huzurabad",
+    "village": "Huzurabad",
+    "location": "Near Bus Stand, Huzurabad",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Other verified agricultural market facility",
+    "commodities": [
+      "Vegetables",
+      "Fruits"
+    ],
+    "source_name": "Telangana Agricultural Marketing Department (Rythu Bazar Division)",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Huzurabad PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Huzurabad",
+    "village": "Huzurabad",
+    "location": "Huzurabad PACS Premises",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Chelpur PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Huzurabad",
+    "village": "Chelpur",
+    "location": "Chelpur Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Veenavanka Agricultural Market Sub-Yard",
+    "district": "Karimnagar",
+    "mandal": "Veenavanka",
+    "village": "Veenavanka",
+    "location": "Main Road, Veenavanka",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Sub-Yard",
+    "commodities": [
+      "Paddy",
+      "Cotton",
+      "Maize"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Veenavanka PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Veenavanka",
+    "village": "Veenavanka",
+    "location": "Veenavanka PACS Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Challoor PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Veenavanka",
+    "village": "Challoor",
+    "location": "Challoor Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Saidapur Principal Market Yard",
+    "district": "Karimnagar",
+    "mandal": "V. Saidapur",
+    "village": "Saidapur",
+    "location": "Market Yard, Saidapur - 505472",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Principal Market Yard",
+    "commodities": [
+      "Paddy",
+      "Cotton",
+      "Maize"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Saidapur PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "V. Saidapur",
+    "village": "Saidapur",
+    "location": "Saidapur PACS Premises",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Somaram PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "V. Saidapur",
+    "village": "Somaram",
+    "location": "Somaram Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Jammikunta Agricultural Market Committee (AMC)",
+    "district": "Karimnagar",
+    "mandal": "Jammikunta",
+    "village": "Jammikunta",
+    "location": "Station Road, Jammikunta - 505122",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "APMC / Market Committee",
+    "commodities": [
+      "Cotton",
+      "Paddy",
+      "Maize",
+      "Chilli",
+      "Green Gram",
+      "Groundnut"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Jammikunta Principal Market Yard",
+    "district": "Karimnagar",
+    "mandal": "Jammikunta",
+    "village": "Jammikunta",
+    "location": "AMC Cotton & Grain Market Yard, Jammikunta",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Principal Market Yard",
+    "commodities": [
+      "Cotton",
+      "Paddy",
+      "Maize"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Jammikunta PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Jammikunta",
+    "village": "Jammikunta",
+    "location": "Jammikunta PACS Complex",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Thanugula PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Jammikunta",
+    "village": "Thanugula",
+    "location": "Thanugula Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Ellandakunta Agricultural Market Sub-Yard",
+    "district": "Karimnagar",
+    "mandal": "Ellandakunta",
+    "village": "Ellandakunta",
+    "location": "Main Road, Ellandakunta",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Sub-Yard",
+    "commodities": [
+      "Paddy",
+      "Cotton",
+      "Maize"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Ellandakunta PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Ellandakunta",
+    "village": "Ellandakunta",
+    "location": "Ellandakunta PACS Complex",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Vanthadupula PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Ellandakunta",
+    "village": "Vanthadupula",
+    "location": "Vanthadupula Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Keshavapatnam Agricultural Market Sub-Yard",
+    "district": "Karimnagar",
+    "mandal": "Shankarapatnam",
+    "village": "Keshavapatnam",
+    "location": "Keshavapatnam / Shankarapatnam",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Sub-Yard",
+    "commodities": [
+      "Paddy",
+      "Cotton",
+      "Maize"
+    ],
+    "source_name": "Telangana State Agricultural Marketing Department",
+    "source_url": "https://karimnagar.telangana.gov.in/departments/agriculture-marketing/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Keshavapatnam PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Shankarapatnam",
+    "village": "Keshavapatnam",
+    "location": "Keshavapatnam PACS Center",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  },
+  {
+    "name": "Tadikal PACS Paddy Procurement Center",
+    "district": "Karimnagar",
+    "mandal": "Shankarapatnam",
+    "village": "Tadikal",
+    "location": "Tadikal Village",
+    "latitude": null,
+    "longitude": null,
+    "center_type": "Paddy Procurement Center",
+    "commodities": [
+      "Paddy"
+    ],
+    "source_name": "Telangana Civil Supplies Corporation / Karimnagar District Administration",
+    "source_url": "https://karimnagar.telangana.gov.in/",
+    "source_updated_at": "2026-09-09"
+  }
+]
