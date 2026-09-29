@@ -37,7 +37,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
           flexDirection: 'column',
           transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         }}
-        className={`fixed top-0 bottom-0 left-0 z-40 md:sticky md:translate-x-0 ${
+        className={`fixed top-0 left-0 z-40 h-screen md:sticky md:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
