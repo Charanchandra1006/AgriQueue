@@ -95,62 +95,60 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== CARD STYLES ===== */
 .card-warm {
   background: var(--bg-surface);
-  border: 1.5px solid var(--border-base);
-  border-radius: 16px;
-  box-shadow: var(--shadow-warm);
+  border: 1px solid var(--border-base);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(40, 54, 24, 0.04);
 }
 
 .card-copper {
-  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  background: #BC6C25;
   color: white;
-  border-radius: 16px;
-  box-shadow: var(--shadow-copper);
+  border-radius: 12px;
 }
 
 .card-forest {
-  background: linear-gradient(135deg, #283618 0%, #606C38 100%);
+  background: #283618;
   color: white;
-  border-radius: 16px;
+  border-radius: 12px;
 }
 
 /* ===== BUTTON SYSTEM ===== */
 .btn-primary {
-  background: linear-gradient(135deg, #606C38 0%, #4f5930 100%);
+  background: #606C38;
   color: white;
   border: none;
-  font-weight: 700;
+  font-weight: 600;
   font-family: var(--font-sans);
-  border-radius: 10px;
-  padding: 0.625rem 1.375rem;
+  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(96, 108, 56, 0.25);
-  letter-spacing: 0.01em;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(96, 108, 56, 0.15);
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, #4f5930 0%, #3c4424 100%);
-  box-shadow: 0 4px 14px rgba(96, 108, 56, 0.35);
+  background: #4f5930;
   transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(96, 108, 56, 0.2);
 }
 
 .btn-copper {
-  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  background: #DDA15E;
   color: white;
   border: none;
-  font-weight: 700;
+  font-weight: 600;
   font-family: var(--font-sans);
-  border-radius: 10px;
-  padding: 0.625rem 1.375rem;
+  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(188, 108, 37, 0.25);
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(221, 161, 94, 0.15);
 }
 .btn-copper:hover {
-  background: linear-gradient(135deg, #96531c 0%, #BC6C25 100%);
-  box-shadow: 0 4px 14px rgba(188, 108, 37, 0.35);
+  background: #c98840;
   transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(221, 161, 94, 0.2);
 }
 
 .btn-outline {
