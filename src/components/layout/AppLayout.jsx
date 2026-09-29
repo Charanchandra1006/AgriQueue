@@ -32,7 +32,7 @@ export const AppLayout = () => {
         {/* Global Footer */}
         <footer className="py-6 px-4 md:px-8 border-t border-slate-100 text-center bg-white text-xs font-semibold text-slate-400">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2.5">
-            <p>© 2026 AgriQueue. Developed for Smart India Hackathon (SIH26032).</p>
+            <p>© 2026 AgriQueue. Digitizing India's Agricultural Procurement Chain.</p>
           </div>
         </footer>
       </div>

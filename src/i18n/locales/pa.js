@@ -202,7 +202,7 @@ export const pa = {
     conditionRainy: "ਮੀਂਹ",
     conditionShowers: "ਛਿੱਟਾਂ",
     conditionSunny: "ਧੁੱਪ",
-    sihBadge: "SIH 2026 ਨਵੀਨਤਾ"
+    agriQueueBadge: "AgriQueue 2026 ਨਵੀਨਤਾ"
   },
 
   // Mandi Map & Mandi Centers

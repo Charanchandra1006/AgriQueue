@@ -1,6 +1,6 @@
 # 🌾 AgriQueue — Smart Agricultural Mandi Queue Management System
 
-> **Smart India Hackathon 2026** | Digitizing India's Agricultural Procurement Chain
+> Digitizing India's Agricultural Procurement Chain
 
 AgriQueue is a full-stack web platform that empowers farmers to digitally register, browse verified Mandi centers, book procurement slots, track farm-to-Mandi transport, monitor live market prices, and interact with a **Gemini-powered multilingual AI voice assistant** — all in their preferred language (English, Hindi, Punjabi, Telugu).
 
@@ -222,4 +222,4 @@ The AgriQueue Voice Agent uses **Gemini Live** to provide real-time multilingual
 
 ## 📄 License
 
-This project was developed for the **Smart India Hackathon 2026**.
+This project is an open initiative to digitize India's agricultural mandi procurement and queue management system.

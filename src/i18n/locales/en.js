@@ -202,7 +202,7 @@ export const en = {
     conditionRainy: "Rainy",
     conditionShowers: "Showers",
     conditionSunny: "Sunny",
-    sihBadge: "SIH 2026 Innovation"
+    agriQueueBadge: "AgriQueue 2026 Innovation"
   },
 
   // Mandi Map & Mandi Centers
@@ -1126,7 +1126,7 @@ export const en = {
       confirmedBadge: "Confirmed",
       awaitingDriverBadge: "Awaiting Driver",
       plateLabel: "Plate: {plate}",
-      demoDriverNotice: "* Local demo driver data (hackathon simulation)",
+      demoDriverNotice: "* Local demo driver data (simulation)",
       awaitingDriverNotice: "Your transport request is currently queued with the village dispatch network. A driver will be assigned shortly."
     },
 
@@ -1175,7 +1175,7 @@ export const en = {
 
       autoDriverTitle: "Automated System Driver Assignment",
       autoDriverDesc: "You do not need to manually contact or select drivers. When your haulage request is confirmed, AgriQueue's logistics network assigns an available driver in the {district} area.",
-      autoDriverNote: "* Note: Initial status will be REQUESTED. Demo driver assignment is supported for hackathon review.",
+      autoDriverNote: "* Note: Initial status will be REQUESTED. Demo driver assignment is available for review.",
 
       submitBtn: "Confirm & Request Transport",
       submittingBtn: "Submitting Haulage Request to Database..."

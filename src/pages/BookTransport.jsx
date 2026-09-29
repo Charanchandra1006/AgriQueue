@@ -470,7 +470,7 @@ export const BookTransport = () => {
               })}
             </div>
 
-            {/* Demonstration State Controls (Hackathon Simulation) */}
+            {/* Demonstration State Controls */}
             <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-slate-50/70 p-3.5 rounded-xl text-xs">
               <div className="flex items-center gap-2">
                 <span className="p-1 bg-amber-100 text-amber-800 rounded-md font-bold text-[10px]">{t('transport.active.demoMode')}</span>

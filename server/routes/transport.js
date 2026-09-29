@@ -35,7 +35,7 @@ async function resolveFarmer(farmerIdentifier) {
 }
 
 /**
- * Local verified demo driver pool for hackathon simulation.
+ * Local verified demo driver pool for demo/simulation purposes.
  * Clearly marked as local demo data. Non-Punjab, regional drivers matching Telangana/local demo context.
  */
 const DEMO_DRIVER_POOL = [
@@ -181,7 +181,7 @@ function formatTransportRow(row) {
       phone: row.driver_phone,
       vehicleNumber: row.driver_vehicle_number,
       isDemoDriver: true,
-      label: 'Local Demo Driver Pool (Hackathon Simulation)'
+      label: 'Local Demo Driver Pool (Simulation)'
     } : null,
     transportStatus: row.transport_status,
     notes: row.notes,

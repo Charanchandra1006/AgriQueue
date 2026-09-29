@@ -202,7 +202,7 @@ export const te = {
     conditionRainy: "వర్షం",
     conditionShowers: "జల్లులు",
     conditionSunny: "ఎండ",
-    sihBadge: "SIH 2026 నవకల్పన"
+    agriQueueBadge: "AgriQueue 2026 నవకల్పన"
   },
 
   // Mandi Map & Mandi Centers
