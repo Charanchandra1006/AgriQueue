@@ -1,0 +1,25 @@
+{
+  "name": "agriqueue-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AgriQueue Express Backend and MySQL integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test-db": "node test-db.js",
+    "db:init": "node database/init-db.js",
+    "db:import-mandis": "node database/import-mandis.js",
+    "db:import-karimnagar": "node database/import-karimnagar-mandis.js",
+    "db:check-integrity": "node database/check-integrity.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0",
+    "ws": "^8.18.0"
+  }
+}
