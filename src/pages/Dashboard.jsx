@@ -13,7 +13,23 @@ import {
   HelpCircle,
   X,
   Loader2,
-  History
+  History,
+  Building2,
+  Wheat,
+  Clock,
+  CalendarDays,
+  Users,
+  Timer,
+  TrendingUp,
+  TrendingDown,
+  Minus,
+  CloudSun,
+  Thermometer,
+  Droplets,
+  CloudRain,
+  Wind,
+  BookOpen,
+  CheckCircle2
 } from 'lucide-react';
 import { getMandis } from '../services/api';
 import { BookingHistoryModal } from '../components/mandi/BookingHistoryModal';
@@ -130,10 +146,10 @@ export const Dashboard = () => {
 
   // Real or canonical market prices for the compact table
   const todayMarketPrices = [
-    { cropKey: 'dashboard.cropPaddy', fallbackCrop: 'Paddy', emoji: '🌾', price: '₹2,425', trend: 'up', icon: '📈' },
-    { cropKey: 'dashboard.cropMaize', fallbackCrop: 'Maize', emoji: '🌽', price: '₹2,180', trend: 'flat', icon: '➡️' },
-    { cropKey: 'dashboard.cropWheat', fallbackCrop: 'Wheat', emoji: '🌾', price: '₹2,450', trend: 'up', icon: '📈' },
-    { cropKey: 'dashboard.cropChilli', fallbackCrop: 'Chilli', emoji: '🌶️', price: '₹14,500', trend: 'down', icon: '📉' }
+    { cropKey: 'dashboard.cropPaddy',  fallbackCrop: 'Paddy',  TrendIcon: TrendingUp,   price: '₹2,425',  trend: 'up'   },
+    { cropKey: 'dashboard.cropMaize',  fallbackCrop: 'Maize',  TrendIcon: Minus,        price: '₹2,180',  trend: 'flat' },
+    { cropKey: 'dashboard.cropWheat',  fallbackCrop: 'Wheat',  TrendIcon: TrendingUp,   price: '₹2,450',  trend: 'up'   },
+    { cropKey: 'dashboard.cropChilli', fallbackCrop: 'Chilli', TrendIcon: TrendingDown, price: '₹14,500', trend: 'down' },
   ];
 
   const handleCancelBooking = async () => {
@@ -146,32 +162,28 @@ export const Dashboard = () => {
   };
 
   return (
-    <div className="space-y-5 pb-10 animate-in fade-in duration-300 max-w-6xl mx-auto">
+    <div className="space-y-5 pb-10 page-enter max-w-6xl mx-auto">
       {/* ================= 1. WELCOME / FARMER HEADER ================= */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-2xs">
+      <div style={{ background: '#fffef8', border: '1.5px solid #e6dfc5', borderRadius: '16px', padding: '1.1rem 1.25rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', boxShadow: '0 2px 12px rgba(40,54,24,0.06)' }}>
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xl" role="img" aria-label="waving hand">👋</span>
-            <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight">
-              {t('dashboard.namaste', { name: profile?.name || t('dashboard.defaultFarmer') })}
-            </h1>
-          </div>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
+          <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.25rem', color: '#283618', margin: 0, letterSpacing: '-0.02em' }}>
+            {t('dashboard.namaste', { name: profile?.name || t('dashboard.defaultFarmer') })}
+          </h1>
+          <p style={{ fontSize: '0.82rem', color: '#8a7d60', fontWeight: 500, marginTop: '2px' }}>
             {t('dashboard.heroSubtitle')}
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-xs">
           {profile?.district && profile?.state && (
-            <span className="inline-flex items-center gap-1 font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200/80">
-              <MapPin className="h-3.5 w-3.5 text-slate-400" />
-              <span>{profile.district}, {profile.state}</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', fontWeight: 700, color: '#606C38', background: 'rgba(96,108,56,0.08)', padding: '4px 12px', borderRadius: '999px', border: '1px solid rgba(96,108,56,0.18)', fontSize: '0.72rem' }}>
+              <MapPin style={{ width: '12px', height: '12px' }} />
+              {profile.district}, {profile.state}
             </span>
           )}
           {profile?.farmerId && (
-            <span className="inline-flex items-center gap-1 font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-              <span>{t('dashboard.kisanIdLabel')}</span>
-              <span className="font-mono">{profile.farmerId}</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', fontWeight: 700, color: '#BC6C25', background: 'rgba(188,108,37,0.08)', padding: '4px 12px', borderRadius: '999px', border: '1px solid rgba(188,108,37,0.2)', fontSize: '0.72rem' }}>
+              {t('dashboard.kisanIdLabel')}: {profile.farmerId}
             </span>
           )}
         </div>
@@ -180,172 +192,143 @@ export const Dashboard = () => {
       {/* ================= 2. TOP PRIORITY — MY PROCUREMENT TOKEN ================= */}
       <div>
         {isLoadingBooking ? (
-          <Card className="p-8 text-center bg-white border-slate-200 rounded-2xl shadow-xs">
+          <Card style={{ padding: '2rem', textAlign: 'center' }}>
             <div className="flex flex-col items-center justify-center space-y-2">
-              <Loader2 className="h-6 w-6 text-primary-600 animate-spin" />
-              <p className="text-sm font-bold text-slate-700">{t('dashboard.checkingBooking')}</p>
+              <Loader2 style={{ width: '24px', height: '24px', color: '#606C38', animation: 'spin 1s linear infinite' }} />
+              <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#283618' }}>{t('dashboard.checkingBooking')}</p>
             </div>
           </Card>
         ) : activeBooking ? (
-          /* ACTIVE BOOKING CARD (Using Real Data from MySQL) */
-          <Card className="p-5 sm:p-6 bg-gradient-to-br from-emerald-50/70 via-white to-white border-2 border-emerald-500 shadow-md rounded-2xl space-y-5">
-            {/* Header: Title and Status Badge */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-100 pb-3.5">
-              <div className="flex items-center gap-2">
-                <span className="text-xl" role="img" aria-label="ticket">🎟️</span>
-                <span className="text-xs font-black uppercase tracking-widest text-emerald-900">
+          /* ACTIVE BOOKING CARD */
+          <Card style={{ padding: '1.25rem', border: '2px solid #606C38', background: 'linear-gradient(135deg, rgba(96,108,56,0.04) 0%, #fffef8 100%)' }}>
+            {/* Header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '0.875rem', borderBottom: '1.5px solid #e6dfc5', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Ticket style={{ width: '18px', height: '18px', color: '#606C38' }} />
+                <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#283618' }}>
                   {t('dashboard.myProcurementToken')}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white flex items-center gap-1 shadow-xs">
-                  <span>●</span>
-                  <span>{t('dashboard.slotConfirmed')}</span>
-                </span>
-              </div>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '4px 12px', borderRadius: '999px', background: '#606C38', color: 'white', fontSize: '0.68rem', fontWeight: 700 }}>
+                <CheckCircle2 style={{ width: '12px', height: '12px' }} />
+                {t('dashboard.slotConfirmed')}
+              </span>
             </div>
 
-            {/* Token Hero Display */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="space-y-1">
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest block">
+            {/* Token number + buttons */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', marginBottom: '1rem' }}>
+              <div>
+                <span style={{ fontSize: '0.62rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block' }}>
                   {t('dashboard.tokenNumber')}
                 </span>
-                <span className="font-heading font-black text-3xl sm:text-4xl text-emerald-600 tracking-wider block">
+                <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '2.25rem', color: '#606C38', letterSpacing: '0.06em', display: 'block', lineHeight: 1.1 }}>
                   {activeBooking.tokenNumber || t('dashboard.tokenAvailable')}
                 </span>
-                <p className="text-xs font-semibold text-slate-500">
-                  {t('dashboard.tokenRegistered')}
-                </p>
+                <p style={{ fontSize: '0.75rem', fontWeight: 500, color: '#8a7d60', marginTop: '2px' }}>{t('dashboard.tokenRegistered')}</p>
               </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0">
-                <Button
-                  variant="primary"
-                  className="text-xs sm:text-sm font-bold shadow-xs py-2.5 px-4 cursor-pointer"
-                  onClick={() => setIsTokenPassOpen(true)}
-                >
-                  <Ticket className="h-4 w-4 mr-1.5" />
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                <Button variant="primary" onClick={() => setIsTokenPassOpen(true)} style={{ fontSize: '0.78rem', padding: '8px 14px', minHeight: '36px' }}>
+                  <Ticket style={{ width: '14px', height: '14px', marginRight: '6px' }} />
                   {t('dashboard.viewTokenPass')}
                 </Button>
-                <Button
-                  variant="outline"
-                  className="text-xs sm:text-sm font-bold border-slate-300 text-slate-700 hover:bg-slate-50 py-2.5 px-4 cursor-pointer"
-                  onClick={() => setIsHistoryOpen(true)}
-                >
-                  <History className="h-4 w-4 mr-1.5 text-primary-600" />
-                  📜 {t('dashboard.bookingHistory')}
+                <Button variant="outline" onClick={() => setIsHistoryOpen(true)} style={{ fontSize: '0.78rem', padding: '8px 14px', minHeight: '36px' }}>
+                  <History style={{ width: '14px', height: '14px', marginRight: '6px' }} />
+                  {t('dashboard.bookingHistory')}
                 </Button>
-                <Button
-                  variant="outline"
-                  className="text-xs sm:text-sm font-bold border-slate-300 text-slate-700 hover:bg-slate-50 py-2.5 px-4 cursor-pointer"
-                  onClick={() => navigate('/book-transport')}
-                >
-                  <Truck className="h-4 w-4 mr-1.5 text-primary-600" />
-                  🚜 {t('dashboard.bookTransport')}
+                <Button variant="outline" onClick={() => navigate('/book-transport')} style={{ fontSize: '0.78rem', padding: '8px 14px', minHeight: '36px' }}>
+                  <Truck style={{ width: '14px', height: '14px', marginRight: '6px' }} />
+                  {t('dashboard.bookTransport')}
                 </Button>
               </div>
             </div>
 
             {/* Booking Details Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-1">
-              {/* Procurement Center */}
-              <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs space-y-0.5">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                  {t('dashboard.procurementCenter')}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.625rem' }}>
+              <div style={{ padding: '0.625rem 0.75rem', background: '#fffef8', borderRadius: '10px', border: '1px solid #e6dfc5' }}>
+                <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <Building2 style={{ width: '10px', height: '10px' }} /> {t('dashboard.procurementCenter')}
                 </span>
-                <span className="font-extrabold text-slate-800 text-sm block truncate">
-                  🏪 {activeBooking.mandi?.name || t('dashboard.mandiCenterFallback')}
+                <span style={{ fontWeight: 700, color: '#283618', fontSize: '0.82rem', display: 'block', marginTop: '3px' }}>
+                  {activeBooking.mandi?.name || t('dashboard.mandiCenterFallback')}
                 </span>
-                <span className="text-xs text-slate-500 block truncate">
-                  📍 {activeBooking.mandi?.location || `${activeBooking.mandi?.district}, ${activeBooking.mandi?.state}`}
+                <span style={{ fontSize: '0.72rem', color: '#8a7d60', display: 'flex', alignItems: 'center', gap: '3px' }}>
+                  <MapPin style={{ width: '10px', height: '10px' }} />
+                  {activeBooking.mandi?.location || `${activeBooking.mandi?.district}, ${activeBooking.mandi?.state}`}
                 </span>
               </div>
 
-              {/* Crop & Quantity */}
-              <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs space-y-0.5">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                  {t('dashboard.cropAndQuantity')}
+              <div style={{ padding: '0.625rem 0.75rem', background: '#fffef8', borderRadius: '10px', border: '1px solid #e6dfc5' }}>
+                <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <Wheat style={{ width: '10px', height: '10px' }} /> {t('dashboard.cropAndQuantity')}
                 </span>
-                <span className="font-extrabold text-slate-800 text-sm block">
-                  🌾 {activeBooking.cropName || t('dashboard.defaultCrop')}
+                <span style={{ fontWeight: 700, color: '#283618', fontSize: '0.82rem', display: 'block', marginTop: '3px' }}>
+                  {activeBooking.cropName || t('dashboard.defaultCrop')}
                 </span>
-                <span className="text-xs text-slate-500 block">
+                <span style={{ fontSize: '0.72rem', color: '#8a7d60' }}>
                   {t('dashboard.weight')} {activeBooking.estimatedQuantity || 40} {t('common.quintals')}
                 </span>
               </div>
 
-              {/* Time Slot Schedule */}
-              <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs space-y-0.5">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                  {t('dashboard.schedule')}
+              <div style={{ padding: '0.625rem 0.75rem', background: '#fffef8', borderRadius: '10px', border: '1px solid #e6dfc5' }}>
+                <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <CalendarDays style={{ width: '10px', height: '10px' }} /> {t('dashboard.schedule')}
                 </span>
-                <span className="font-extrabold text-slate-800 text-sm block">
-                  🕐 {activeBooking.slot?.formattedTime || t('dashboard.defaultTimeSlot')}
+                <span style={{ fontWeight: 700, color: '#283618', fontSize: '0.82rem', display: 'block', marginTop: '3px' }}>
+                  {activeBooking.slot?.formattedTime || t('dashboard.defaultTimeSlot')}
                 </span>
-                <span className="text-xs text-emerald-700 font-bold block">
-                  📅 {activeBooking.slot?.displayDate || t('dashboard.today')}
+                <span style={{ fontSize: '0.72rem', color: '#606C38', fontWeight: 600 }}>
+                  {activeBooking.slot?.displayDate || t('dashboard.today')}
                 </span>
               </div>
 
-              {/* Queue Position & Waiting Time */}
-              <div className="p-3 bg-emerald-50/80 rounded-xl border border-emerald-200 shadow-2xs space-y-0.5">
-                <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">
-                  {t('dashboard.queuePosition')}
+              <div style={{ padding: '0.625rem 0.75rem', background: 'rgba(96,108,56,0.06)', borderRadius: '10px', border: '1px solid rgba(96,108,56,0.2)' }}>
+                <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#606C38', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <Users style={{ width: '10px', height: '10px' }} /> {t('dashboard.queuePosition')}
                 </span>
-                <span className="font-extrabold text-emerald-950 text-sm block">
-                  👨🌾 {t('dashboard.farmersAhead', { count: activeBooking.queue?.farmersAhead ?? 0 })}
+                <span style={{ fontWeight: 700, color: '#283618', fontSize: '0.82rem', display: 'block', marginTop: '3px' }}>
+                  {t('dashboard.farmersAhead', { count: activeBooking.queue?.farmersAhead ?? 0 })}
                 </span>
-                <span className="text-xs font-bold text-emerald-700 block">
-                  ⏱️ {activeBooking.queue?.estimatedWait || t('dashboard.estWait', { time: '0 min' })}
+                <span style={{ fontSize: '0.72rem', color: '#606C38', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '3px' }}>
+                  <Timer style={{ width: '10px', height: '10px' }} />
+                  {activeBooking.queue?.estimatedWait || t('dashboard.estWait', { time: '0 min' })}
                 </span>
               </div>
             </div>
           </Card>
         ) : (
           /* NO ACTIVE BOOKING CARD */
-          <Card className="p-6 bg-gradient-to-br from-slate-50 via-white to-slate-50 border border-slate-200 rounded-2xl shadow-2xs">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-3.5">
-                <div className="p-3 bg-slate-100 rounded-2xl text-slate-500 text-2xl shrink-0">
-                  🎟️
+          <Card style={{ padding: '1.25rem' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem' }}>
+                <div style={{ padding: '10px', background: 'rgba(96,108,56,0.08)', borderRadius: '12px', flexShrink: 0 }}>
+                  <Ticket style={{ width: '22px', height: '22px', color: '#606C38' }} />
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-500">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.07em', color: '#8a7d60' }}>
                       {t('dashboard.myProcurementToken')}
                     </span>
-                    <span className="text-[10px] font-bold bg-slate-200/70 text-slate-600 px-2 py-0.5 rounded-full">
+                    <span style={{ fontSize: '0.62rem', fontWeight: 700, background: '#f0ead4', color: '#8a7d60', padding: '2px 8px', borderRadius: '999px' }}>
                       {t('dashboard.noActiveStatus')}
                     </span>
                   </div>
-                  <h2 className="font-heading font-extrabold text-slate-800 text-lg sm:text-xl mt-0.5">
+                  <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.1rem', color: '#283618', margin: 0 }}>
                     {t('dashboard.noActiveToken')}
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
+                  <p style={{ fontSize: '0.82rem', color: '#8a7d60', fontWeight: 500, marginTop: '2px' }}>
                     {t('dashboard.noActiveTokenSub')}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 self-start sm:self-center shrink-0">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-xs sm:text-sm font-bold border-slate-300 text-slate-700 hover:bg-slate-50 py-3 px-4 cursor-pointer"
-                  onClick={() => setIsHistoryOpen(true)}
-                >
-                  <History className="h-4 w-4 mr-1.5 text-primary-600" />
-                  📜 {t('dashboard.bookingHistory')}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                <Button variant="outline" onClick={() => setIsHistoryOpen(true)} style={{ fontSize: '0.82rem', minHeight: '42px' }}>
+                  <History style={{ width: '15px', height: '15px', marginRight: '6px' }} />
+                  {t('dashboard.bookingHistory')}
                 </Button>
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="text-xs sm:text-sm font-bold shadow-xs py-3 px-5 cursor-pointer"
-                  onClick={() => navigate('/mandi-centers')}
-                >
-                  🏪 {t('dashboard.findMandi')}
+                <Button variant="primary" onClick={() => navigate('/mandi-centers')} style={{ fontSize: '0.82rem', minHeight: '42px' }}>
+                  <Building2 style={{ width: '15px', height: '15px', marginRight: '6px' }} />
+                  {t('dashboard.findMandi')}
                 </Button>
               </div>
             </div>
@@ -355,401 +338,309 @@ export const Dashboard = () => {
 
       {/* ================= 3. TWO-COLUMN CORE: MARKET PRICES & RECOMMENDED MANDI ================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Left Column: Compact Market Prices */}
-        <Card className="p-5 border-slate-200 shadow-2xs rounded-2xl flex flex-col justify-between">
+        {/* Left: Market Prices */}
+        <Card style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
-              <div className="flex items-center gap-2">
-                <span className="text-lg" role="img" aria-label="money">💰</span>
-                <h2 className="font-heading font-extrabold text-sm sm:text-base text-slate-800 tracking-tight">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '0.75rem', borderBottom: '1.5px solid #e6dfc5', marginBottom: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <TrendingUp style={{ width: '17px', height: '17px', color: '#BC6C25' }} />
+                <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '0.95rem', color: '#283618', margin: 0 }}>
                   {t('dashboard.todayMarketPrices')}
                 </h2>
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              <span style={{ fontSize: '0.62rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.07em', color: '#a09472' }}>
                 {t('dashboard.perQuintal')}
               </span>
             </div>
 
-            {/* Price list rows */}
-            <div className="divide-y divide-slate-100">
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
               {todayMarketPrices.map((item, idx) => (
-                <div key={idx} className="py-2.5 flex items-center justify-between text-xs sm:text-sm">
-                  <div className="flex items-center gap-2 font-bold text-slate-800">
-                    <span className="text-base">{item.emoji}</span>
-                    <span>{t(item.cropKey) || item.fallbackCrop}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="font-heading font-black text-slate-900 text-sm sm:text-base">
-                      {item.price}
-                    </span>
-                    <span className="text-sm select-none" title={t(`dashboard.trend_${item.trend}`)}>
-                      {item.icon}
-                    </span>
+                <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: idx < todayMarketPrices.length - 1 ? '1px solid #f0e8d0' : 'none' }}>
+                  <span style={{ fontWeight: 600, fontSize: '0.875rem', color: '#283618' }}>{t(item.cropKey) || item.fallbackCrop}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '0.95rem', color: '#1c1f16' }}>{item.price}</span>
+                    <item.TrendIcon style={{ width: '14px', height: '14px', color: item.trend === 'up' ? '#606C38' : item.trend === 'down' ? '#c0392b' : '#a09472', flexShrink: 0 }} />
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="pt-4 mt-2 border-t border-slate-100">
-            <Button
-              variant="outline"
-              className="w-full justify-center text-xs font-bold py-2.5 border-slate-200 text-slate-700 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5"
-              onClick={() => navigate('/market-prices')}
-            >
-              <span>{t('dashboard.viewAllPrices')}</span>
-              <ArrowRight className="h-3.5 w-3.5" />
+          <div style={{ paddingTop: '0.875rem', marginTop: '0.75rem', borderTop: '1.5px solid #e6dfc5' }}>
+            <Button variant="outline" onClick={() => navigate('/market-prices')} style={{ width: '100%', justifyContent: 'center', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              {t('dashboard.viewAllPrices')}
+              <ArrowRight style={{ width: '14px', height: '14px' }} />
             </Button>
           </div>
         </Card>
 
-        {/* Right Column: Recommended Mandi */}
-        <Card className="p-5 border-slate-200 shadow-2xs rounded-2xl flex flex-col justify-between">
+        {/* Right: Recommended Mandi */}
+        <Card style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
-              <div className="flex items-center gap-2">
-                <span className="text-lg" role="img" aria-label="mandi">🏪</span>
-                <h2 className="font-heading font-extrabold text-sm sm:text-base text-slate-800 tracking-tight">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '0.75rem', borderBottom: '1.5px solid #e6dfc5', marginBottom: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Building2 style={{ width: '17px', height: '17px', color: '#606C38' }} />
+                <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '0.95rem', color: '#283618', margin: 0 }}>
                   {t('dashboard.recommendedMandi')}
                 </h2>
               </div>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold border ${
-                mandiOpen
-                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                  : 'bg-rose-50 text-rose-700 border-rose-200'
-              }`}>
-                {mandiOpen ? `🟢 ${t('common.open')}` : `🔴 ${t('common.closed')}`}
+              <span style={{
+                padding: '3px 10px', borderRadius: '999px', fontSize: '0.65rem', fontWeight: 700,
+                background: mandiOpen ? 'rgba(96,108,56,0.1)' : 'rgba(192,57,43,0.08)',
+                color: mandiOpen ? '#606C38' : '#c0392b',
+                border: `1px solid ${mandiOpen ? 'rgba(96,108,56,0.22)' : 'rgba(192,57,43,0.2)'}`,
+              }}>
+                {mandiOpen ? t('common.open') : t('common.closed')}
               </span>
             </div>
 
             {loadingMandi ? (
-              <div className="py-8 text-center text-xs text-slate-400 font-semibold flex items-center justify-center gap-2">
-                <Loader2 className="h-4 w-4 animate-spin text-primary-600" />
-                <span>{t('common.loading')}</span>
+              <div style={{ padding: '2rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#a09472', fontSize: '0.82rem' }}>
+                <Loader2 style={{ width: '16px', height: '16px', color: '#606C38', animation: 'spin 1s linear infinite' }} />
+                {t('common.loading')}
               </div>
             ) : recommendedMandi ? (
-              <div className="space-y-3">
-                <div className="min-w-0 flex-1">
-                  <h3
-                    className="font-heading font-black text-slate-900 text-base sm:text-lg break-words"
-                    style={{ overflowWrap: 'anywhere' }}
-                  >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+                <div>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.05rem', color: '#283618', margin: 0, wordBreak: 'break-word' }}>
                     {recommendedMandi.name}
                   </h3>
-                  <p className="text-xs font-semibold text-slate-500 flex items-start gap-1 mt-0.5 min-w-0">
-                    <MapPin className="h-3.5 w-3.5 text-slate-400 shrink-0 mt-0.5" />
-                    <span className="break-words leading-relaxed" style={{ overflowWrap: 'anywhere' }}>
-                      {recommendedMandi.location || `${recommendedMandi.district}, ${recommendedMandi.state}`}
-                    </span>
+                  <p style={{ fontSize: '0.78rem', fontWeight: 500, color: '#8a7d60', marginTop: '3px', display: 'flex', alignItems: 'flex-start', gap: '4px' }}>
+                    <MapPin style={{ width: '12px', height: '12px', flexShrink: 0, marginTop: '2px' }} />
+                    {recommendedMandi.location || `${recommendedMandi.district}, ${recommendedMandi.state}`}
                   </p>
                 </div>
-
-                {/* Mandi Metrics */}
-                <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
-                  <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                      {t('dashboard.liveQueue')}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                  <div style={{ padding: '0.5rem 0.75rem', background: '#fffef8', borderRadius: '10px', border: '1px solid #e6dfc5' }}>
+                    <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Users style={{ width: '10px', height: '10px' }} /> {t('dashboard.liveQueue')}
                     </span>
-                    <span className="font-extrabold text-slate-800 mt-0.5 block">
-                      👨🌾 {t('dashboard.farmersAhead', { count: recommendedMandi.agriQueue?.queueLength || 5 })}
+                    <span style={{ fontWeight: 700, color: '#283618', fontSize: '0.82rem', display: 'block', marginTop: '2px' }}>
+                      {t('dashboard.farmersAhead', { count: recommendedMandi.agriQueue?.queueLength || 5 })}
                     </span>
                   </div>
-                  <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                      {t('dashboard.estWaitLabel')}
+                  <div style={{ padding: '0.5rem 0.75rem', background: '#fffef8', borderRadius: '10px', border: '1px solid #e6dfc5' }}>
+                    <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Timer style={{ width: '10px', height: '10px' }} /> {t('dashboard.estWaitLabel')}
                     </span>
-                    <span className="font-extrabold text-emerald-700 mt-0.5 block">
-                      ⏱️ ~{recommendedMandi.agriQueue?.estimatedWaitMinutes || 30} {t('common.minutesShort')}
+                    <span style={{ fontWeight: 700, color: '#606C38', fontSize: '0.82rem', display: 'block', marginTop: '2px' }}>
+                      ~{recommendedMandi.agriQueue?.estimatedWaitMinutes || 30} {t('common.minutesShort')}
                     </span>
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="py-6 text-center text-xs text-slate-400">
+              <div style={{ padding: '1.5rem', textAlign: 'center', color: '#a09472', fontSize: '0.82rem' }}>
                 {t('mandi.errorLoading')}
               </div>
             )}
           </div>
 
-          <div className="pt-4 mt-2 border-t border-slate-100">
-            <Button
-              variant="outline"
-              disabled={!recommendedMandi}
-              className="w-full justify-center text-xs font-bold py-2.5 border-slate-200 text-slate-700 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5"
-              onClick={() => {
-                if (recommendedMandi) {
-                  navigate(`/mandi-centers?selected=${recommendedMandi.id}`, {
-                    state: { selectedMandiId: recommendedMandi.id }
-                  });
-                }
-              }}
-            >
-              <span>{t('mandi.viewDetails')}</span>
-              <ArrowRight className="h-3.5 w-3.5" />
+          <div style={{ paddingTop: '0.875rem', marginTop: '0.75rem', borderTop: '1.5px solid #e6dfc5' }}>
+            <Button variant="outline" disabled={!recommendedMandi} onClick={() => { if (recommendedMandi) navigate(`/mandi-centers?selected=${recommendedMandi.id}`, { state: { selectedMandiId: recommendedMandi.id } }); }} style={{ width: '100%', justifyContent: 'center', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              {t('mandi.viewDetails')}
+              <ArrowRight style={{ width: '14px', height: '14px' }} />
             </Button>
           </div>
         </Card>
       </div>
 
-      {/* ================= 4. COMPACT WEATHER ALERT ================= */}
-      <Card className="p-4 bg-gradient-to-r from-amber-50/60 via-amber-50/30 to-white border border-amber-200/90 rounded-2xl shadow-2xs space-y-3.5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-start sm:items-center gap-3">
-            <span className="text-2xl shrink-0" role="img" aria-label="weather">🌦️</span>
+      {/* ================= 4. WEATHER CARD ================= */}
+      <Card style={{ padding: '1.1rem', background: 'linear-gradient(135deg, rgba(188,108,37,0.05) 0%, #fffef8 100%)', border: '1.5px solid rgba(188,108,37,0.2)' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '0.875rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{ padding: '8px', background: 'rgba(188,108,37,0.1)', borderRadius: '10px', flexShrink: 0 }}>
+              <CloudSun style={{ width: '20px', height: '20px', color: '#BC6C25' }} />
+            </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-black uppercase tracking-wider text-amber-950">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.07em', color: '#7c5020' }}>
                   {t('dashboard.weatherTitle')}
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-200/60 text-amber-900">
+                <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: '0.6rem', fontWeight: 700, background: 'rgba(188,108,37,0.12)', color: '#BC6C25', border: '1px solid rgba(188,108,37,0.2)' }}>
                   {t('dashboard.liveUpdates')}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm font-bold text-slate-800 mt-0.5">
-                {weatherAlerts.currentTemp || '31°C'} • {getLocalizedWeatherCondition(weatherAlerts.condition, t)}
-              </p>
-              <p className="text-xs text-slate-500 font-medium">
-                {t('dashboard.forecastSub')}
+              <p style={{ fontWeight: 700, fontSize: '0.9rem', color: '#283618', margin: '2px 0 0' }}>
+                {weatherAlerts.currentTemp || '31°C'} · {getLocalizedWeatherCondition(weatherAlerts.condition, t)}
               </p>
             </div>
           </div>
-
-          <Button
-            variant="outline"
-            className="self-start sm:self-center border-amber-300 bg-white/80 hover:bg-white text-slate-800 text-xs font-bold py-2 px-3.5 shrink-0 flex items-center gap-1.5 cursor-pointer shadow-2xs"
-            onClick={() => navigate('/weather-alerts')}
-          >
-            <span>{t('dashboard.viewWeather')}</span>
-            <ArrowRight className="h-3.5 w-3.5" />
+          <Button variant="outline" onClick={() => navigate('/weather-alerts')} style={{ fontSize: '0.75rem', minHeight: '36px', display: 'flex', alignItems: 'center', gap: '5px', border: '1.5px solid rgba(188,108,37,0.3)', color: '#7c5020', flexShrink: 0 }}>
+            {t('dashboard.viewWeather')}
+            <ArrowRight style={{ width: '13px', height: '13px' }} />
           </Button>
         </div>
 
-        {/* Live Weather Metrics */}
-        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-600 px-1 pt-0.5">
-          <span className="inline-flex items-center gap-1">
-            <span>🌡️</span>
-            <span>{t('dashboard.temperature')}: {weatherAlerts.currentTemp || '31°C'}</span>
+        {/* Weather metrics row */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.25rem', marginBottom: '0.875rem', fontSize: '0.78rem', fontWeight: 600, color: '#5c6245' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Thermometer style={{ width: '13px', height: '13px', color: '#BC6C25' }} />
+            {t('dashboard.temperature')}: {weatherAlerts.currentTemp || '31°C'}
           </span>
-          <span className="inline-flex items-center gap-1">
-            <span>💧</span>
-            <span>{t('dashboard.humidity')}: {weatherAlerts.humidity || '74%'}</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Droplets style={{ width: '13px', height: '13px', color: '#4a90a4' }} />
+            {t('dashboard.humidity')}: {weatherAlerts.humidity || '74%'}
           </span>
-          <span className="inline-flex items-center gap-1">
-            <span>🌧️</span>
-            <span>{t('dashboard.rainChance')}: 20%</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <CloudRain style={{ width: '13px', height: '13px', color: '#6a8ec9' }} />
+            {t('dashboard.rainChance')}: 20%
           </span>
-          <span className="inline-flex items-center gap-1">
-            <span>💨</span>
-            <span>{t('dashboard.wind')}: {weatherAlerts.windSpeed || '12 km/h'}</span>
-          </span>
-        </div>
-
-        {/* Advisory / Farm Warning */}
-        <div className="flex items-start gap-2 p-2.5 rounded-xl bg-amber-100/70 border border-amber-200/80 text-amber-900 text-xs">
-          <AlertTriangle className="h-4 w-4 text-amber-700 shrink-0 mt-0.5" />
-          <span className="leading-snug">
-            <strong>{t('dashboard.farmWarning')}</strong> {getLocalizedWeatherAdvisory(weatherAlerts.alerts?.[0], t)}
+          <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Wind style={{ width: '13px', height: '13px', color: '#8a9e78' }} />
+            {t('dashboard.wind')}: {weatherAlerts.windSpeed || '12 km/h'}
           </span>
         </div>
 
-        {/* 4-Day Forecast Miniature Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 border-t border-amber-200/60 text-center">
+        {/* Advisory */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', padding: '0.625rem 0.875rem', background: 'rgba(188,108,37,0.08)', border: '1px solid rgba(188,108,37,0.18)', borderRadius: '10px', fontSize: '0.78rem', color: '#7c5020', marginBottom: '0.875rem' }}>
+          <AlertTriangle style={{ width: '14px', height: '14px', color: '#BC6C25', flexShrink: 0, marginTop: '1px' }} />
+          <span><strong>{t('dashboard.farmWarning')}</strong> {getLocalizedWeatherAdvisory(weatherAlerts.alerts?.[0], t)}</span>
+        </div>
+
+        {/* 4-Day Forecast */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', borderTop: '1px solid rgba(188,108,37,0.15)', paddingTop: '0.75rem' }}>
           {weatherAlerts.forecast.map((fc, index) => (
-            <div key={index} className="p-2 bg-white/70 rounded-xl border border-amber-200/50">
-              <span className="text-[10px] font-bold text-slate-500 block">{getLocalizedDay(fc.day, t)}</span>
-              <span className="text-xs font-black text-slate-800 block">{fc.temp}</span>
-              <span className="text-[10px] font-medium text-slate-600 block">{getLocalizedWeatherCondition(fc.label, t)}</span>
+            <div key={index} style={{ padding: '0.5rem', background: 'rgba(255,254,248,0.7)', borderRadius: '10px', border: '1px solid rgba(188,108,37,0.12)', textAlign: 'center' }}>
+              <span style={{ fontSize: '0.62rem', fontWeight: 700, color: '#8a7d60', display: 'block' }}>{getLocalizedDay(fc.day, t)}</span>
+              <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#283618', display: 'block' }}>{fc.temp}</span>
+              <span style={{ fontSize: '0.62rem', color: '#a09472', display: 'block' }}>{getLocalizedWeatherCondition(fc.label, t)}</span>
             </div>
           ))}
         </div>
       </Card>
 
-      {/* ================= 5. SMALL QUICK ACTIONS ================= */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-        {/* Booking History */}
-        <button
-          onClick={() => setIsHistoryOpen(true)}
-          className="p-3.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-left transition-all shadow-2xs flex items-center gap-3 cursor-pointer group"
-        >
-          <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg group-hover:scale-105 transition-transform">
-            <History className="h-5 w-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <span className="font-heading font-bold text-sm text-slate-800 block truncate group-hover:text-primary-700">
-              📜 {t('dashboard.bookingHistory')}
-            </span>
-            <span className="text-[11px] text-slate-400 font-medium block truncate">
-              {t('dashboard.pastSlotsTokens')}
-            </span>
-          </div>
-        </button>
-
-        {/* Government Schemes */}
-        <button
-          onClick={() => navigate('/schemes')}
-          className="p-3.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-left transition-all shadow-2xs flex items-center gap-3 cursor-pointer group"
-        >
-          <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg group-hover:scale-105 transition-transform">
-            <FileText className="h-5 w-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <span className="font-heading font-bold text-sm text-slate-800 block truncate group-hover:text-primary-700">
-              📋 {t('common.schemes')}
-            </span>
-            <span className="text-[11px] text-slate-400 font-medium block truncate">
-              {t('dashboard.schemesSub')}
-            </span>
-          </div>
-        </button>
-
-        {/* Book Transport */}
-        <button
-          onClick={() => navigate('/book-transport')}
-          className="p-3.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-left transition-all shadow-2xs flex items-center gap-3 cursor-pointer group"
-        >
-          <div className="p-2 bg-blue-50 text-blue-700 rounded-lg group-hover:scale-105 transition-transform">
-            <Truck className="h-5 w-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <span className="font-heading font-bold text-sm text-slate-800 block truncate group-hover:text-primary-700">
-              🚜 {t('common.bookTransport')}
-            </span>
-            <span className="text-[11px] text-slate-400 font-medium block truncate">
-              {t('dashboard.transportSub')}
-            </span>
-          </div>
-        </button>
-
-        {/* Help & Support */}
-        <button
-          onClick={() => navigate('/help')}
-          className="p-3.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-left transition-all shadow-2xs flex items-center gap-3 cursor-pointer group"
-        >
-          <div className="p-2 bg-amber-50 text-amber-700 rounded-lg group-hover:scale-105 transition-transform">
-            <HelpCircle className="h-5 w-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <span className="font-heading font-bold text-sm text-slate-800 block truncate group-hover:text-primary-700">
-              🆘 {t('common.help')}
-            </span>
-            <span className="text-[11px] text-slate-400 font-medium block truncate">
-              {t('dashboard.helpSub')}
-            </span>
-          </div>
-        </button>
+      {/* ================= 5. QUICK ACTIONS ================= */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem' }}>
+        {[
+          { label: t('dashboard.bookingHistory'), sub: t('dashboard.pastSlotsTokens'), Icon: History, onClick: () => setIsHistoryOpen(true), color: '#606C38', bg: 'rgba(96,108,56,0.08)' },
+          { label: t('common.schemes'), sub: t('dashboard.schemesSub'), Icon: FileText, onClick: () => navigate('/schemes'), color: '#BC6C25', bg: 'rgba(188,108,37,0.08)' },
+          { label: t('common.bookTransport'), sub: t('dashboard.transportSub'), Icon: Truck, onClick: () => navigate('/book-transport'), color: '#4a6fa5', bg: 'rgba(74,111,165,0.08)' },
+          { label: t('common.help'), sub: t('dashboard.helpSub'), Icon: HelpCircle, onClick: () => navigate('/help'), color: '#7c5020', bg: 'rgba(124,80,32,0.08)' },
+        ].map(({ label, sub, Icon, onClick, color, bg }) => (
+          <button
+            key={label}
+            onClick={onClick}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '0.875rem',
+              padding: '0.875rem 1rem',
+              background: '#fffef8',
+              border: '1.5px solid #e6dfc5',
+              borderRadius: '12px',
+              cursor: 'pointer', textAlign: 'left',
+              transition: 'all 0.15s ease',
+              boxShadow: '0 1px 6px rgba(40,54,24,0.05)',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = color; e.currentTarget.style.boxShadow = `0 4px 14px rgba(40,54,24,0.09)`; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = '#e6dfc5'; e.currentTarget.style.boxShadow = '0 1px 6px rgba(40,54,24,0.05)'; }}
+          >
+            <div style={{ padding: '8px', background: bg, borderRadius: '10px', flexShrink: 0, transition: 'transform 0.15s' }}>
+              <Icon style={{ width: '18px', height: '18px', color }} />
+            </div>
+            <div style={{ minWidth: 0 }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '0.875rem', color: '#283618', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</span>
+              <span style={{ fontSize: '0.72rem', color: '#a09472', fontWeight: 500, display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{sub}</span>
+            </div>
+          </button>
+        ))}
       </div>
 
       {/* ================= DIGITAL TOKEN PASS MODAL ================= */}
       {isTokenPassOpen && activeBooking && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
+        <div style={{ position: 'fixed', inset: 0, zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(28,31,22,0.65)', backdropFilter: 'blur(4px)' }}>
           <div
-            className="w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden space-y-0 relative animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
+            style={{ width: '100%', maxWidth: '480px', background: '#fffef8', borderRadius: '20px', boxShadow: '0 24px 80px rgba(28,31,22,0.25)', border: '1.5px solid #e0d8be', overflow: 'hidden', animation: 'fadeUp 0.25s ease forwards' }}
+            onClick={e => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
-              <div className="flex items-center gap-2">
-                <span className="text-xl" role="img" aria-label="ticket">🎟️</span>
-                <h3 className="font-heading font-bold text-base text-slate-800">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.875rem 1.25rem', borderBottom: '1.5px solid #e6dfc5', background: 'rgba(254,250,224,0.6)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Ticket style={{ width: '18px', height: '18px', color: '#606C38' }} />
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1rem', color: '#283618', margin: 0 }}>
                   {t('dashboard.digitalTokenPass')}
                 </h3>
               </div>
-              <button
-                onClick={() => setIsTokenPassOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 rounded-xl cursor-pointer"
-                aria-label={t('common.close')}
-              >
-                <X className="h-5 w-5" />
+              <button onClick={() => setIsTokenPassOpen(false)} style={{ padding: '6px', borderRadius: '8px', background: 'transparent', border: 'none', cursor: 'pointer', color: '#a09472' }}>
+                <X style={{ width: '18px', height: '18px' }} />
               </button>
             </div>
 
-            {/* Modal Body: Pass Card */}
-            <div className="p-6 space-y-4">
-              <div className="bg-slate-900 text-white rounded-2xl p-5 relative overflow-hidden shadow-md">
-                <div className="flex items-start justify-between border-b border-slate-800 pb-4">
+            {/* Pass Card — dark bg */}
+            <div style={{ padding: '1.25rem' }}>
+              <div style={{ background: '#283618', borderRadius: '14px', padding: '1.25rem', color: 'white', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', paddingBottom: '0.875rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
                   <div>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">
+                    <span style={{ fontSize: '0.6rem', fontWeight: 700, color: 'rgba(254,250,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block' }}>
                       {t('dashboard.agriQueueTokenNum')}
                     </span>
-                    <span className="font-heading font-black text-3xl sm:text-4xl text-emerald-400 tracking-wider mt-0.5 block">
+                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '2.5rem', color: '#DDA15E', letterSpacing: '0.06em', display: 'block', lineHeight: 1.1, marginTop: '2px' }}>
                       {activeBooking.tokenNumber}
                     </span>
                   </div>
-                  <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full text-xs font-bold">
-                    ● {t('dashboard.slotConfirmed')}
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '4px 10px', borderRadius: '999px', background: 'rgba(96,108,56,0.3)', color: '#a8d88a', border: '1px solid rgba(96,108,56,0.4)', fontSize: '0.68rem', fontWeight: 700 }}>
+                    <CheckCircle2 style={{ width: '11px', height: '11px' }} />
+                    {t('dashboard.slotConfirmed')}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3.5 py-3.5 border-b border-slate-800 text-xs">
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.875rem', padding: '0.875rem 0', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
                   <div>
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('dashboard.center')}</span>
-                    <span className="font-bold text-white text-sm mt-0.5 block truncate">
-                      🏪 {activeBooking.mandi?.name || t('dashboard.mandiCenterFallback')}
+                    <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'rgba(254,250,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Building2 style={{ width: '9px', height: '9px' }} /> {t('dashboard.center')}
                     </span>
-                    <span className="text-[11px] text-slate-400 block truncate">
-                      📍 {activeBooking.mandi?.district}, {activeBooking.mandi?.state}
+                    <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'white', display: 'block', marginTop: '3px' }}>
+                      {activeBooking.mandi?.name || t('dashboard.mandiCenterFallback')}
                     </span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('dashboard.schedule')}</span>
-                    <span className="font-bold text-white text-sm mt-0.5 block">
-                      📅 {activeBooking.slot?.displayDate}
-                    </span>
-                    <span className="text-[11px] text-emerald-300 font-semibold block">
-                      🕐 {activeBooking.slot?.formattedTime || t('dashboard.defaultTimeSlot')}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-2 pt-3 text-xs">
-                  <div>
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('dashboard.crop')}</span>
-                    <span className="font-bold text-white text-sm mt-0.5 block">🌾 {activeBooking.cropName || t('dashboard.defaultCrop')}</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('dashboard.ahead')}</span>
-                    <span className="font-bold text-white text-sm mt-0.5 block">
-                      👥 {activeBooking.queue?.farmersAhead ?? 0}
+                    <span style={{ fontSize: '0.72rem', color: 'rgba(254,250,224,0.5)', display: 'flex', alignItems: 'center', gap: '3px' }}>
+                      <MapPin style={{ width: '10px', height: '10px' }} />
+                      {activeBooking.mandi?.district}, {activeBooking.mandi?.state}
                     </span>
                   </div>
                   <div>
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">{t('dashboard.estWaitLabel')}</span>
-                    <span className="font-bold text-emerald-400 text-sm mt-0.5 block">
-                      ⏱️ {activeBooking.queue?.estimatedWait}
+                    <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'rgba(254,250,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <CalendarDays style={{ width: '9px', height: '9px' }} /> {t('dashboard.schedule')}
+                    </span>
+                    <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'white', display: 'block', marginTop: '3px' }}>
+                      {activeBooking.slot?.displayDate}
+                    </span>
+                    <span style={{ fontSize: '0.72rem', color: '#DDA15E', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '3px' }}>
+                      <Clock style={{ width: '10px', height: '10px' }} />
+                      {activeBooking.slot?.formattedTime || t('dashboard.defaultTimeSlot')}
                     </span>
                   </div>
                 </div>
 
-                {/* Real Standards-Compliant Token & QR Code */}
-                <div className="mt-5 pt-4 border-t border-slate-800 flex flex-col items-center">
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.625rem', paddingTop: '0.875rem' }}>
+                  <div>
+                    <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'rgba(254,250,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block' }}>{t('dashboard.crop')}</span>
+                    <span style={{ fontWeight: 700, fontSize: '0.82rem', color: 'white', display: 'block', marginTop: '2px' }}>{activeBooking.cropName || t('dashboard.defaultCrop')}</span>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'rgba(254,250,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block' }}>{t('dashboard.ahead')}</span>
+                    <span style={{ fontWeight: 700, fontSize: '0.82rem', color: 'white', display: 'block', marginTop: '2px' }}>{activeBooking.queue?.farmersAhead ?? 0}</span>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'rgba(254,250,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block' }}>{t('dashboard.estWaitLabel')}</span>
+                    <span style={{ fontWeight: 700, fontSize: '0.82rem', color: '#DDA15E', display: 'block', marginTop: '2px' }}>{activeBooking.queue?.estimatedWait}</span>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <BookingQRCode
                     bookingId={activeBooking.bookingId || activeBooking.id}
                     tokenNumber={activeBooking.tokenNumber}
-                    size={280}
+                    size={260}
                     theme="dark"
                   />
                 </div>
               </div>
 
-              {/* Actions inside modal */}
-              <div className="flex flex-col sm:flex-row items-center gap-2 pt-2">
-                <Button
-                  variant="primary"
-                  className="w-full sm:flex-1 justify-center py-3 font-bold text-xs shadow-xs cursor-pointer"
-                  onClick={() => {
-                    setIsTokenPassOpen(false);
-                    navigate('/book-transport');
-                  }}
-                >
-                  <Truck className="h-4 w-4 mr-1.5" />
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Button variant="primary" onClick={() => { setIsTokenPassOpen(false); navigate('/book-transport'); }} style={{ flex: 1, justifyContent: 'center', minHeight: '44px', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Truck style={{ width: '15px', height: '15px' }} />
                   {t('dashboard.bookTransportForSlot')}
                 </Button>
-                <Button
-                  variant="outline"
-                  disabled={isCancelling}
-                  className="w-full sm:w-auto justify-center py-3 font-bold text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 border-rose-200 cursor-pointer"
-                  onClick={handleCancelBooking}
-                >
+                <Button variant="outline" disabled={isCancelling} onClick={handleCancelBooking} style={{ justifyContent: 'center', minHeight: '44px', fontSize: '0.82rem', color: '#c0392b', borderColor: 'rgba(192,57,43,0.3)' }}>
                   {isCancelling ? t('dashboard.cancelling') : t('dashboard.cancelBooking')}
                 </Button>
               </div>
@@ -765,7 +656,7 @@ export const Dashboard = () => {
         onBookNew={() => navigate('/mandi-centers')}
       />
 
-      {/* Floating Farmer 📞 Voice Agent */}
+      {/* Floating Voice Agent */}
       <FarmerVoiceAgent onOpenTokenPass={() => setIsTokenPassOpen(true)} />
     </div>
   );

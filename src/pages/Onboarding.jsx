@@ -780,7 +780,7 @@ export const Onboarding = () => {
 
         {/* Bottom trust note */}
         <p style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.72rem', color: '#a09472', fontWeight: 500 }}>
-          🔒 Your data is private and never shared · Digital tokens are free
+          Your data is private and never shared · Digital tokens are free
         </p>
       </div>
     </div>
