@@ -12,6 +12,7 @@ build/
 out/
 coverage/
 .eslintcache
+.vite/
 *.local
 
 # Environment variables & Sensitive Credentials
@@ -63,11 +64,11 @@ Thumbs.db
 [Dd]esktop.ini
 
 # Database export dumps & raw import data
-server/database/mandi-data/enam-mandis-source.json
+backend/database/mandi-data/enam-mandis-source.json
 
 # Test & diagnostic scripts output
-server/database/resolve-mandis-dryrun.js
-server/database/test-debug-step5c.js
+backend/database/resolve-mandis-dryrun.js
+backend/database/test-debug-step5c.js
 
 # Windows batch scripts (not needed in production / CI)
 start-mysql.bat
