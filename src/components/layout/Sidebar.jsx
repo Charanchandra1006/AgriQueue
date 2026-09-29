@@ -22,7 +22,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
       {isOpen && (
         <div
           className="fixed inset-0 z-40 md:hidden"
-          style={{ background: 'rgba(28, 31, 22, 0.55)', backdropFilter: 'blur(3px)' }}
+          style={{ background: 'rgba(28, 31, 22, 0.4)', backdropFilter: 'blur(2px)' }}
           onClick={onClose}
         />
       )}
@@ -30,9 +30,9 @@ export const Sidebar = ({ isOpen, onClose }) => {
       {/* Sidebar */}
       <aside
         style={{
-          width: '272px',
-          background: '#283618',
-          borderRight: 'none',
+          width: '230px',
+          background: '#fffef8',
+          borderRight: '1.5px solid #e6dfc5',
           display: 'flex',
           flexDirection: 'column',
           transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -43,8 +43,8 @@ export const Sidebar = ({ isOpen, onClose }) => {
       >
         {/* Logo / Branding */}
         <div style={{ 
-          padding: '1.25rem 1.5rem',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          padding: '1.25rem 1.25rem',
+          borderBottom: '1px solid #e6dfc5',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -52,32 +52,32 @@ export const Sidebar = ({ isOpen, onClose }) => {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
             <div style={{
-              width: '36px', height: '36px',
-              borderRadius: '10px',
-              background: 'linear-gradient(135deg, #DDA15E, #BC6C25)',
+              width: '32px', height: '32px',
+              borderRadius: '8px',
+              background: 'linear-gradient(135deg, #606C38, #283618)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 2px 8px rgba(188,108,37,0.4)',
+              boxShadow: '0 2px 8px rgba(40,54,24,0.15)',
               flexShrink: 0
             }}>
-              <Sprout size={18} color="white" />
+              <Sprout size={16} color="white" />
             </div>
             <div>
               <span style={{ 
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 700,
-                fontSize: '1.2rem',
-                color: '#FEFAE0',
+                fontSize: '1.1rem',
+                color: '#283618',
                 letterSpacing: '-0.02em'
               }}>
-                Agri<span style={{ color: '#DDA15E' }}>Queue</span>
+                Agri<span style={{ color: '#BC6C25' }}>Queue</span>
               </span>
               <div style={{ 
-                fontSize: '0.58rem', 
-                color: 'rgba(254,250,224,0.45)',
+                fontSize: '0.55rem', 
+                color: '#8a7d60',
                 fontWeight: 600,
-                letterSpacing: '0.08em',
+                letterSpacing: '0.06em',
                 textTransform: 'uppercase',
-                marginTop: '-1px'
+                marginTop: '-2px'
               }}>
                 Kisan Digital Portal
               </div>
@@ -85,14 +85,14 @@ export const Sidebar = ({ isOpen, onClose }) => {
           </div>
           <button
             onClick={onClose}
-            className="flex md:hidden items-center justify-center p-[6px] rounded-lg border-none cursor-pointer transition-colors bg-white/5 hover:bg-white/10 text-[#FEFAE0]/70"
+            className="flex md:hidden items-center justify-center p-[6px] rounded-lg border-none cursor-pointer transition-colors bg-transparent hover:bg-[rgba(96,108,56,0.06)] text-[#606C38]"
           >
             <X size={18} />
           </button>
         </div>
 
         {/* Navigation Links */}
-        <nav style={{ flex: 1, overflowY: 'auto', padding: '0.75rem 0.75rem' }}>
+        <nav style={{ flex: 1, overflowY: 'auto', padding: '0.75rem' }}>
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {navItems.map((item) => (
               <li key={item.path}>
@@ -103,28 +103,37 @@ export const Sidebar = ({ isOpen, onClose }) => {
                   style={({ isActive }) => ({
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.75rem',
-                    padding: '0.625rem 0.875rem',
-                    borderRadius: '10px',
+                    gap: '0.625rem',
+                    padding: '0.55rem 0.75rem',
+                    borderRadius: '8px',
                     textDecoration: 'none',
-                    fontWeight: isActive ? 700 : 500,
-                    fontSize: '0.875rem',
+                    fontWeight: isActive ? 600 : 500,
+                    fontSize: '0.8rem',
                     fontFamily: 'var(--font-sans)',
-                    color: isActive ? '#FEFAE0' : 'rgba(254,250,224,0.6)',
+                    color: isActive ? '#283618' : '#5c6245',
                     background: isActive 
-                      ? 'linear-gradient(135deg, rgba(221,161,94,0.18) 0%, rgba(188,108,37,0.1) 100%)'
+                      ? 'rgba(96,108,56,0.08)'
                       : 'transparent',
-                    borderLeft: isActive ? '2.5px solid #DDA15E' : '2.5px solid transparent',
+                    borderLeft: isActive ? '3px solid #606C38' : '3px solid transparent',
                     transition: 'all 0.15s ease',
-                    letterSpacing: '0.01em'
                   })}
+                  onMouseEnter={e => {
+                    if (!e.currentTarget.style.background.includes('rgba(96, 108, 56, 0.08)')) {
+                      e.currentTarget.style.background = 'rgba(230,223,197,0.3)';
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    if (!e.currentTarget.style.background.includes('rgba(96, 108, 56, 0.08)')) {
+                      e.currentTarget.style.background = 'transparent';
+                    }
+                  }}
                 >
                   {({ isActive }) => (
                     <>
                       <item.Icon
-                        size={17}
+                        size={15}
                         style={{ 
-                          color: isActive ? '#DDA15E' : 'rgba(254,250,224,0.45)',
+                          color: isActive ? '#606C38' : '#a09472',
                           flexShrink: 0,
                           transition: 'color 0.15s'
                         }}
@@ -139,36 +148,36 @@ export const Sidebar = ({ isOpen, onClose }) => {
         </nav>
 
         {/* Logout at bottom */}
-        <div style={{ padding: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ padding: '0.75rem', borderTop: '1px solid #e6dfc5' }}>
           <button
             onClick={() => { onClose(); logout(); }}
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.75rem',
+              gap: '0.625rem',
               width: '100%',
-              padding: '0.625rem 0.875rem',
-              borderRadius: '10px',
+              padding: '0.55rem 0.75rem',
+              borderRadius: '8px',
               background: 'transparent',
-              color: 'rgba(254,250,224,0.45)',
+              color: '#5c6245',
               border: 'none',
               cursor: 'pointer',
               fontFamily: 'var(--font-sans)',
               fontWeight: 500,
-              fontSize: '0.875rem',
+              fontSize: '0.8rem',
               textAlign: 'left',
               transition: 'all 0.15s ease',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = 'rgba(220,80,60,0.12)';
-              e.currentTarget.style.color = '#f4a090';
+              e.currentTarget.style.background = 'rgba(188,76,53,0.06)';
+              e.currentTarget.style.color = '#bc4c35';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = 'rgba(254,250,224,0.45)';
+              e.currentTarget.style.color = '#5c6245';
             }}
           >
-            <LogOut size={17} style={{ flexShrink: 0 }} />
+            <LogOut size={15} style={{ flexShrink: 0 }} />
             <span>{t('common.logout')}</span>
           </button>
 
@@ -176,10 +185,11 @@ export const Sidebar = ({ isOpen, onClose }) => {
           <div style={{
             marginTop: '0.75rem',
             padding: '0 0.5rem',
-            fontSize: '0.62rem',
-            color: 'rgba(254,250,224,0.3)',
+            fontSize: '0.6rem',
+            color: '#a09472',
             fontWeight: 500,
-            letterSpacing: '0.04em'
+            letterSpacing: '0.02em',
+            textAlign: 'center'
           }}>
             AgriQueue — Digital Procurement
           </div>
