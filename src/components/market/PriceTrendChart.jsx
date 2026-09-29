@@ -132,7 +132,7 @@ export const PriceTrendChart = ({ period, trendData, isLoading }) => {
   if (!points.length) {
     return (
       <div className="h-60 flex flex-col items-center justify-center p-6 text-center text-slate-500 bg-slate-50/70 rounded-2xl border border-dashed border-slate-200">
-        <span className="text-3xl block mb-2">📊</span>
+        <span className="text-3xl block mb-2"></span>
         <h4 className="font-bold text-slate-800 text-sm">{t('market.notEnoughHistory', 'Not enough historical data yet')}</h4>
         <p className="text-xs text-slate-400 max-w-sm mt-1 leading-relaxed">
           {t('market.historyBuildNotice', 'Government price history will build automatically as new daily AGMARKNET records are synchronized.')}
@@ -247,7 +247,7 @@ export const PriceTrendChart = ({ period, trendData, isLoading }) => {
       {/* 4. Single-day historical data notice if <= 1 day in 7d/30d/1y */}
       {isSingleHistoricalDay && (
         <div className="p-3 bg-amber-50/90 border border-amber-200 rounded-2xl text-xs text-amber-900 flex items-start gap-2.5 shadow-2xs">
-          <span className="text-base shrink-0 select-none">📊</span>
+          <span className="text-base shrink-0 select-none"></span>
           <div className="space-y-0.5">
             <strong className="block font-bold text-amber-950">{t('market.notEnoughHistory', 'Not enough historical data yet')}</strong>
             <p className="text-[11px] text-amber-800 leading-relaxed">

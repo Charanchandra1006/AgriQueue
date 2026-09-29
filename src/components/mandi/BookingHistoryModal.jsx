@@ -98,7 +98,7 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/80 shrink-0">
           <div className="flex items-center gap-2.5">
-            <span className="text-2xl" role="img" aria-label="history">📜</span>
+            <span className="text-2xl" role="img" aria-label="history"></span>
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="font-heading font-extrabold text-lg text-slate-800 tracking-tight">
@@ -153,7 +153,7 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
           {!isLoading && !error && bookings.length === 0 && (
             <div className="py-16 text-center space-y-3 max-w-sm mx-auto">
               <div className="w-14 h-14 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
-                🌾
+                
               </div>
               <h3 className="font-heading font-bold text-slate-800 text-base">
                 {t('history.noBookingsFound')}
@@ -196,7 +196,7 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
                         )}
                       </div>
                       <h4 className="font-heading font-black text-base text-slate-900 flex items-center gap-2">
-                        <span>🏪</span>
+                        <span></span>
                         <span>{booking.mandiName}</span>
                       </h4>
                       <p className="text-xs font-semibold text-slate-500 flex items-center gap-1 mt-0.5">
@@ -217,7 +217,7 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
                         {t('common.crop')}
                       </span>
                       <span className="font-bold text-slate-800 block mt-0.5 truncate">
-                        🌾 {booking.cropName}
+                         {booking.cropName}
                       </span>
                     </div>
 
@@ -226,7 +226,7 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
                         {t('common.quantity')}
                       </span>
                       <span className="font-bold text-slate-800 block mt-0.5">
-                        📦 {booking.estimatedQuantity} {t('common.quintals')}
+                         {booking.estimatedQuantity} {t('common.quintals')}
                       </span>
                     </div>
 
@@ -235,7 +235,7 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
                         {t('booking.slotDate')}
                       </span>
                       <span className="font-bold text-emerald-900 block mt-0.5">
-                        📅 {booking.displayDate}
+                         {booking.displayDate}
                       </span>
                     </div>
 
@@ -244,7 +244,7 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
                         {t('booking.slotTime')}
                       </span>
                       <span className="font-bold text-emerald-900 block mt-0.5 truncate">
-                        🕘 {booking.formattedSlotTime}
+                         {booking.formattedSlotTime}
                       </span>
                     </div>
                   </div>

@@ -36,7 +36,7 @@ export const QueueCard = () => {
               
               {/* Digital Pass Indicator */}
               <div className="mt-2.5 flex items-center gap-1.5 text-xs text-emerald-300 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
-                <span>📱 {t('dashboard.verifiedDigitalPass')}</span>
+                <span> {t('dashboard.verifiedDigitalPass')}</span>
               </div>
             </div>
 

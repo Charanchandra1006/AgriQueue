@@ -204,7 +204,7 @@ export const Navbar = ({ onMenuToggle }) => {
                   <div style={{ overflowY: 'auto', maxHeight: '300px' }}>
                     {notifications.length === 0 ? (
                       <div style={{ padding: '2rem', textAlign: 'center', color: '#a09472', fontSize: '0.82rem', fontWeight: 500 }}>
-                        🌾 {t('nav.noNotifications')}
+                         {t('nav.noNotifications')}
                       </div>
                     ) : (
                       notifications.map(notif => (

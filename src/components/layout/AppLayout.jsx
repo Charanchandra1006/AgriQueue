@@ -47,7 +47,7 @@ export const AppLayout = () => {
               </span>
             </div>
             <span style={{ color: '#a09472', fontSize: '0.68rem', fontWeight: 500 }}>
-              © 2026 AgriQueue. All rights reserved.
+               2026 AgriQueue. All rights reserved.
             </span>
           </div>
         </footer>

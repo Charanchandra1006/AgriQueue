@@ -37,7 +37,7 @@ export const BookingQRCode = ({
               : 'bg-emerald-50 border border-emerald-300 text-emerald-800 shadow-xs'
           }`}
         >
-          <span>🎟️</span>
+          <span>️</span>
           <span>{t('qr.tokenBadge', { number: tokenNumber })}</span>
         </div>
       )}
@@ -98,7 +98,7 @@ export const BookingQRCode = ({
             isDark ? 'text-white' : 'text-slate-800'
           }`}
         >
-          <span>📱</span>
+          <span></span>
           <span>{t('qr.showAtCenter')}</span>
         </p>
         <p className={`text-xs mt-1 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>

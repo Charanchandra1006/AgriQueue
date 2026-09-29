@@ -837,7 +837,7 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
             className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-emerald-200 text-xs font-semibold text-emerald-900 cursor-pointer hover:shadow-xl transition-all select-none animate-fade-in"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>📞 {i18n.title}</span>
+            <span> {i18n.title}</span>
           </div>
         )}
 
@@ -1066,43 +1066,43 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                   <div className="flex items-center gap-2 text-slate-700 font-semibold">
                     {activeActionStep === 'finding_mandis' && (
                       <>
-                        <span className="text-base">🔎</span>
+                        <span className="text-base"></span>
                         <span>{i18n.progressFindingMandis}</span>
                       </>
                     )}
                     {activeActionStep === 'checking_slots' && (
                       <>
-                        <span className="text-base">📅</span>
+                        <span className="text-base"></span>
                         <span>{i18n.progressCheckingSlots}</span>
                       </>
                     )}
                     {activeActionStep === 'preparing_booking' && (
                       <>
-                        <span className="text-base">📝</span>
+                        <span className="text-base"></span>
                         <span>{i18n.progressPreparingBooking}</span>
                       </>
                     )}
                     {activeActionStep === 'waiting_confirmation' && (
                       <>
-                        <span className="text-base animate-pulse">⏳</span>
+                        <span className="text-base animate-pulse"></span>
                         <span className="text-amber-700 font-bold">{i18n.progressWaitingConfirmation}</span>
                       </>
                     )}
                     {activeActionStep === 'booking_slot' && (
                       <>
-                        <span className="text-base animate-spin">⚡</span>
+                        <span className="text-base animate-spin"></span>
                         <span className="text-emerald-700 font-bold">{i18n.progressBookingSlot}</span>
                       </>
                     )}
                     {activeActionStep === 'booking_confirmed' && (
                       <>
-                        <span className="text-base">✅</span>
+                        <span className="text-base"></span>
                         <span className="text-emerald-800 font-bold">{i18n.progressBookingConfirmed}</span>
                       </>
                     )}
                     {activeActionStep === 'showing_qr' && (
                       <>
-                        <span className="text-base">📱</span>
+                        <span className="text-base"></span>
                         <span>{i18n.progressShowingQr}</span>
                       </>
                     )}
@@ -1127,7 +1127,7 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                       <span>{i18n.summaryTitle}</span>
                     </span>
                     <span className="px-2.5 py-0.5 rounded-full bg-amber-200 text-amber-900 text-[11px] font-bold animate-pulse">
-                      ⏳ Pending Confirmation
+                       Pending Confirmation
                     </span>
                   </div>
 
@@ -1170,7 +1170,7 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                   </div>
 
                   <p className="text-xs text-amber-900 font-semibold text-center bg-amber-100/80 py-1.5 px-2 rounded-lg">
-                    📢 {i18n.confirmQuestion}
+                     {i18n.confirmQuestion}
                   </p>
                 </div>
               )}
@@ -1215,7 +1215,7 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                     </div>
                     <div>
                       <span className="text-[11px] text-slate-500 block">{i18n.farmersAheadLabel}:</span>
-                      <span className="font-semibold text-slate-900">👥 {confirmedBooking.farmersAhead ?? 0}</span>
+                      <span className="font-semibold text-slate-900"> {confirmedBooking.farmersAhead ?? 0}</span>
                     </div>
                     <div>
                       <span className="text-[11px] text-slate-500 block">{i18n.estimatedWaitLabel}:</span>

@@ -152,7 +152,7 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
         {/* Modal Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/70 shrink-0">
           <div className="flex items-center gap-2">
-            <span className="text-xl" role="img" aria-label="ticket">🎫</span>
+            <span className="text-xl" role="img" aria-label="ticket"></span>
             <h2 className="font-heading font-extrabold text-lg text-slate-800 tracking-tight">
               {isConfirmed ? t('booking.modalTitleConfirmed') : t('booking.modalTitleBook')}
             </h2>
@@ -316,7 +316,7 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
               <div className="p-4 bg-gradient-to-r from-emerald-50/70 via-slate-50 to-slate-50 rounded-2xl border border-emerald-100/80 space-y-2.5">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-2.5">
-                    <span className="text-2xl mt-0.5" role="img" aria-label="mandi">🏪</span>
+                    <span className="text-2xl mt-0.5" role="img" aria-label="mandi"></span>
                     <div>
                       <h3 className="font-heading font-extrabold text-base text-slate-800">
                         {mandi.external.name}
@@ -343,7 +343,7 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                     {t('mandi.operatingHoursColon', { hours: `${mandi.external.operatingHours.openingTime} – ${mandi.external.operatingHours.closingTime}` })}
                   </span>
                   <span className="text-emerald-700 font-bold">
-                    🎫 {mandi.agriQueue.availableSlots > 0 ? t('booking.slotsAvailableToday', { count: mandi.agriQueue.availableSlots }) : t('booking.nextSlots', { time: mandi.agriQueue.nextAvailableSlot })}
+                     {mandi.agriQueue.availableSlots > 0 ? t('booking.slotsAvailableToday', { count: mandi.agriQueue.availableSlots }) : t('booking.nextSlots', { time: mandi.agriQueue.nextAvailableSlot })}
                   </span>
                 </div>
 
@@ -357,7 +357,7 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                         key={idx}
                         className="text-[11px] font-bold text-slate-600 bg-white border border-slate-200 px-2 py-0.5 rounded-md"
                       >
-                        🌾 {crop}
+                         {crop}
                       </span>
                     ))}
                   </div>
@@ -383,7 +383,7 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                             : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                         }`}
                       >
-                        <span>🌾 {crop}</span>
+                        <span> {crop}</span>
                         {isSelected && <CheckCircle2 className="h-4 w-4 shrink-0" />}
                       </button>
                     );
