@@ -1,0 +1,106 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vscode-css-languageservice/main/docs/customData.schema.json",
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@theme",
+      "description": "Tailwind CSS v4 theme block. Use this directive to customize your theme tokens such as colors, fonts, and breakpoints.",
+      "references": [
+        {
+          "name": "Tailwind CSS Theme Documentation",
+          "url": "https://tailwindcss.com/docs/theme"
+        }
+      ]
+    },
+    {
+      "name": "@utility",
+      "description": "Tailwind CSS v4 custom utility directive. Use this to register custom utility classes in your stylesheet.",
+      "references": [
+        {
+          "name": "Tailwind CSS Adding Custom Styles Documentation",
+          "url": "https://tailwindcss.com/docs/adding-custom-styles"
+        }
+      ]
+    },
+    {
+      "name": "@custom-variant",
+      "description": "Tailwind CSS v4 custom variant directive. Use this to register custom variants in your stylesheet.",
+      "references": [
+        {
+          "name": "Tailwind CSS Custom Variants Documentation",
+          "url": "https://tailwindcss.com/docs/adding-custom-styles"
+        }
+      ]
+    },
+    {
+      "name": "@variant",
+      "description": "Tailwind CSS directive for applying variant styles to utility declarations.",
+      "references": [
+        {
+          "name": "Tailwind CSS Variant Documentation",
+          "url": "https://tailwindcss.com/docs/adding-custom-styles"
+        }
+      ]
+    },
+    {
+      "name": "@source",
+      "description": "Tailwind CSS v4 source directive. Use this to explicitly specify files or directories for Tailwind to scan.",
+      "references": [
+        {
+          "name": "Tailwind CSS Detecting Classes Documentation",
+          "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files"
+        }
+      ]
+    },
+    {
+      "name": "@plugin",
+      "description": "Tailwind CSS v4 plugin directive. Use this to import plugins into your stylesheet.",
+      "references": [
+        {
+          "name": "Tailwind CSS Plugins Documentation",
+          "url": "https://tailwindcss.com/docs/compatibility"
+        }
+      ]
+    },
+    {
+      "name": "@reference",
+      "description": "Tailwind CSS v4 reference directive. Imports theme variables and utility definitions for reference without duplicating generated CSS.",
+      "references": [
+        {
+          "name": "Tailwind CSS Reference Documentation",
+          "url": "https://tailwindcss.com/docs"
+        }
+      ]
+    },
+    {
+      "name": "@apply",
+      "description": "Tailwind CSS directive to inline existing utility classes into custom CSS declarations.",
+      "references": [
+        {
+          "name": "Tailwind CSS Reusing Styles Documentation",
+          "url": "https://tailwindcss.com/docs/reusing-styles"
+        }
+      ]
+    },
+    {
+      "name": "@tailwind",
+      "description": "Tailwind CSS legacy directive to insert Tailwind's base, components, or utilities styles.",
+      "references": [
+        {
+          "name": "Tailwind CSS Functions & Directives",
+          "url": "https://tailwindcss.com/docs/functions-and-directives"
+        }
+      ]
+    },
+    {
+      "name": "@config",
+      "description": "Tailwind CSS directive to specify a custom JavaScript configuration file.",
+      "references": [
+        {
+          "name": "Tailwind CSS Configuration Documentation",
+          "url": "https://tailwindcss.com/docs/configuration"
+        }
+      ]
+    }
+  ]
+}
