@@ -1,0 +1,20 @@
+# AgriQueue — Python Algorithm Engine Dependencies
+# ================================================
+# Install with: pip install -r requirements.txt
+
+# Core scientific computing
+numpy>=1.26.0
+pandas>=2.2.0
+
+# Machine learning — waiting-time prediction (Random Forest)
+scikit-learn>=1.4.0
+
+# Machine learning — demand forecasting (XGBoost Gradient Boosting)
+xgboost>=2.0.0
+
+# Testing framework
+pytest>=8.0.0
+pytest-cov>=5.0.0
+
+# Type checking support
+typing-extensions>=4.9.0

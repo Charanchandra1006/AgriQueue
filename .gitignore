@@ -5,6 +5,13 @@ node_modules/
 .pnp
 .pnp.js
 
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
 # Production & Build outputs
 dist/
 dist-ssr/
