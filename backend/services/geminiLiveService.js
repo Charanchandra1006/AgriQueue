@@ -274,9 +274,7 @@ export const verifyGeminiLiveConnection = async () => {
         tools: MANDI_BOOKING_TOOLS
       },
       callbacks: {
-        onopen: () => {
-          // Socket opened
-        },
+        onopen: () => {},
         onmessage: (msg) => {
           if (!resolved && (msg.setupComplete || msg.serverContent)) {
             resolved = true;
@@ -384,7 +382,6 @@ export const createGeminiLiveStreamingSession = async ({
           if (onStateChange) onStateChange('listening');
         }
 
-        // Handle tool calls from Gemini
         if (msg.toolCall && onToolCall) {
           onToolCall(msg.toolCall);
         }

@@ -22,7 +22,6 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
-// Middleware
 app.use(cors({
   origin: [FRONTEND_URL, 'http://localhost:5173', 'http://127.0.0.1:5173'],
   credentials: true
@@ -30,7 +29,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Root info endpoint
 app.get('/', (req, res) => {
   res.json({
     message: 'AgriQueue Backend API is running',
@@ -39,7 +37,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Mount Routes
 app.use('/api/health', healthRouter);
 app.use('/api/farmers', farmersRouter);
 app.use('/api/mandis', mandisRouter);
@@ -48,8 +45,6 @@ app.use('/api/market-prices', marketPricesRouter);
 app.use('/api/transport', transportRouter);
 app.use('/api/voice', voiceRouter);
 
-
-// 404 Handler for undefined routes
 app.use((req, res) => {
   res.status(404).json({
     error: 'Not Found',
@@ -57,7 +52,6 @@ app.use((req, res) => {
   });
 });
 
-// Global Error Handler
 app.use((err, req, res, _next) => {
   console.error('[Server Error]:', err);
   res.status(500).json({
@@ -66,19 +60,14 @@ app.use((err, req, res, _next) => {
   });
 });
 
-// Start Server
 const server = app.listen(PORT, () => {
-  console.log('======================================================');
-  console.log(`🚀 AgriQueue Express Server listening on port ${PORT}`);
-  console.log(`📡 Health Check URL: http://localhost:${PORT}/api/health`);
-  console.log(`🌐 Allowed Origin:  ${FRONTEND_URL}`);
-  console.log('======================================================');
+  console.log(`AgriQueue Express Server listening on port ${PORT}`);
+  console.log(`Health Check URL: http://localhost:${PORT}/api/health`);
+  console.log(`Allowed Origin: ${FRONTEND_URL}`);
 });
 
-// Mount Gemini Live Voice WebSocket
 setupVoiceWebSocket(server);
 
-// Graceful Shutdown
 const handleShutdown = async (signal) => {
   console.log(`\n[${signal}] Shutting down server gracefully...`);
   try {

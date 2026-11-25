@@ -387,7 +387,6 @@ router.get('/:id/slots', async (req, res) => {
     const mandi = mandiRows[0];
     const cleanDate = date ? String(date).slice(0, 10) : new Date().toISOString().slice(0, 10);
 
-    // Query existing slot records in mandi_slots for this mandi & date
     const [existingSlots] = await pool.query(
       `SELECT id, slot_date, start_time, end_time, maximum_bookings, current_bookings, status 
        FROM mandi_slots 

@@ -81,22 +81,16 @@ const DEMO_DRIVER_POOL = [
   }
 ];
 
-/**
- * Helper to select an appropriate demo driver for a given vehicle and district
- */
 function findDemoDriver(vehicleType, district) {
-  // First match both vehicle type and district
   let match = DEMO_DRIVER_POOL.find(d => 
     d.supportedVehicleTypes.includes(vehicleType) &&
     d.district.toLowerCase() === (district || '').toLowerCase()
   );
 
-  // Fallback to vehicle type match
   if (!match) {
     match = DEMO_DRIVER_POOL.find(d => d.supportedVehicleTypes.includes(vehicleType));
   }
 
-  // Fallback to first driver
   if (!match) {
     match = DEMO_DRIVER_POOL[0];
   }
@@ -110,18 +104,12 @@ function findDemoDriver(vehicleType, district) {
   };
 }
 
-/**
- * Validates allowed vehicle types
- */
 const ALLOWED_VEHICLES = [
   'Tractor Trolley',
   'Small Commercial Truck (Chota Hathi)',
   'Heavy Duty 6-Wheeler Truck'
 ];
 
-/**
- * Validates allowed transport statuses
- */
 const TRANSPORT_STATUS_FLOW = [
   'REQUESTED',
   'DRIVER_ASSIGNED',
@@ -215,7 +203,6 @@ router.post('/book', async (req, res) => {
       notes
     } = req.body;
 
-    // 1. Validate farmer
     if (!farmerId) {
       return res.status(400).json({
         error: 'Bad Request',
@@ -231,7 +218,6 @@ router.post('/book', async (req, res) => {
       });
     }
 
-    // 2. Validate Vehicle Type
     if (!ALLOWED_VEHICLES.includes(vehicleType)) {
       return res.status(400).json({
         error: 'Bad Request',
@@ -239,7 +225,6 @@ router.post('/book', async (req, res) => {
       });
     }
 
-    // 3. Validate Crop & Load
     const cleanCrop = (cropName || '').trim();
     if (!cleanCrop) {
       return res.status(400).json({
@@ -256,7 +241,6 @@ router.post('/book', async (req, res) => {
       });
     }
 
-    // 4. Validate Location
     const cleanVillage = (pickupVillage || farmer.village || '').trim();
     const cleanDistrict = (pickupDistrict || farmer.district || '').trim();
     const cleanState = (pickupState || farmer.state || '').trim();
@@ -269,7 +253,6 @@ router.post('/book', async (req, res) => {
       });
     }
 
-    // 5. Validate Date & Time
     if (!pickupDate) {
       return res.status(400).json({
         error: 'Bad Request',
@@ -283,7 +266,6 @@ router.post('/book', async (req, res) => {
       });
     }
 
-    // 6. Check Mandi Booking
     let verifiedMandiBookingId = null;
     if (mandiBookingId) {
       const [mbRows] = await pool.query(
@@ -299,14 +281,12 @@ router.post('/book', async (req, res) => {
       }
     }
 
-    // 7. Generate Unique Transport Reference ID (e.g. TR-26-8812)
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
     const transportBookingId = `TR-26-${randomSuffix}`;
 
     connection = await pool.getConnection();
     await connection.beginTransaction();
 
-    // 8. Insert record with status 'REQUESTED' and NULL driver details
     const insertSql = `
       INSERT INTO transport_bookings (
         transport_booking_id,

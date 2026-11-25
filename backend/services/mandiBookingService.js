@@ -282,7 +282,6 @@ export async function executeMandiBooking({
   estimatedQuantity,
   slotDate
 } = {}) {
-  // Input validations
   if (!mandiId) {
     return { success: false, error: 'Mandi ID is required.' };
   }
@@ -297,7 +296,6 @@ export async function executeMandiBooking({
   const connection = await pool.getConnection();
 
   try {
-    // 1. Resolve Farmer
     let farmer = await resolveFarmer(farmerId);
     if (!farmer) {
       const [allFarmers] = await connection.query('SELECT id, farmer_id, name, phone FROM farmers LIMIT 1');
@@ -308,7 +306,6 @@ export async function executeMandiBooking({
       }
     }
 
-    // 2. Resolve Mandi
     const [mandiRows] = await connection.query(
       'SELECT id, name, state, district, location, opening_time, closing_time FROM mandis WHERE id = ? LIMIT 1',
       [parseInt(mandiId, 10)]
@@ -318,7 +315,6 @@ export async function executeMandiBooking({
     }
     const mandi = mandiRows[0];
 
-    // 3. Resolve Date and Slot Times
     const cleanDate = slotDate ? String(slotDate).slice(0, 10) : new Date().toISOString().slice(0, 10);
     let startSqlTime = startTime;
     let endSqlTime = endTime;
@@ -344,7 +340,7 @@ export async function executeMandiBooking({
 
     await connection.beginTransaction();
 
-    // 4. Find or Create Slot in mandi_slots with row locking
+    // Row lock prevents concurrent overbooking of the same slot
     const [existingSlots] = await connection.query(
       `SELECT id, current_bookings, maximum_bookings 
        FROM mandi_slots 
@@ -391,7 +387,6 @@ export async function executeMandiBooking({
       currentSlotBookings = 1;
     }
 
-    // 5. Duplicate Booking Protection
     const [duplicateBooking] = await connection.query(
       `SELECT id, booking_id, token_number FROM bookings 
        WHERE farmer_id = ? AND slot_id = ? AND booking_status = 'CONFIRMED' 
@@ -412,13 +407,11 @@ export async function executeMandiBooking({
       };
     }
 
-    // 6. Generate Unique Token Number and Booking ID
     const tokenLetter = String.fromCharCode(65 + (mandi.id % 26));
     const tokenSeq = 100 + currentSlotBookings;
     const tokenNumber = `#${tokenLetter}${tokenSeq}`;
     const bookingId = `BK-${Date.now().toString().slice(-6)}-${Math.floor(100 + Math.random() * 900)}`;
 
-    // 7. Insert into bookings
     const insertBookingSql = `
       INSERT INTO bookings (
         booking_id, farmer_id, mandi_id, slot_id, crop_name, estimated_quantity, token_number, booking_status

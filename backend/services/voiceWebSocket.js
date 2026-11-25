@@ -30,7 +30,6 @@ export const setupVoiceWebSocket = (server) => {
     let isSessionInitialized = false;
     let currentFarmerContext = null;
 
-    // Helper to safely send JSON to the connected client
     const sendToClient = (payload) => {
       if (ws.readyState === WebSocket.OPEN) {
         try {
@@ -41,7 +40,6 @@ export const setupVoiceWebSocket = (server) => {
       }
     };
 
-    // Clean up Gemini session
     const cleanupSession = () => {
       if (geminiLiveSession) {
         try {
@@ -55,7 +53,6 @@ export const setupVoiceWebSocket = (server) => {
       currentFarmerContext = null;
     };
 
-    // Handler for tool calls issued by Gemini Live
     const handleToolCall = async (toolCall) => {
       if (!toolCall || !toolCall.functionCalls) return;
 
@@ -150,7 +147,6 @@ export const setupVoiceWebSocket = (server) => {
           result = { success: false, error: err.message };
         }
 
-        // Send tool_result to client for progress UI feedback
         sendToClient({
           type: 'tool_result',
           name,
@@ -267,7 +263,6 @@ export const setupVoiceWebSocket = (server) => {
           }
 
           case 'audio': {
-            // Forward base64 PCM chunk to Gemini Live
             if (geminiLiveSession && msg.data) {
               geminiLiveSession.sendAudioChunk(msg.data);
             }
@@ -275,7 +270,6 @@ export const setupVoiceWebSocket = (server) => {
           }
 
           case 'text': {
-            // Optional text input directly sent to Gemini Live
             if (geminiLiveSession && msg.text) {
               sendToClient({ type: 'state', state: 'thinking' });
               geminiLiveSession.sendTextTurn(msg.text);

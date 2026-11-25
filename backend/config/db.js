@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Ensure .env is loaded from server root
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const dbConfig = {
@@ -23,7 +22,6 @@ const dbConfig = {
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : undefined
 };
 
-// Create asynchronous connection pool
 export const pool = mysql.createPool(dbConfig);
 
 /**

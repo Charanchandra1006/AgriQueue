@@ -15,7 +15,6 @@ export function parseDateToMySQL(dateStr) {
   if (!dateStr) return null;
   const trimmed = String(dateStr).trim();
 
-  // Match DD/MM/YYYY or DD-MM-YYYY
   const dmyMatch = trimmed.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
   if (dmyMatch) {
     const day = dmyMatch[1].padStart(2, '0');
@@ -24,7 +23,6 @@ export function parseDateToMySQL(dateStr) {
     return `${year}-${month}-${day}`;
   }
 
-  // Match YYYY-MM-DD or YYYY/MM/DD
   const ymdMatch = trimmed.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})$/);
   if (ymdMatch) {
     const year = ymdMatch[1];
@@ -33,7 +31,6 @@ export function parseDateToMySQL(dateStr) {
     return `${year}-${month}-${day}`;
   }
 
-  // Fallback to JS Date parser
   const parsed = new Date(trimmed);
   if (!isNaN(parsed.getTime())) {
     return parsed.toISOString().split('T')[0];
@@ -376,12 +373,10 @@ export async function getMarketPrices(filters = {}) {
   const limit = Math.min(Math.max(parseInt(filters.limit, 10) || 50, 1), 1000);
   const offset = (page - 1) * limit;
 
-  // Count total matching records
   const countSql = `SELECT COUNT(*) AS total FROM market_prices ${whereSql}`;
   const [countRows] = await pool.query(countSql, params);
   const total = countRows[0]?.total || 0;
 
-  // Fetch paginated records ordered by arrival_date DESC, commodity ASC
   const querySql = `
     SELECT 
       id,

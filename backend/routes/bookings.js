@@ -120,7 +120,6 @@ router.get('/active/:farmerId', async (req, res) => {
 
     const booking = rows[0];
 
-    // Compute real queue information:
     // Farmers ahead = count of earlier confirmed bookings in the same slot
     const [queueRows] = await pool.query(
       `SELECT COUNT(*) AS count_ahead 
@@ -133,7 +132,6 @@ router.get('/active/:farmerId', async (req, res) => {
 
     const farmersAhead = queueRows[0]?.count_ahead || 0;
     
-    // Estimated wait time: ~6 minutes per farmer ahead
     let estimatedWait = '0 min (You are next)';
     if (farmersAhead > 0) {
       const waitMin = farmersAhead * 6;
@@ -146,7 +144,6 @@ router.get('/active/:farmerId', async (req, res) => {
       }
     }
 
-    // Format slot schedule
     const startStr = formatTime12h(booking.start_time);
     const endStr = formatTime12h(booking.end_time);
     const slotSchedule = `${startStr} – ${endStr}`;
@@ -417,10 +414,8 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Bad Request', message: 'Crop name is required.' });
     }
 
-    // 1. Resolve Farmer
     let farmer = await resolveFarmer(farmerId);
     if (!farmer) {
-      // If no farmer provided or found, check if there is at least one farmer in DB to associate with
       const [allFarmers] = await connection.query('SELECT id, farmer_id, name, phone FROM farmers LIMIT 1');
       if (allFarmers.length > 0) {
         farmer = allFarmers[0];
@@ -432,7 +427,6 @@ router.post('/', async (req, res) => {
       }
     }
 
-    // 2. Resolve Mandi
     const [mandiRows] = await connection.query(
       'SELECT id, name, state, district, location, opening_time, closing_time FROM mandis WHERE id = ? LIMIT 1',
       [parseInt(mandiId, 10)]
@@ -442,7 +436,6 @@ router.post('/', async (req, res) => {
     }
     const mandi = mandiRows[0];
 
-    // 3. Resolve Date & Slot Times
     const cleanDate = slotDate ? String(slotDate).slice(0, 10) : new Date().toISOString().slice(0, 10);
     let startSqlTime = startTime;
     let endSqlTime = endTime;
@@ -455,7 +448,6 @@ router.post('/', async (req, res) => {
 
     await connection.beginTransaction();
 
-    // 4. Find or Create Slot in mandi_slots
     const [existingSlots] = await connection.query(
       `SELECT id, current_bookings, maximum_bookings 
        FROM mandi_slots 
@@ -519,14 +511,12 @@ router.post('/', async (req, res) => {
       });
     }
 
-    // 5. Generate Unique Token Number (#A102 format) and Booking ID
-    const tokenLetter = String.fromCharCode(65 + (mandi.id % 26)); // A-Z based on mandi
+    const tokenLetter = String.fromCharCode(65 + (mandi.id % 26));
     const tokenSeq = 100 + currentSlotBookings;
     const tokenNumber = `#${tokenLetter}${tokenSeq}`;
     const bookingId = `BK-${Date.now().toString().slice(-6)}-${Math.floor(100 + Math.random() * 900)}`;
     const estQty = quantity ? Math.max(1, parseFloat(quantity)) : 40.0;
 
-    // 6. Insert into bookings
     const insertBookingSql = `
       INSERT INTO bookings (
         booking_id, farmer_id, mandi_id, slot_id, crop_name, estimated_quantity, token_number, booking_status
@@ -547,7 +537,6 @@ router.post('/', async (req, res) => {
 
     const createdBookingId = bookingResult.insertId;
 
-    // 7. Calculate queue count
     const farmersAhead = Math.max(0, currentSlotBookings - 1);
     const estimatedWait = farmersAhead === 0 ? '0 min (You are next)' : `~${farmersAhead * 6} min`;
 

@@ -3,36 +3,20 @@ import { pool } from '../config/db.js';
 
 const router = express.Router();
 
-/**
- * Helper to normalize Indian phone number to 10 digits
- * @param {string} phone
- * @returns {string} 10-digit phone number
- */
 const normalizePhone = (phone) => {
   if (!phone) return '';
   const digitsOnly = String(phone).replace(/\D/g, '');
-  // If length is 12 and starts with 91 (e.g. +91), extract the last 10 digits
   if (digitsOnly.length > 10) {
     return digitsOnly.slice(-10);
   }
   return digitsOnly;
 };
 
-/**
- * Validates 10-digit Indian mobile phone number (starts with 6, 7, 8, or 9)
- * @param {string} phone
- * @returns {boolean}
- */
 const isValidIndianMobile = (phone) => {
   const normalized = normalizePhone(phone);
   return /^[6-9]\d{9}$/.test(normalized);
 };
 
-/**
- * Generates a unique AgriQueue farmer ID in the format AGQ-26-XXXX
- * @param {object} connection - MySQL pool or connection
- * @returns {Promise<string>}
- */
 const generateUniqueFarmerId = async (connection) => {
   let attempts = 0;
   while (attempts < 10) {
@@ -60,7 +44,6 @@ router.post('/', async (req, res) => {
   try {
     const { name, phone, state, district, village, preferred_language } = req.body;
 
-    // Validate required fields
     if (!name || !name.trim()) {
       return res.status(400).json({
         error: 'Bad Request',
@@ -103,7 +86,6 @@ router.post('/', async (req, res) => {
     const cleanVillage = village ? village.trim() : null;
     const cleanLanguage = preferred_language && preferred_language.trim() ? preferred_language.trim().toLowerCase() : 'en';
 
-    // Check if phone number already exists
     const [existingByPhone] = await pool.query(
       'SELECT id, farmer_id, name, phone, state, district, village, preferred_language, created_at FROM farmers WHERE phone = ? LIMIT 1',
       [cleanPhone]
@@ -124,10 +106,8 @@ router.post('/', async (req, res) => {
       });
     }
 
-    // Generate unique farmer ID
     const farmerId = await generateUniqueFarmerId(pool);
 
-    // Insert new farmer record
     const insertQuery = `
       INSERT INTO farmers (
         farmer_id, name, phone, state, district, village, preferred_language
@@ -144,7 +124,6 @@ router.post('/', async (req, res) => {
       cleanLanguage
     ]);
 
-    // Retrieve created record
     const [createdRows] = await pool.query(
       'SELECT id, farmer_id, name, phone, state, district, village, preferred_language, created_at, updated_at FROM farmers WHERE id = ?',
       [insertResult.insertId]
@@ -227,7 +206,6 @@ router.put('/:farmerId', async (req, res) => {
       });
     }
 
-    // Verify existence
     const [existing] = await pool.query(
       'SELECT id, farmer_id FROM farmers WHERE farmer_id = ? LIMIT 1',
       [farmerId.trim()]
@@ -240,7 +218,6 @@ router.put('/:farmerId', async (req, res) => {
       });
     }
 
-    // Build update fields
     const updates = [];
     const values = [];
 
@@ -289,7 +266,6 @@ router.put('/:farmerId', async (req, res) => {
     const updateQuery = `UPDATE farmers SET ${updates.join(', ')} WHERE farmer_id = ?`;
     await pool.query(updateQuery, values);
 
-    // Fetch updated record
     const [updatedRows] = await pool.query(
       'SELECT id, farmer_id, name, phone, state, district, village, preferred_language, created_at, updated_at FROM farmers WHERE farmer_id = ?',
       [farmerId.trim()]

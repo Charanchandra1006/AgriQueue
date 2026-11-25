@@ -121,11 +121,9 @@ router.get('/trends', async (req, res, next) => {
  */
 router.post('/sync', async (req, res, next) => {
   try {
-    // Basic protection for local dev: verify client is local or has valid dev header/key if provided
     const clientIp = req.ip || req.connection?.remoteAddress || '';
     const isLocal = clientIp === '127.0.0.1' || clientIp === '::1' || clientIp === '::ffff:127.0.0.1';
     
-    // In production or external calls, can require x-api-secret or admin session
     if (process.env.NODE_ENV === 'production' && !isLocal && !req.headers['x-sync-secret']) {
       return res.status(403).json({
         success: false,
@@ -148,7 +146,6 @@ router.post('/sync', async (req, res, next) => {
 
     res.json(syncResult);
   } catch (error) {
-    // Handle specific configuration or upstream errors cleanly
     if (error.statusCode === 503 && error.requiredConfig) {
       return res.status(503).json({
         success: false,
