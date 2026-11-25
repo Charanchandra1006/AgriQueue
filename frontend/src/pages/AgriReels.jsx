@@ -27,24 +27,20 @@ export const AgriReels = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left: Mobile-Style Vertical Reels Viewer */}
         <div className="lg:col-span-1 flex justify-center">
           <div className="relative w-full max-w-[340px] aspect-[9/16] bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-900">
-            {/* Reel Video Thumbnail Mock */}
             <img
               src={activeReel.thumbnail}
               alt={activeReel.title}
               className="absolute inset-0 w-full h-full object-cover opacity-80"
             />
             
-            {/* Play Button Overlay */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="p-4 bg-white/20 rounded-full backdrop-blur-md text-white border border-white/20 scale-90 opacity-70">
                 <Play className="h-8 w-8 fill-white ml-0.5" />
               </div>
             </div>
 
-            {/* Top Indicator overlays */}
             <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between text-white">
               <Badge variant="primary" className="bg-primary-600/90 text-white border-none py-1">
                 {activeReel.category}
@@ -54,9 +50,7 @@ export const AgriReels = () => {
               </button>
             </div>
 
-            {/* Right Interactions Sidebar */}
             <div className="absolute right-3.5 bottom-24 z-10 flex flex-col items-center gap-4.5 text-white">
-              {/* Like */}
               <button
                 onClick={() => handleLikeToggle(activeReelIndex)}
                 className="flex flex-col items-center gap-1 cursor-pointer"
@@ -71,7 +65,6 @@ export const AgriReels = () => {
                 <span className="text-[10px] font-bold">{likes[activeReelIndex] ? 'Liked' : 'Like'}</span>
               </button>
 
-              {/* Share */}
               <button
                 onClick={() => alert("Reel link copied to clipboard!")}
                 className="flex flex-col items-center gap-1 cursor-pointer"
@@ -82,7 +75,6 @@ export const AgriReels = () => {
                 <span className="text-[10px] font-bold">Share</span>
               </button>
 
-              {/* Views */}
               <div className="flex flex-col items-center gap-1">
                 <div className="p-3 bg-slate-900/65 border border-white/10 rounded-full backdrop-blur-md text-white">
                   <Eye className="h-5 w-5" />
@@ -91,7 +83,6 @@ export const AgriReels = () => {
               </div>
             </div>
 
-            {/* Bottom Meta Overlay */}
             <div className="absolute bottom-0 left-0 right-0 p-4 pt-16 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent text-white">
               <div className="flex items-center gap-2 mb-2">
                 <div className="h-7 w-7 rounded-full bg-emerald-500 flex items-center justify-center text-xs font-bold text-slate-950 shadow-xs">
@@ -112,7 +103,6 @@ export const AgriReels = () => {
           </div>
         </div>
 
-        {/* Right: Video Playlists/Topics Selector */}
         <div className="lg:col-span-2 space-y-4">
           <span className="block text-xs font-bold text-slate-400 uppercase tracking-widest">
             More Educational Reels
@@ -129,7 +119,6 @@ export const AgriReels = () => {
                     : 'bg-white/60 border-slate-100 hover:border-slate-200'
                 }`}
               >
-                {/* Small thumbnail */}
                 <div className="w-24 aspect-video rounded-lg overflow-hidden bg-slate-200 shrink-0 relative">
                   <img
                     src={reel.thumbnail}
@@ -163,7 +152,6 @@ export const AgriReels = () => {
             ))}
           </div>
           
-          {/* Feedback Form */}
           <Card className="border-slate-100 mt-4.5 bg-slate-50/50">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Request Educational Topics</CardTitle>

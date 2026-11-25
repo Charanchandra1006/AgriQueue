@@ -12,20 +12,15 @@ export const AppLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row" style={{ background: 'var(--bg-base)' }}>
-      {/* Sidebar Navigation */}
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
 
-      {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 min-h-screen">
-        {/* Top Navbar */}
         <Navbar onMenuToggle={toggleSidebar} />
 
-        {/* Page Content */}
         <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto page-enter">
           <Outlet />
         </main>
 
-        {/* Footer */}
         <footer style={{ 
           borderTop: '1.5px solid #e6dfc5', 
           background: 'rgba(255, 254, 248, 0.95)',

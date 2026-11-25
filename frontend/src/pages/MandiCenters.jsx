@@ -691,7 +691,6 @@ export const MandiCenters = () => {
 
   return (
     <div className="space-y-6 pb-12 animate-in fade-in duration-300">
-      {/* ================= PAGE HEADER ================= */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -707,7 +706,6 @@ export const MandiCenters = () => {
           </p>
         </div>
 
-        {/* Quick Action Buttons */}
         <div className="flex items-center gap-2.5 shrink-0 self-start sm:self-center">
           <Button
             variant="outline"
@@ -728,7 +726,6 @@ export const MandiCenters = () => {
         </div>
       </div>
 
-      {/* ================= SELECTED MANDI BANNER (FROM MARKET PRICES) ================= */}
       {selectedMandi && (
         <div
           ref={selectedCardRef}
@@ -819,7 +816,6 @@ export const MandiCenters = () => {
         </div>
       )}
 
-      {/* =================  MANDIS NEAR YOU / PROMINENT HERO SECTION ================= */}
       <div className="p-4 sm:p-5 bg-gradient-to-r from-emerald-50 via-white to-primary-50/40 border-2 border-emerald-400 shadow-sm rounded-2xl flex flex-col lg:flex-row lg:items-center justify-between gap-4 animate-in fade-in">
         <div className="flex items-start sm:items-center gap-3.5">
           <span
@@ -839,7 +835,6 @@ export const MandiCenters = () => {
               </span>
             </div>
 
-            {/* Location context status */}
             <div className="text-xs sm:text-sm mt-1 space-y-0.5">
               <p className="font-bold text-emerald-900 flex items-center gap-1.5 flex-wrap">
                 <span>
@@ -872,9 +867,7 @@ export const MandiCenters = () => {
           </div>
         </div>
 
-        {/* Action Controls */}
         <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-          {/* Prominent Find Mandis Near Me Button */}
           <Button
             variant="primary"
             className="text-xs sm:text-sm font-extrabold shadow-md shadow-primary-700/20 py-2.5 px-4 flex items-center gap-2 cursor-pointer"
@@ -894,7 +887,6 @@ export const MandiCenters = () => {
             )}
           </Button>
 
-          {/* Select Village Fallback Button */}
           <Button
             variant="outline"
             className="text-xs sm:text-sm font-bold border-slate-300 text-slate-700 hover:bg-slate-50 py-2.5 px-3.5 flex items-center gap-1.5 shadow-2xs cursor-pointer"
@@ -904,7 +896,6 @@ export const MandiCenters = () => {
             <span>{t('mandi.selectYourVillageBtn')}</span>
           </Button>
 
-          {/* Toggle All / Near View */}
           {viewMode === 'near' ? (
             <Button
               variant="outline"
@@ -928,9 +919,7 @@ export const MandiCenters = () => {
         </div>
       </div>
 
-      {/* ================= SEARCH & SIMPLE FARMER-FRIENDLY FILTERS ================= */}
       <Card className="p-4 md:p-5 border-slate-200 shadow-2xs space-y-4">
-        {/* Search Bar */}
         <div className="relative">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
           <input
@@ -954,7 +943,6 @@ export const MandiCenters = () => {
           )}
         </div>
 
-        {/* Mandal Disambiguation Option Picker */}
         {disambiguationOptions && disambiguationOptions.length > 0 && (
           <div className="p-3.5 bg-amber-50/95 border-2 border-amber-300 rounded-2xl space-y-2 animate-in fade-in slide-in-from-top-2 duration-200">
             <div className="flex items-center justify-between">
@@ -990,9 +978,7 @@ export const MandiCenters = () => {
           </div>
         )}
 
-        {/* Filter Controls Row: State -> District -> Mandal -> Village -> Crop */}
         <div className="flex flex-wrap items-center gap-2.5 pt-1">
-          {/* State Filter */}
           <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
             <span className="text-slate-400">{t('common.state')}:</span>
             <select
@@ -1015,7 +1001,6 @@ export const MandiCenters = () => {
             </select>
           </div>
 
-          {/* District Filter */}
           <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
             <span className="text-slate-400">{t('common.district')}:</span>
             <select
@@ -1037,7 +1022,6 @@ export const MandiCenters = () => {
             </select>
           </div>
 
-          {/* Mandal Filter */}
           {mandals.length > 0 && (
             <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
               <span className="text-slate-400">{t('common.mandal')}:</span>
@@ -1060,7 +1044,6 @@ export const MandiCenters = () => {
             </div>
           )}
 
-          {/* Village Filter */}
           {availableVillages.length > 0 && (
             <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
               <span className="text-slate-400">{t('common.village')}:</span>
@@ -1079,7 +1062,6 @@ export const MandiCenters = () => {
             </div>
           )}
 
-          {/* Crop Filter */}
           {crops.length > 0 && (
             <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
               <span className="text-slate-400"> {t('common.crop')}:</span>
@@ -1098,7 +1080,6 @@ export const MandiCenters = () => {
             </div>
           )}
 
-          {/* Open Now Toggle */}
           <button
             onClick={() => setOpenOnly(!openOnly)}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer flex items-center gap-1 ${
@@ -1110,7 +1091,6 @@ export const MandiCenters = () => {
             <span>{openOnly ? t('mandi.openNowFilter') : t('mandi.openNow')}</span>
           </button>
 
-          {/* Reset Filters */}
           {hasActiveFilters && (
             <button
               onClick={resetFilters}
@@ -1123,7 +1103,6 @@ export const MandiCenters = () => {
         </div>
       </Card>
 
-      {/* Result Count Indicator */}
       <div className="flex items-center justify-between px-1">
         <span className="text-xs font-bold text-slate-500">
           {t('mandi.showingCountOfTotal', { shown: displayMandis.length, total: activeMandis.length })}
@@ -1133,7 +1112,6 @@ export const MandiCenters = () => {
         )}
       </div>
 
-      {/* Loading State */}
       {isLoading && (
         <Card className="p-12 text-center bg-white border-slate-200 shadow-xs rounded-2xl">
           <div className="flex flex-col items-center justify-center space-y-3">
@@ -1148,7 +1126,6 @@ export const MandiCenters = () => {
         </Card>
       )}
 
-      {/* Error State */}
       {error && !isLoading && (
         <Card className="p-8 text-center bg-rose-50/50 border-rose-200 rounded-2xl">
           <div className="max-w-md mx-auto space-y-3">
@@ -1169,7 +1146,6 @@ export const MandiCenters = () => {
         </Card>
       )}
 
-      {/* Empty State */}
       {!isLoading && !error && displayMandis.length === 0 && (
         <Card className="p-8 text-center bg-white border-slate-200 rounded-2xl">
           <div className="max-w-md mx-auto space-y-3">
@@ -1192,7 +1168,6 @@ export const MandiCenters = () => {
         </Card>
       )}
 
-      {/* ================= MANDI CENTER RESPONSIVE GRID ================= */}
       {!isLoading && !error && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {displayMandis.map((mandi) => {
@@ -1210,9 +1185,7 @@ export const MandiCenters = () => {
                     : 'border-slate-200 hover:border-primary-400 hover:shadow-md bg-white'
                 }`}
               >
-                {/* Top Card Section: Badges, Title, Location */}
                 <div className="space-y-3 min-w-0 flex-1">
-                  {/* Badges Row */}
                   <div className="flex flex-wrap items-center gap-1.5 min-w-0">
                     {mandi.center_type && (
                       <span className="inline-block bg-primary-50 text-primary-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-primary-200 break-words">
@@ -1238,7 +1211,6 @@ export const MandiCenters = () => {
                     )}
                   </div>
 
-                  {/* Mandi Name */}
                   <div className="flex items-start gap-2.5 min-w-0">
                     <span className="text-2xl shrink-0 mt-0.5" role="img" aria-label="mandi">
                       
@@ -1251,7 +1223,6 @@ export const MandiCenters = () => {
                         {mandi.name}
                       </h2>
 
-                      {/* Mandal & Village Location */}
                       <p className="text-xs font-semibold text-slate-500 mt-1 flex items-start gap-1 min-w-0">
                         <MapPin className="h-3.5 w-3.5 text-slate-400 shrink-0 mt-0.5" />
                         <span
@@ -1266,7 +1237,6 @@ export const MandiCenters = () => {
                     </div>
                   </div>
 
-                  {/* Status & Operating Hours */}
                   <div className="flex flex-wrap items-center gap-2 text-xs font-bold pt-0.5 min-w-0">
                     <span
                       className={`px-2.5 py-0.5 rounded-full border text-[11px] font-extrabold flex items-center gap-1 shrink-0 ${
@@ -1283,7 +1253,6 @@ export const MandiCenters = () => {
                     </span>
                   </div>
 
-                  {/* Slot Availability & Service Info */}
                   <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between text-xs min-w-0 gap-2">
                     <div className="flex items-center gap-1.5 min-w-0">
                       <span className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
@@ -1294,7 +1263,6 @@ export const MandiCenters = () => {
                     </span>
                   </div>
 
-                  {/* Supported Crops */}
                   {mandi.external?.commodities && mandi.external.commodities.length > 0 && (
                     <div className="flex flex-wrap gap-1 pt-0.5 min-w-0">
                       {mandi.external.commodities.slice(0, 3).map((comm, idx) => (
@@ -1314,7 +1282,6 @@ export const MandiCenters = () => {
                   )}
                 </div>
 
-                {/* ================= GOOGLE MAPS NAVIGATION: VIEW LOCATION & DIRECTIONS ================= */}
                 <div className="pt-3.5 mt-auto border-t border-slate-100 min-w-0">
                   {(() => {
                     const navInfo = getMandiNavigation(mandi);
@@ -1354,7 +1321,6 @@ export const MandiCenters = () => {
                   })()}
                 </div>
 
-                {/* Bottom Action Buttons: Book Slot & View Details */}
                 <div className="pt-2.5 flex items-center gap-2 min-w-0">
                   <Button
                     variant="primary"
@@ -1381,14 +1347,12 @@ export const MandiCenters = () => {
         </div>
       )}
 
-      {/* =================  "SELECT YOUR VILLAGE" MODAL (PERMISSION DENIED FALLBACK) ================= */}
       {isVillageModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
           <div
             className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden space-y-0 relative animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/80">
               <div className="flex items-center gap-2">
                 <span className="text-xl"></span>
@@ -1410,7 +1374,6 @@ export const MandiCenters = () => {
               </button>
             </div>
 
-            {/* Body Form */}
             <div className="p-6 space-y-4">
               {locationError && (
                 <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 font-semibold flex items-center gap-2">
@@ -1419,7 +1382,6 @@ export const MandiCenters = () => {
                 </div>
               )}
 
-              {/* State */}
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-600 block">{t('common.state')}</label>
                 <input
@@ -1430,7 +1392,6 @@ export const MandiCenters = () => {
                 />
               </div>
 
-              {/* District */}
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-600 block">{t('common.district')}</label>
                 <input
@@ -1441,7 +1402,6 @@ export const MandiCenters = () => {
                 />
               </div>
 
-              {/* Mandal Dropdown (16 official mandals) */}
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-700 block">
                   {t('mandi.selectMandalLabel')} <span className="text-rose-500">*</span>
@@ -1472,7 +1432,6 @@ export const MandiCenters = () => {
                 </div>
               </div>
 
-              {/* Village Dropdown */}
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-700 block">
                   {t('mandi.selectVillageLabel')} <span className="text-rose-500">*</span>
@@ -1497,7 +1456,6 @@ export const MandiCenters = () => {
               </div>
             </div>
 
-            {/* Modal Actions */}
             <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-end gap-2.5">
               <Button
                 variant="outline"
@@ -1532,14 +1490,12 @@ export const MandiCenters = () => {
         </div>
       )}
 
-      {/* Dedicated Slot Booking Modal */}
       <SlotBookingModal
         mandi={bookingMandi}
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
       />
 
-      {/* Dedicated Booking History Modal */}
       <BookingHistoryModal
         isOpen={isHistoryModalOpen}
         onClose={() => setIsHistoryModalOpen(false)}

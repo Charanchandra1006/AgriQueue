@@ -28,7 +28,6 @@ export const BookingQRCode = ({
 
   return (
     <div className={`flex flex-col items-center text-center ${className}`}>
-      {/* 1. Prominently visible Token Number */}
       {tokenNumber && (
         <div
           className={`mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-heading font-black text-base sm:text-lg tracking-wider ${
@@ -42,7 +41,6 @@ export const BookingQRCode = ({
         </div>
       )}
 
-      {/* 2. Simple Solid White Container with Clean Quiet Zone Margin */}
       <div
         className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 inline-flex items-center justify-center shadow-md"
         style={{
@@ -65,7 +63,6 @@ export const BookingQRCode = ({
         />
       </div>
 
-      {/* 3. Booking ID visible below the QR as a fallback */}
       <div className="mt-3.5 space-y-1">
         <span
           className={`text-[11px] uppercase font-bold tracking-wider block ${
@@ -85,7 +82,6 @@ export const BookingQRCode = ({
         </span>
       </div>
 
-      {/* 4. Farmer-friendly instruction banner */}
       <div
         className={`mt-4 max-w-sm text-xs leading-relaxed px-4 py-2.5 rounded-xl border ${
           isDark

@@ -302,7 +302,6 @@ export const MarketPrices = () => {
 
   return (
     <div className="space-y-6 pb-12 animate-in fade-in duration-300">
-      {/* 1. PAGE HEADER */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -345,7 +344,6 @@ export const MarketPrices = () => {
         </div>
       </div>
 
-      {/* 2. FARMER DISTRICT FIRST BANNER */}
       {farmerDistrict && (
         <div className={`p-3.5 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors ${
           isFarmerDistrictMode
@@ -396,7 +394,6 @@ export const MarketPrices = () => {
         </div>
       )}
 
-      {/* 3. FARMER DECISION FLOW */}
       <Card className="p-4 bg-gradient-to-r from-emerald-50/70 via-white to-primary-50/50 border-emerald-100 shadow-2xs rounded-2xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
           <span className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
@@ -436,7 +433,6 @@ export const MarketPrices = () => {
         </div>
       </Card>
 
-      {/* 4. HIGHER REPORTED PRICE BANNER (Non-misleading, visible records comparison) */}
       {higherPriceItem && (
         <Card className="p-4 md:p-5 bg-gradient-to-br from-amber-50/70 via-white to-emerald-50/50 border-amber-200/90 shadow-2xs rounded-2xl">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -514,9 +510,7 @@ export const MarketPrices = () => {
         </Card>
       )}
 
-      {/* 5. SEARCH & FILTER CONTROLS */}
       <Card className="p-3.5 md:p-4 border-slate-200 shadow-2xs space-y-3 bg-white rounded-2xl">
-        {/* Search Bar */}
         <div className="relative">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
           <input
@@ -537,9 +531,7 @@ export const MarketPrices = () => {
           )}
         </div>
 
-        {/* Filters Row */}
         <div className="flex flex-wrap items-center gap-2.5 pt-1">
-          {/* State Selector */}
           <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
             <span className="text-slate-400">{t('market.stateLabel')}</span>
             <select
@@ -560,7 +552,6 @@ export const MarketPrices = () => {
             </select>
           </div>
 
-          {/* District Selector */}
           <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
             <span className="text-slate-400">{t('market.districtLabel')}</span>
             <select
@@ -580,7 +571,6 @@ export const MarketPrices = () => {
             </select>
           </div>
 
-          {/* Mandi Filter */}
           {availableMandis.length > 0 && (
             <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
               <span className="text-slate-400">{t('market.mandiFilterLabel')}</span>
@@ -597,7 +587,6 @@ export const MarketPrices = () => {
             </div>
           )}
 
-          {/* Commodity Filter */}
           {availableCommodities.length > 0 && (
             <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
               <span className="text-slate-400">{t('market.cropFilterLabel')}</span>
@@ -614,7 +603,6 @@ export const MarketPrices = () => {
             </div>
           )}
 
-          {/* Reset Filters */}
           {hasActiveFilters && (
             <button
               onClick={resetFilters}
@@ -627,7 +615,6 @@ export const MarketPrices = () => {
         </div>
       </Card>
 
-      {/* Result Status Indicator */}
       <div className="flex items-center justify-between px-1 text-xs">
         <span className="font-bold text-slate-500">
           {t('market.showingCountRecords', { count: filteredPrices.length })}
@@ -638,7 +625,6 @@ export const MarketPrices = () => {
         </div>
       </div>
 
-      {/* Error state */}
       {error && (
         <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl flex items-start gap-3 text-amber-900">
           <AlertCircle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
@@ -657,9 +643,7 @@ export const MarketPrices = () => {
         </div>
       )}
 
-      {/* 6. PRICE TABLE / LIST */}
       <Card className="p-0 overflow-hidden border-slate-200 shadow-2xs bg-white rounded-2xl">
-        {/* Table Header (Desktop) */}
         <div className="hidden md:grid md:grid-cols-12 items-center bg-slate-50/90 border-b border-slate-200 py-3.5 px-6 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
           <div className="col-span-4 font-extrabold text-slate-600">{t('market.cropAndVarietyHeader', 'Crop & Variety')}</div>
           <div className="col-span-3 font-extrabold text-slate-600">{t('market.mandiAndDistrictHeader', 'Mandi & District')}</div>
@@ -667,7 +651,6 @@ export const MarketPrices = () => {
           <div className="col-span-2 text-right font-extrabold text-slate-600">{t('market.actionsHeader', 'Actions')}</div>
         </div>
 
-        {/* Loading State */}
         {isLoading ? (
           <div className="p-12 text-center space-y-3">
             <RefreshCw className="h-6 w-6 text-primary-600 animate-spin mx-auto" />
@@ -720,9 +703,7 @@ export const MarketPrices = () => {
                   key={item.id}
                   className="p-4 md:py-4 md:px-6 hover:bg-slate-50/80 transition-colors group"
                 >
-                  {/* Row Content: Desktop Grid / Mobile Stacked */}
                   <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-3 md:gap-4">
-                    {/* 1. Crop Column */}
                     <div className="md:col-span-4 flex items-center gap-3">
                       <span className="text-2xl shrink-0" role="img" aria-label={item.commodity}>
                         {emoji}
@@ -748,7 +729,6 @@ export const MarketPrices = () => {
                       </div>
                     </div>
 
-                    {/* 2. Mandi Column */}
                     <div className="md:col-span-3">
                       <span className="text-xs font-bold text-slate-800 bg-slate-100/90 border border-slate-200/80 px-2.5 py-1 rounded-lg inline-block">
                          {item.market_name}
@@ -758,7 +738,6 @@ export const MarketPrices = () => {
                       </span>
                     </div>
 
-                    {/* 3. Approx. Market Range Column */}
                     <div className="md:col-span-3 flex items-baseline md:block justify-between">
                       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider md:hidden">
                         {t('market.approxRangeColon', 'Approx. Range:')}
@@ -776,7 +755,6 @@ export const MarketPrices = () => {
                       </div>
                     </div>
 
-                    {/* 4. Action Column */}
                     <div className="md:col-span-2 flex items-center justify-end gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
                       <button
                         onClick={() => handleOpenTrendModal(item)}
@@ -798,7 +776,6 @@ export const MarketPrices = () => {
                     </div>
                   </div>
 
-                  {/* Collapsible Details */}
                   {isExpanded && (
                     <div className="mt-3 pt-3 border-t border-slate-100/90 grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50/80 p-3 rounded-xl">
                       <div>
@@ -846,11 +823,9 @@ export const MarketPrices = () => {
         )}
       </Card>
 
-      {/* 8. TREND GRAPH MODAL */}
       {trendModalItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
           <Card className="w-full max-w-2xl bg-white border-slate-200 shadow-2xl rounded-3xl p-4 sm:p-6 space-y-4 max-h-[92vh] overflow-y-auto">
-            {/* Modal Header */}
             <div className="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2.5 min-w-0">
                 <span className="text-2xl p-2 bg-emerald-50 rounded-2xl border border-emerald-100 shrink-0">
@@ -875,7 +850,6 @@ export const MarketPrices = () => {
               </button>
             </div>
 
-            {/* Period Selector Tabs: Today | 7 Days | 30 Days | 1 Year */}
             <div className="flex items-center gap-1.5 bg-slate-100/90 p-1 rounded-xl">
               {[
                 { id: 'today', label: t('market.tabToday', 'Today') },
@@ -897,7 +871,6 @@ export const MarketPrices = () => {
               ))}
             </div>
 
-            {/* Modal Body */}
             {(() => {
               const currentMin = trendData?.summary?.overallMinPrice ?? trendModalItem?.min_price;
               const currentMax = trendData?.summary?.overallMaxPrice ?? trendModalItem?.max_price;
@@ -906,7 +879,6 @@ export const MarketPrices = () => {
 
               return (
                 <div className="space-y-4">
-                  {/* Farmer-Friendly Interpretation (Requirement 6) */}
                   <div className="p-3.5 bg-emerald-50/90 border border-emerald-200/90 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 shadow-2xs">
                     <div>
                       <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-950">
@@ -928,7 +900,6 @@ export const MarketPrices = () => {
                     </div>
                   </div>
 
-                  {/* Summary Cards (Requirement 5) */}
                   <div className="grid grid-cols-3 gap-2 sm:gap-3">
                     <div className="p-3 bg-slate-50/90 rounded-2xl border border-slate-200/70 text-center">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
@@ -963,7 +934,6 @@ export const MarketPrices = () => {
                     </div>
                   </div>
 
-                  {/* Visual Chart - Hero Element (Requirements 1, 3, 4, 8, 9, 10) */}
                   <div className="bg-slate-50/60 p-2 sm:p-4 rounded-2xl border border-slate-200/80">
                     <PriceTrendChart
                       period={trendPeriod}
@@ -972,7 +942,6 @@ export const MarketPrices = () => {
                     />
                   </div>
 
-                  {/* Government Disclaimer (Requirement 11) */}
                   <div className="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-[11px] text-slate-500 leading-relaxed flex items-start gap-2">
                     <span className="shrink-0 text-slate-400 mt-0.5">ℹ️</span>
                     <span>

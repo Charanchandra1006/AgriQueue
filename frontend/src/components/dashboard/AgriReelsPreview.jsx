@@ -33,7 +33,6 @@ export const AgriReelsPreview = () => {
               onClick={() => navigate('/reels')}
               className="group flex flex-col bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden hover:bg-white hover:border-slate-200 transition-all duration-250 cursor-pointer shadow-2xs hover:shadow-sm"
             >
-              {/* Thumbnail Container */}
               <div className="relative aspect-video w-full overflow-hidden bg-slate-200">
                 <img
                   src={reel.thumbnail}
@@ -41,21 +40,18 @@ export const AgriReelsPreview = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 
-                {/* Play Button Overlay */}
                 <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/30 flex items-center justify-center transition-colors">
                   <div className="p-2.5 bg-white/90 rounded-full text-slate-800 shadow-lg scale-90 group-hover:scale-100 transition-transform duration-200">
                     <Play className="h-5.5 w-5.5 fill-slate-800 ml-0.5" />
                   </div>
                 </div>
 
-                {/* Duration Badge */}
                 <span className="absolute bottom-2.5 right-2.5 flex items-center gap-1 text-[10px] font-bold text-white bg-slate-900/70 px-2 py-0.5 rounded-md backdrop-blur-xs">
                   <Clock className="h-3 w-3" />
                   {reel.duration}
                 </span>
               </div>
 
-              {/* Info Details */}
               <div className="p-4 flex-1 flex flex-col justify-between">
                 <div>
                   <span className="inline-block text-[10px] font-extrabold text-primary-700 bg-primary-50 px-2 py-0.5 rounded-md mb-2">

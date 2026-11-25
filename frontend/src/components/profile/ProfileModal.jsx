@@ -75,7 +75,6 @@ export const ProfileModal = ({ isOpen, onClose }) => {
         className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/80">
           <div className="flex items-center gap-2.5">
             <div className="p-2 bg-primary-100 text-primary-700 rounded-xl">
@@ -99,7 +98,6 @@ export const ProfileModal = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Feedback Alert */}
         {notification && (
           <div
             className={`mx-6 mt-4 p-3 rounded-xl flex items-center gap-2 text-xs font-semibold ${
@@ -117,7 +115,6 @@ export const ProfileModal = ({ isOpen, onClose }) => {
           </div>
         )}
 
-        {/* Content */}
         <div className="p-6 space-y-4">
           {!isEditing ? (
             <div className="space-y-4">

@@ -305,7 +305,6 @@ export const BookTransport = () => {
 
   return (
     <div className="space-y-6 pb-14 animate-in fade-in duration-300 max-w-5xl mx-auto">
-      {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
         <div>
           <div className="flex items-center gap-2">
@@ -330,7 +329,6 @@ export const BookTransport = () => {
         )}
       </div>
 
-      {/* ================= CASE 1: NO CONFIRMED MANDI BOOKING ================= */}
       {!activeBooking ? (
         <Card className="p-8 sm:p-12 text-center bg-gradient-to-br from-amber-50/40 via-white to-slate-50 border border-amber-200 rounded-3xl shadow-xs max-w-2xl mx-auto space-y-6 animate-in zoom-in-95 duration-200">
           <div className="h-16 w-16 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mx-auto text-3xl shadow-2xs">
@@ -384,7 +382,6 @@ export const BookTransport = () => {
       ) : activeTransport && activeTransport.transportStatus !== 'CANCELLED' ? (
         /* ================= CASE 2: ACTIVE TRANSPORT BOOKING DISPLAY ================= */
         <div className="space-y-6 animate-in zoom-in-95 duration-200">
-          {/* Confirmation Banner */}
           <div className="p-5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-3xl shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="p-3 bg-white/20 rounded-2xl text-white backdrop-blur-xs shrink-0">
@@ -408,7 +405,6 @@ export const BookTransport = () => {
               </div>
             </div>
 
-            {/* Simulated Demo Driver Badge */}
             <div className="text-right self-start sm:self-center">
               <span className="px-3 py-1 bg-white/15 border border-white/20 rounded-full text-[11px] font-semibold text-emerald-100 block">
                  {t('transport.active.demoPool')}
@@ -416,7 +412,6 @@ export const BookTransport = () => {
             </div>
           </div>
 
-          {/* 5-Step Progress Tracker */}
           <Card className="p-5 sm:p-6 border-slate-200 shadow-xs rounded-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-6">
               <div>
@@ -470,7 +465,6 @@ export const BookTransport = () => {
               })}
             </div>
 
-            {/* Demonstration State Controls */}
             <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-slate-50/70 p-3.5 rounded-xl text-xs">
               <div className="flex items-center gap-2">
                 <span className="p-1 bg-amber-100 text-amber-800 rounded-md font-bold text-[10px]">{t('transport.active.demoMode')}</span>
@@ -532,9 +526,7 @@ export const BookTransport = () => {
             </div>
           </Card>
 
-          {/* Detailed Booking Summary Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {/* Vehicle & Produce Details */}
             <Card className="p-5 border-slate-200 shadow-2xs rounded-2xl space-y-4">
               <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5">
                 <span className="text-xl"></span>
@@ -578,7 +570,6 @@ export const BookTransport = () => {
               </div>
             </Card>
 
-            {/* Destination Mandi Details */}
             <Card className="p-5 border-slate-200 shadow-2xs rounded-2xl space-y-4">
               <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5">
                 <span className="text-xl"></span>
@@ -623,7 +614,6 @@ export const BookTransport = () => {
               </div>
             </Card>
 
-            {/* Pickup & Driver Assignment */}
             <Card className="p-5 border-slate-200 shadow-2xs rounded-2xl space-y-4">
               <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5">
                 <span className="text-xl"></span>
@@ -640,7 +630,6 @@ export const BookTransport = () => {
                   </span>
                 </div>
 
-                {/* Assigned Driver Box */}
                 <div className="p-3 rounded-xl border bg-slate-50 space-y-1.5">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase text-slate-500 tracking-wider">
@@ -694,7 +683,6 @@ export const BookTransport = () => {
             </div>
           )}
 
-          {/* STEP 1: DESTINATION MANDI SUMMARY (AUTOMATICALLY POPULATED) */}
           <Card className="p-5 sm:p-6 bg-gradient-to-br from-emerald-50/50 via-white to-white border-2 border-emerald-500/80 rounded-2xl shadow-xs space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-100 pb-3">
               <div className="flex items-center gap-2.5">
@@ -716,7 +704,6 @@ export const BookTransport = () => {
               </div>
             </div>
 
-            {/* Read-only Mandi & Token Meta Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
               <div className="p-2.5 bg-white rounded-xl border border-slate-200/80">
                 <span className="text-slate-400 font-bold uppercase text-[9px] block">{t('transport.form.mandiLocationLabel')}</span>
@@ -753,7 +740,6 @@ export const BookTransport = () => {
             </p>
           </Card>
 
-          {/* STEP 2: CROP & ESTIMATED LOAD QUANTITY */}
           <Card className="p-5 sm:p-6 border-slate-200 shadow-2xs rounded-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
@@ -766,7 +752,6 @@ export const BookTransport = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Crop display */}
               <div className="space-y-1.5">
                 <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
                   {t('transport.form.cropHarvestLabel')}
@@ -782,7 +767,6 @@ export const BookTransport = () => {
                 </div>
               </div>
 
-              {/* Estimated load in Quintals */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -839,7 +823,6 @@ export const BookTransport = () => {
             </div>
           </Card>
 
-          {/* STEP 3: PICKUP LOCATION (PREFILLED FROM FARMER PROFILE) */}
           <Card className="p-5 sm:p-6 border-slate-200 shadow-2xs rounded-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
@@ -884,7 +867,6 @@ export const BookTransport = () => {
             </div>
           </Card>
 
-          {/* STEP 4: SELECT VEHICLE TYPE (EXACTLY 3 OPTIONS) */}
           <div className="space-y-3">
             <div>
               <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -949,7 +931,6 @@ export const BookTransport = () => {
             </div>
           </div>
 
-          {/* STEP 5: PICKUP DATE & TIME (CONNECTED TO MANDI SLOT) */}
           <Card className="p-5 sm:p-6 border-slate-200 shadow-2xs rounded-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
@@ -1004,7 +985,6 @@ export const BookTransport = () => {
             </div>
           </Card>
 
-          {/* STEP 6: DRIVER DISPATCH INFORMATION NOTE */}
           <div className="p-4 bg-slate-100/70 rounded-2xl border border-slate-200 flex items-start gap-3 text-xs text-slate-600">
             <span className="text-xl shrink-0"></span>
             <div className="space-y-0.5">
@@ -1020,7 +1000,6 @@ export const BookTransport = () => {
             </div>
           </div>
 
-          {/* SUBMIT BUTTON */}
           <div className="pt-2">
             <Button
               type="submit"
@@ -1045,7 +1024,6 @@ export const BookTransport = () => {
         </form>
       )}
 
-      {/* ================= CHANGE PICKUP LOCATION MODAL ================= */}
       {isLocationModalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
           <Card className="w-full max-w-lg bg-white rounded-3xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
@@ -1070,7 +1048,6 @@ export const BookTransport = () => {
               </p>
 
               <form onSubmit={handleSaveLocation} className="space-y-4">
-                {/* State & District (Read-only or dynamic) */}
                 <div className="grid grid-cols-2 gap-3 text-xs">
                   <div>
                     <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">
@@ -1096,7 +1073,6 @@ export const BookTransport = () => {
                   </div>
                 </div>
 
-                {/* If district is Karimnagar, show 16 official Mandals & Villages */}
                 {tempDistrict === 'Karimnagar' ? (
                   <>
                     <div className="space-y-1">

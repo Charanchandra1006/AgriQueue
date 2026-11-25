@@ -79,7 +79,6 @@ export const Navbar = ({ onMenuToggle }) => {
   return (
     <>
       <header style={headerStyle}>
-        {/* Left: Menu + Welcome */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <button
             onClick={onMenuToggle}
@@ -99,10 +98,8 @@ export const Navbar = ({ onMenuToggle }) => {
           </div>
         </div>
 
-        {/* Right: Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
 
-          {/* Language Selector */}
           <div style={{ position: 'relative' }}>
             <button
               onClick={() => { setIsLangOpen(!isLangOpen); setIsNotifOpen(false); setIsProfileOpen(false); }}
@@ -152,7 +149,6 @@ export const Navbar = ({ onMenuToggle }) => {
             )}
           </div>
 
-          {/* Notifications */}
           <div style={{ position: 'relative' }}>
             <button
               onClick={() => { setIsNotifOpen(!isNotifOpen); setIsLangOpen(false); setIsProfileOpen(false); }}
@@ -234,7 +230,6 @@ export const Navbar = ({ onMenuToggle }) => {
             )}
           </div>
 
-          {/* Profile Button */}
           <div style={{ position: 'relative' }}>
             <button
               onClick={() => { setIsProfileOpen(!isProfileOpen); setIsLangOpen(false); setIsNotifOpen(false); }}
@@ -272,7 +267,6 @@ export const Navbar = ({ onMenuToggle }) => {
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setIsProfileOpen(false)} />
                 <div style={{ ...dropdownStyle, width: '250px' }} className="z-50">
-                  {/* Profile header */}
                   <div style={{
                     padding: '0.875rem 1rem',
                     borderBottom: '1.5px solid #e6dfc5',
@@ -299,7 +293,6 @@ export const Navbar = ({ onMenuToggle }) => {
                     </div>
                   </div>
 
-                  {/* Actions */}
                   {[
                     { label: t('nav.myProfile'), Icon: User },
                     { label: t('nav.settings'), Icon: Settings },

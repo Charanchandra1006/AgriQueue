@@ -61,7 +61,6 @@ export const QuickActions = () => {
               onClick={() => navigate(action.path)}
               className={`group flex items-start gap-4 p-4.5 rounded-2xl border text-left transition-all duration-200 cursor-pointer ${action.color}`}
             >
-              {/* Icon Container */}
               <div className={`p-3 rounded-xl shrink-0 transition-transform duration-200 group-hover:scale-110 ${action.iconColor}`}>
                 <action.icon className="h-6 w-6" />
               </div>

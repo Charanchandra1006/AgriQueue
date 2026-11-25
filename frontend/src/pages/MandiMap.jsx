@@ -549,7 +549,6 @@ export const MandiMap = () => {
 
   return (
     <div className="space-y-4 pb-8 animate-in fade-in duration-300">
-      {/* TOP HEADER */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -563,7 +562,6 @@ export const MandiMap = () => {
           </p>
         </div>
 
-        {/* Link / Button to Mandi Centers Page */}
         <Button
           variant="primary"
           className="shrink-0 self-start sm:self-center font-bold text-sm shadow-xs"
@@ -573,7 +571,6 @@ export const MandiMap = () => {
         </Button>
       </div>
 
-      {/* Geolocation / Alert Toast Banner */}
       {locationToast && (
         <div className="bg-amber-50 border border-amber-200 text-amber-900 px-3.5 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between gap-2 shadow-2xs">
           <div className="flex items-center gap-2">
@@ -590,9 +587,7 @@ export const MandiMap = () => {
         </div>
       )}
 
-      {/* ORGANIZED CONTROLS, MAP & QUICK JUMP */}
       <div className="flex flex-col gap-4">
-        {/* SEARCH BAR */}
         <div className="order-1">
           <div className="relative">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -615,11 +610,9 @@ export const MandiMap = () => {
           </div>
         </div>
 
-        {/* FILTERS SECTION */}
         <div className="order-3 md:order-2">
           <Card className="p-3 border-slate-200 shadow-2xs bg-white">
             <div className="flex flex-wrap items-center gap-2">
-              {/* State Filter */}
               <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
                 <span className="text-slate-400"> {t('mandi.filterState')}:</span>
                 <select
@@ -637,7 +630,6 @@ export const MandiMap = () => {
                 </select>
               </div>
 
-              {/* District Filter */}
               <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
                 <span className="text-slate-400"> {t('mandi.filterDistrict')}:</span>
                 <select
@@ -652,7 +644,6 @@ export const MandiMap = () => {
                 </select>
               </div>
 
-              {/* Crop Filter */}
               {crops.length > 0 && (
                 <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700">
                   <span className="text-slate-400"> {t('mandi.filterCrop')}:</span>
@@ -669,7 +660,6 @@ export const MandiMap = () => {
                 </div>
               )}
 
-              {/* Open Now Toggle */}
               <button
                 onClick={() => setOpenOnly(!openOnly)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer flex items-center gap-1 ${
@@ -681,7 +671,6 @@ export const MandiMap = () => {
                 <span> {t('mandi.openNow')}</span>
               </button>
 
-              {/* Reset Filter Button */}
               {hasActiveFilters && (
                 <button
                   onClick={resetFilters}
@@ -695,10 +684,8 @@ export const MandiMap = () => {
           </Card>
         </div>
 
-        {/* MAP CONTAINER (Always rendered so Leaflet has its container immediately) */}
         <div className="order-2 md:order-3">
           <Card className="p-0 overflow-hidden border-slate-200 shadow-sm rounded-2xl relative bg-slate-100">
-            {/* Map Top Status Bar */}
             <div className="p-3.5 bg-white border-b border-slate-100 flex items-center justify-between gap-2 z-10 relative">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary-600" />
@@ -749,12 +736,9 @@ export const MandiMap = () => {
               </div>
             </div>
 
-            {/* Leaflet Map Div with Visual Section Grid Overlay */}
             <div className="w-full h-[450px] md:h-[560px] relative overflow-hidden">
-              {/* Leaflet Map DOM Element */}
               <div ref={mapRef} className="absolute inset-0 w-full h-full z-0" />
 
-              {/* Loading Overlay */}
               {loading && (
                 <div className="absolute inset-0 z-[500] bg-white/70 backdrop-blur-[2px] flex flex-col items-center justify-center space-y-2">
                   <Loader2 className="h-8 w-8 text-primary-600 animate-spin" />
@@ -762,7 +746,6 @@ export const MandiMap = () => {
                 </div>
               )}
 
-              {/* Error Overlay */}
               {hasError && !loading && (
                 <div className="absolute inset-0 z-[500] bg-white/90 backdrop-blur-[2px] flex flex-col items-center justify-center space-y-2 p-4 text-center">
                   <AlertCircle className="h-8 w-8 text-rose-500" />
@@ -774,7 +757,6 @@ export const MandiMap = () => {
                 </div>
               )}
 
-              {/* Subtle Geographic Grid Overlay (pointer-events-none so map is fully interactive) */}
               {showGrid && (
                 <div
                   className="absolute inset-0 pointer-events-none z-[400] grid grid-cols-4 grid-rows-3"
@@ -804,7 +786,6 @@ export const MandiMap = () => {
           </Card>
         </div>
 
-        {/* QUICK MANDI JUMP CONTROLS */}
         <div className="order-4">
           <Card className="p-4 border-slate-200 shadow-2xs bg-white space-y-2.5">
             <div className="flex items-center justify-between">

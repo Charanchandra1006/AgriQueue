@@ -24,7 +24,6 @@ export const QueueCard = () => {
       <CardContent>
         {profile.activeToken ? (
           <div className="space-y-5">
-            {/* Token Badge Display */}
             <div className="bg-slate-900 text-white rounded-2xl p-4 flex flex-col items-center justify-center relative overflow-hidden shadow-xs">
               <div className="absolute top-0 right-0 w-16 h-16 bg-white/5 rounded-full translate-x-4 -translate-y-4" />
               <span className="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-0.5">
@@ -34,13 +33,11 @@ export const QueueCard = () => {
                 {profile.activeToken}
               </span>
               
-              {/* Digital Pass Indicator */}
               <div className="mt-2.5 flex items-center gap-1.5 text-xs text-emerald-300 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
                 <span> {t('dashboard.verifiedDigitalPass')}</span>
               </div>
             </div>
 
-            {/* Metrics Grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-3">
                 <div className="p-2 bg-amber-50 rounded-lg text-amber-600 border border-amber-100">
@@ -63,7 +60,6 @@ export const QueueCard = () => {
               </div>
             </div>
 
-            {/* Procurement Details */}
             <div className="space-y-3 pt-2 border-t border-slate-50">
               <div className="flex items-start gap-2.5">
                 <MapPin className="h-4.5 w-4.5 text-slate-400 mt-0.5 shrink-0" />

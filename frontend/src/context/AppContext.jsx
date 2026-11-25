@@ -97,11 +97,9 @@ export const AppProvider = ({ children }) => {
     return EMPTY_PROFILE;
   });
 
-  // Active booking from real backend
   const [activeBooking, setActiveBooking] = useState(null);
   const [isLoadingBooking, setIsLoadingBooking] = useState(false);
 
-  // Active transport booking state from real backend
   const [activeTransport, setActiveTransport] = useState(null);
   const [isLoadingTransport, setIsLoadingTransport] = useState(false);
 

@@ -315,7 +315,6 @@ export const Onboarding = () => {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      {/* Decorative background circles */}
       <div style={{
         position: 'absolute', width: '500px', height: '500px', borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(96,108,56,0.08) 0%, transparent 70%)',
@@ -327,7 +326,6 @@ export const Onboarding = () => {
         bottom: '-100px', left: '-80px', pointerEvents: 'none'
       }} />
 
-      {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1.75rem', animation: 'fadeIn 0.4s ease forwards' }}>
         <div style={{
           width: '42px', height: '42px', borderRadius: '12px',
@@ -347,7 +345,6 @@ export const Onboarding = () => {
         </div>
       </div>
 
-      {/* Step progress dots */}
       <div style={{ display: 'flex', gap: '6px', marginBottom: '1.25rem' }}>
         {[1,2,3,4,5].map(s => (
           <div key={s} style={{
@@ -361,10 +358,8 @@ export const Onboarding = () => {
 
       <div style={{ width: '100%', maxWidth: '440px' }}>
 
-        {/* ——— STEP 1: WELCOME ——— */}
         {step === 1 && (
           <div style={cardStyle}>
-            {/* Copper hero band */}
             <div style={{
               background: '#283618',
               padding: '2rem 2rem 1.5rem',
@@ -379,7 +374,6 @@ export const Onboarding = () => {
             </div>
 
             <div style={{ padding: '1.5rem 1.75rem 2rem' }}>
-              {/* Benefits */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', marginBottom: '1.75rem' }}>
                 {[
                   { icon: <MapPin size={18} style={{ color: '#606C38' }} />, text: getT('benefit1') },
@@ -415,7 +409,6 @@ export const Onboarding = () => {
           </div>
         )}
 
-        {/* ——— STEP 2: LANGUAGE ——— */}
         {step === 2 && (
           <div style={cardStyle}>
             <div style={{ padding: '1.75rem' }}>
@@ -483,7 +476,6 @@ export const Onboarding = () => {
           </div>
         )}
 
-        {/* ——— STEP 3: PHONE ——— */}
         {step === 3 && (
           <div style={cardStyle}>
             <div style={{ padding: '1.75rem' }}>
@@ -523,7 +515,6 @@ export const Onboarding = () => {
                   {errors.phone && <p style={{ color: '#c0392b', fontSize: '0.75rem', fontWeight: 600, marginTop: '4px' }}>{errors.phone}</p>}
                 </div>
 
-                {/* Demo hint */}
                 <div style={{
                   background: 'rgba(221,161,94,0.12)',
                   border: '1px solid rgba(221,161,94,0.3)',
@@ -548,7 +539,6 @@ export const Onboarding = () => {
           </div>
         )}
 
-        {/* ——— STEP 4: OTP ——— */}
         {step === 4 && (
           <div style={cardStyle}>
             <div style={{ padding: '1.75rem' }}>
@@ -615,7 +605,6 @@ export const Onboarding = () => {
           </div>
         )}
 
-        {/* ——— STEP 5: PROFILE ——— */}
         {step === 5 && (
           <div style={cardStyle}>
             <div style={{
@@ -635,7 +624,6 @@ export const Onboarding = () => {
             </div>
 
             <form onSubmit={handleProfileSubmit} style={{ padding: '1.5rem 1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {/* Name */}
               <div>
                 <label style={labelStyle}>{getT('nameLabel')} *</label>
                 <div style={{ position: 'relative' }}>
@@ -653,9 +641,7 @@ export const Onboarding = () => {
                 {errors.name && <p style={{ color: '#c0392b', fontSize: '0.72rem', fontWeight: 600, marginTop: '4px' }}>{errors.name}</p>}
               </div>
 
-              {/* State & District */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-                {/* State */}
                 <div ref={stateRef} style={{ position: 'relative' }}>
                   <label style={labelStyle}>{getT('stateLabel')} *</label>
                   <div style={{ position: 'relative' }}>
@@ -700,7 +686,6 @@ export const Onboarding = () => {
                   {errors.state && <p style={{ color: '#c0392b', fontSize: '0.68rem', fontWeight: 600, marginTop: '3px' }}>{errors.state}</p>}
                 </div>
 
-                {/* District */}
                 <div ref={districtRef} style={{ position: 'relative' }}>
                   <label style={labelStyle}>{getT('districtLabel')} *</label>
                   <div style={{ position: 'relative' }}>
@@ -747,7 +732,6 @@ export const Onboarding = () => {
                 </div>
               </div>
 
-              {/* Village */}
               <div>
                 <label style={labelStyle}>{getT('villageLabel')} *</label>
                 <div style={{ position: 'relative' }}>
@@ -777,7 +761,6 @@ export const Onboarding = () => {
           </div>
         )}
 
-        {/* Bottom trust note */}
         <p style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.72rem', color: '#a09472', fontWeight: 500 }}>
           Your data is private and never shared · Digital tokens are free
         </p>

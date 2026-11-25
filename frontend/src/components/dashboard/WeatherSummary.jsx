@@ -55,7 +55,6 @@ export const WeatherSummary = () => {
       </CardHeader>
 
       <CardContent className="space-y-4">
-        {/* Current Weather Highlight */}
         <div className="flex items-center justify-between p-4 bg-gradient-to-r from-amber-500/10 to-emerald-500/5 rounded-2xl border border-amber-100/30">
           <div className="flex items-center gap-3.5">
             {getWeatherIcon('cloud-sun', 'h-12 w-12')}
@@ -81,7 +80,6 @@ export const WeatherSummary = () => {
           </div>
         </div>
 
-        {/* Warning Banner */}
         {weatherAlerts.alerts.length > 0 && (
           <div className="flex items-start gap-2.5 p-3 rounded-xl border border-rose-100 bg-rose-50/50">
             <AlertTriangle className="h-5 w-5 text-rose-500 shrink-0 mt-0.5" />
@@ -91,7 +89,6 @@ export const WeatherSummary = () => {
           </div>
         )}
 
-        {/* 4-Day Forecast Row */}
         <div className="grid grid-cols-4 gap-2 pt-2 border-t border-slate-50">
           {weatherAlerts.forecast.map((fc, index) => (
             <div key={index} className="flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 border border-slate-100/50">

@@ -18,7 +18,6 @@ export const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40 md:hidden"
@@ -27,7 +26,6 @@ export const Sidebar = ({ isOpen, onClose }) => {
         />
       )}
 
-      {/* Sidebar */}
       <aside
         style={{
           width: '230px',
@@ -41,7 +39,6 @@ export const Sidebar = ({ isOpen, onClose }) => {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Logo / Branding */}
         <div style={{ 
           padding: '1.25rem 1.25rem',
           borderBottom: '1px solid #e6dfc5',
@@ -91,7 +88,6 @@ export const Sidebar = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Navigation Links */}
         <nav style={{ flex: 1, overflowY: 'auto', padding: '0.75rem' }}>
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {navItems.map((item) => (
@@ -147,7 +143,6 @@ export const Sidebar = ({ isOpen, onClose }) => {
           </ul>
         </nav>
 
-        {/* Logout at bottom */}
         <div style={{ padding: '0.75rem', borderTop: '1px solid #e6dfc5' }}>
           <button
             onClick={() => { onClose(); logout(); }}
@@ -181,7 +176,6 @@ export const Sidebar = ({ isOpen, onClose }) => {
             <span>{t('common.logout')}</span>
           </button>
 
-          {/* Bottom brand tagline */}
           <div style={{
             marginTop: '0.75rem',
             padding: '0 0.5rem',

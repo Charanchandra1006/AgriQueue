@@ -190,7 +190,6 @@ export const Help = () => {
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300 pb-12 max-w-6xl mx-auto">
-      {/* Page Header */}
       <div>
         <div className="flex items-center gap-2">
           <HelpCircle className="h-7 w-7 text-primary-600" />
@@ -203,7 +202,6 @@ export const Help = () => {
         </p>
       </div>
 
-      {/* Active Token Assistance Banner (Visible when user has an active booking) */}
       {activeTokenNumber && (
         <Card className="p-4 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/30 border-emerald-300 shadow-2xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -244,11 +242,8 @@ export const Help = () => {
         </Card>
       )}
 
-      {/* Main Support Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-        {/* Left 2 Columns: Tap-Friendly Problem Categories, Guidance & WhatsApp Support */}
         <div className="lg:col-span-2 space-y-6">
-          {/* SECTION 1: 🆘 HOW CAN WE HELP YOU? */}
           <Card className="border-slate-200 shadow-2xs overflow-hidden">
             <CardHeader className="border-b border-slate-100 bg-slate-50/50 pb-4">
               <div className="flex items-center justify-between">
@@ -267,7 +262,6 @@ export const Help = () => {
             </CardHeader>
 
             <CardContent className="p-4 sm:p-6 space-y-6">
-              {/* 5 Main Problem Categories */}
               <div>
                 <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">
                   {t('help.step1SelectCategory')}
@@ -308,7 +302,6 @@ export const Help = () => {
                 </div>
               </div>
 
-              {/* Sub-Problems Selection for chosen category */}
               {currentCategory.subProblemIds.length > 0 && (
                 <div className="pt-2 border-t border-slate-100 animate-in fade-in duration-200">
                   <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">
@@ -338,7 +331,6 @@ export const Help = () => {
                 </div>
               )}
 
-              {/* Short Description text field: Only for "Other Problem" or optional extra notes */}
               {selectedCategoryId === 'other' && (
                 <div className="pt-2 border-t border-slate-100 space-y-1.5 animate-in fade-in duration-200">
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
@@ -358,7 +350,6 @@ export const Help = () => {
                 </div>
               )}
 
-              {/* Instant Plain-Language Guidance Message */}
               <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/80 space-y-2 animate-in fade-in duration-200">
                 <div className="flex items-center gap-2 text-amber-900 font-extrabold text-xs uppercase tracking-wider">
                   <Info className="h-4 w-4 text-amber-700 shrink-0" />
@@ -369,7 +360,6 @@ export const Help = () => {
                 </p>
               </div>
 
-              {/* Context Summary Preview Before WhatsApp Click */}
               <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 text-xs space-y-1.5">
                 <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                   <span>{t('help.attachedToMessage')}</span>
@@ -402,7 +392,6 @@ export const Help = () => {
                 </div>
               </div>
 
-              {/* SECTION 2:  CHAT WITH AGRIQUEUE ADMIN ON WHATSAPP */}
               <div className="pt-2">
                 <button
                   type="button"
@@ -420,9 +409,7 @@ export const Help = () => {
           </Card>
         </div>
 
-        {/* Right 1 Column: Helpline Numbers & Quick Mandi Services */}
         <div className="space-y-6">
-          {/* SECTION 4:  FARMER HELPLINE NUMBERS */}
           <Card className="border-slate-200 shadow-2xs overflow-hidden">
             <CardHeader className="border-b border-slate-100 pb-3 bg-slate-50/50">
               <div className="flex items-center gap-2">
@@ -437,7 +424,6 @@ export const Help = () => {
             </CardHeader>
 
             <CardContent className="pt-4 space-y-4">
-              {/* Government of India Kisan Call Centre (Official) */}
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
@@ -445,7 +431,6 @@ export const Help = () => {
                   </span>
                 </div>
 
-                {/* Number 1: 1800-180-1551 */}
                 <a
                   href="tel:18001801551"
                   className="group block p-3.5 rounded-xl border-2 border-emerald-500/40 bg-emerald-50/50 hover:bg-emerald-100/70 hover:border-emerald-600 transition-all text-left shadow-2xs active:scale-[0.98]"
@@ -468,7 +453,6 @@ export const Help = () => {
                   </div>
                 </a>
 
-                {/* Number 2: 1551 */}
                 <a
                   href="tel:1551"
                   className="group block p-3.5 rounded-xl border-2 border-blue-500/40 bg-blue-50/50 hover:bg-blue-100/70 hover:border-blue-600 transition-all text-left shadow-2xs active:scale-[0.98]"
@@ -492,7 +476,6 @@ export const Help = () => {
                 </a>
               </div>
 
-              {/* AgriQueue Platform Support (Explicitly distinguished from Government) */}
               <div className="pt-3 border-t border-slate-100 space-y-2.5">
                 <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-600 bg-slate-100 px-2 py-0.5 rounded block">
                   ️ {t('help.agriQueueDeskTitle')}
@@ -501,7 +484,6 @@ export const Help = () => {
                   {t('help.agriQueueDeskDesc')}
                 </p>
 
-                {/* Support Email */}
                 <a
                   href="mailto:support@agriqueue.gov.in"
                   className="group block p-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all text-left"
@@ -524,7 +506,6 @@ export const Help = () => {
                   </div>
                 </a>
 
-                {/* Direct WhatsApp Quick Card */}
                 <button
                   type="button"
                   onClick={handleWhatsAppClick}
@@ -549,7 +530,6 @@ export const Help = () => {
             </CardContent>
           </Card>
 
-          {/* Quick Links to Mandi Services */}
           <Card className="p-4 border-slate-200 shadow-2xs space-y-2.5">
             <h3 className="font-heading font-bold text-slate-500 text-xs uppercase tracking-wider">
               {t('help.procurementServicesTitle')}
@@ -576,7 +556,6 @@ export const Help = () => {
         </div>
       </div>
 
-      {/* SECTION 5:  FREQUENTLY ASKED QUESTIONS (Below main support actions) */}
       <Card className="border-slate-200 shadow-2xs">
         <CardHeader className="border-b border-slate-100 bg-slate-50/50 pb-3">
           <div className="flex items-center gap-2">

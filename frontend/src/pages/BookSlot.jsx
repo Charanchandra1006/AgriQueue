@@ -174,7 +174,6 @@ export const BookSlot = () => {
 
   return (
     <div className="space-y-6 pb-12 animate-in fade-in duration-300 max-w-4xl mx-auto">
-      {/* Top Navigation */}
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigate('/mandi-centers')}
@@ -206,7 +205,6 @@ export const BookSlot = () => {
             </div>
           </div>
 
-          {/* Digital Pass Card */}
           <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-lg border border-slate-800">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
               <div>
@@ -224,7 +222,6 @@ export const BookSlot = () => {
               </div>
             </div>
 
-            {/* Details Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-b border-slate-800 text-sm">
               <div className="space-y-1">
                 <span className="text-slate-400 block text-xs font-bold uppercase tracking-wider">
@@ -270,7 +267,6 @@ export const BookSlot = () => {
               </div>
             </div>
 
-            {/* Real Standards-Compliant Token & QR Code */}
             <div className="mt-6 pt-5 border-t border-slate-800 flex flex-col items-center">
               <BookingQRCode
                 bookingId={confirmedBooking.bookingId}
@@ -281,7 +277,6 @@ export const BookSlot = () => {
             </div>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <Button
               variant="primary"
@@ -326,7 +321,6 @@ export const BookSlot = () => {
       ) : (
         /* ================= BOOKING FORM PAGE ================= */
         <div className="space-y-6">
-          {/* Header Card */}
           <div>
             <div className="flex items-center gap-2">
               <span className="text-2xl" role="img" aria-label="ticket"></span>
@@ -339,7 +333,6 @@ export const BookSlot = () => {
             </p>
           </div>
 
-          {/* Selected Mandi Details Banner */}
           <Card className="p-5 md:p-6 bg-gradient-to-br from-emerald-50/70 via-white to-white border-slate-200 shadow-2xs space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
               <div className="flex items-start gap-3">
@@ -384,7 +377,6 @@ export const BookSlot = () => {
               </div>
             </div>
 
-            {/* Switch Mandi Dropdown (if user wants to select another without leaving) */}
             <div className="pt-2">
               <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
                 {t('booking.changeProcurementCenter')}
@@ -403,10 +395,8 @@ export const BookSlot = () => {
             </div>
           </Card>
 
-          {/* Booking Form Card */}
           <Card className="p-6 border-slate-200 shadow-2xs">
             <form onSubmit={handleConfirm} className="space-y-6">
-              {/* 1. Crop Selection */}
               <div className="space-y-2.5">
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
                   {t('booking.chooseCropCommodity')}
@@ -433,7 +423,6 @@ export const BookSlot = () => {
                 </div>
               </div>
 
-              {/* 2. Date Selection */}
               <div className="space-y-2.5">
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
                   {t('booking.chooseReservationDate')}
@@ -471,7 +460,6 @@ export const BookSlot = () => {
                 </div>
               </div>
 
-              {/* 3. Available Time Slots */}
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
@@ -546,7 +534,6 @@ export const BookSlot = () => {
                 )}
               </div>
 
-              {/* 4. Quantity in Quintals */}
               <div className="space-y-2.5">
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
                   {t('booking.estimatedProduceWeight')}
@@ -582,7 +569,6 @@ export const BookSlot = () => {
                 </div>
               </div>
 
-              {/* Advisory info */}
               <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-500 flex items-start gap-2">
                 <AlertCircle className="h-4 w-4 text-slate-400 shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
@@ -590,14 +576,12 @@ export const BookSlot = () => {
                 </span>
               </div>
 
-              {/* Submit Error */}
               {submitError && (
                 <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs font-bold text-rose-700">
                   {submitError}
                 </div>
               )}
 
-              {/* Submit Button */}
               <div className="pt-2">
                 <Button
                   type="submit"

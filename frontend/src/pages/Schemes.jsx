@@ -197,7 +197,6 @@ export const Schemes = () => {
 
   return (
     <div className="space-y-6 pb-12 animate-in fade-in duration-300">
-      {/* Header */}
       <div>
         <div className="flex items-center gap-2">
           <span className="text-2xl md:text-3xl" role="img" aria-label="schemes">️</span>
@@ -210,7 +209,6 @@ export const Schemes = () => {
         </p>
       </div>
 
-      {/* Opening Portal Notification Banner */}
       {portalNotice && (
         <div
           role="status"
@@ -231,9 +229,7 @@ export const Schemes = () => {
         </div>
       )}
 
-      {/* Search and Category Filter Card */}
       <Card className="p-4 border-slate-200 shadow-2xs space-y-3 bg-white rounded-2xl">
-        {/* Search Input */}
         <div className="relative">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
           <input
@@ -254,7 +250,6 @@ export const Schemes = () => {
           )}
         </div>
 
-        {/* Category Tabs */}
         <div className="flex gap-2 pt-1 overflow-x-auto scrollbar-none">
           {CATEGORIES.map((cat) => (
             <button
@@ -272,7 +267,6 @@ export const Schemes = () => {
         </div>
       </Card>
 
-      {/* Result Count Indicator */}
       <div className="flex items-center justify-between px-1">
         <span className="text-xs font-bold text-slate-500">
           {t('schemes.showingCount', { count: filteredSchemes.length, total: schemes.length })}
@@ -282,7 +276,6 @@ export const Schemes = () => {
         </span>
       </div>
 
-      {/* Schemes List */}
       <div className="space-y-6">
         {filteredSchemes.length === 0 ? (
           <Card className="p-12 text-center bg-white border-slate-200 rounded-2xl">
@@ -313,12 +306,10 @@ export const Schemes = () => {
               key={scheme.id}
               className="border-slate-200 relative overflow-hidden bg-white shadow-2xs hover:border-slate-300 transition-all rounded-2xl"
             >
-              {/* Corner highlight indicator */}
               <div className="absolute top-0 left-0 w-1.5 h-full bg-primary-600" />
               
               <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-5 p-2 sm:p-3">
                 <div className="space-y-4 flex-1">
-                  {/* Category & Status Header */}
                   <div className="flex flex-wrap items-center gap-2">
                     <Badge variant={scheme.badgeVariant}>
                       {getSchemeStatus(scheme)}
@@ -328,7 +319,6 @@ export const Schemes = () => {
                     </span>
                   </div>
                   
-                  {/* Scheme Name - Official scheme names such as PM-KISAN, PMFBY, SMAM, PDMC are kept untranslated */}
                   <div>
                     <h2 className="font-heading font-extrabold text-lg md:text-xl text-slate-900 tracking-tight flex items-center gap-2">
                       <span>️</span>
@@ -339,9 +329,7 @@ export const Schemes = () => {
                     </p>
                   </div>
 
-                  {/* 3 Clear Sections: Benefits, Eligibility, Documents Needed */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 pt-1">
-                    {/* 1. Key Benefits */}
                     <div className="p-3.5 bg-emerald-50/50 border border-emerald-100 rounded-xl space-y-1">
                       <span className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
                         <span></span>
@@ -353,7 +341,6 @@ export const Schemes = () => {
                       </p>
                     </div>
 
-                    {/* 2. Eligibility */}
                     <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1">
                       <span className="text-[11px] font-extrabold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                         <span>‍</span>
@@ -365,7 +352,6 @@ export const Schemes = () => {
                       </p>
                     </div>
 
-                    {/* 3. Documents Needed */}
                     <div className="p-3.5 bg-amber-50/40 border border-amber-200/70 rounded-xl space-y-1">
                       <span className="text-[11px] font-extrabold text-amber-900 uppercase tracking-wider flex items-center gap-1.5">
                         <span></span>
@@ -392,9 +378,7 @@ export const Schemes = () => {
                   </div>
                 </div>
 
-                {/* Right Actions: Apply Online, View Guidelines, View Details */}
                 <div className="flex flex-col gap-2.5 shrink-0 w-full lg:w-48 pt-2 lg:pt-0 lg:border-l lg:border-slate-100 lg:pl-5">
-                  {/* Apply Online Button */}
                   {scheme.applyUrl ? (
                     <div>
                       <Button
@@ -426,7 +410,6 @@ export const Schemes = () => {
                     </div>
                   )}
 
-                  {/* View Guidelines Button */}
                   <div>
                     <Button
                       variant="outline"
@@ -442,7 +425,6 @@ export const Schemes = () => {
                     </span>
                   </div>
 
-                  {/* View Details Button */}
                   <Button
                     variant="outline"
                     size="sm"
@@ -458,7 +440,6 @@ export const Schemes = () => {
         )}
       </div>
 
-      {/* Scheme Details Modal */}
       {selectedScheme && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
@@ -471,7 +452,6 @@ export const Schemes = () => {
             className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
             <div className="flex items-start justify-between p-5 border-b border-slate-100 bg-slate-50/70">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -501,14 +481,11 @@ export const Schemes = () => {
               </button>
             </div>
 
-            {/* Modal Scrollable Body */}
             <div className="p-5 overflow-y-auto space-y-5 text-sm text-slate-700">
-              {/* Description */}
               <p className="text-sm text-slate-600 font-medium leading-relaxed bg-slate-50/60 p-3.5 rounded-xl border border-slate-100">
                 {getSchemeDesc(selectedScheme)}
               </p>
 
-              {/* Benefits & Eligibility */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 <div className="p-3.5 bg-emerald-50/60 border border-emerald-100 rounded-xl space-y-1">
                   <span className="text-xs font-extrabold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
@@ -533,7 +510,6 @@ export const Schemes = () => {
                 </div>
               </div>
 
-              {/* Documents Required */}
               <div className="p-3.5 bg-amber-50/50 border border-amber-200/70 rounded-xl space-y-2">
                 <span className="text-xs font-extrabold text-amber-900 uppercase tracking-wider flex items-center gap-1.5">
                   <span></span>
@@ -549,7 +525,6 @@ export const Schemes = () => {
                 </ul>
               </div>
 
-              {/* How to Apply Section */}
               <div className="p-3.5 bg-blue-50/50 border border-blue-100 rounded-xl space-y-2">
                 <span className="text-xs font-extrabold text-blue-900 uppercase tracking-wider flex items-center gap-1.5">
                   <span></span>
@@ -562,7 +537,6 @@ export const Schemes = () => {
                 </ol>
               </div>
 
-              {/* Important Info Section */}
               <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1.5">
                 <span className="text-xs font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
                   <span>ℹ️</span>
@@ -585,7 +559,6 @@ export const Schemes = () => {
               </div>
             </div>
 
-            {/* Modal Actions Footer */}
             <div className="p-4 border-t border-slate-100 bg-slate-50/70 flex flex-wrap items-center justify-end gap-2.5">
               <Button
                 variant="outline"

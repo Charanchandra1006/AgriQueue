@@ -350,7 +350,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
    * Cleanly stop all audio capture, playback, and release the microphone
    */
   const stopAudio = useCallback(() => {
-    // 1. Release microphone hardware tracks
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => {
         try {
@@ -362,7 +361,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
       mediaStreamRef.current = null;
     }
 
-    // 2. Disconnect and close input audio processor
     if (processorNodeRef.current) {
       try {
         processorNodeRef.current.disconnect();
@@ -381,7 +379,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
       inputAudioCtxRef.current = null;
     }
 
-    // 3. Stop all playing audio sources
     activeSourcesRef.current.forEach(source => {
       try {
         source.stop();
@@ -392,7 +389,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
     activeSourcesRef.current = [];
     nextStartTimeRef.current = 0;
 
-    // 4. Close playback audio context
     if (playbackAudioCtxRef.current && playbackAudioCtxRef.current.state !== 'closed') {
       try {
         playbackAudioCtxRef.current.close();
@@ -402,7 +398,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
       playbackAudioCtxRef.current = null;
     }
 
-    // 5. Close WebSocket connection
     if (wsRef.current) {
       try {
         if (wsRef.current.readyState === WebSocket.OPEN) {
@@ -590,7 +585,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
               break;
             }
 
-            // 1. Agent Action / Progress Events
             case 'tool_call': {
               setCallState('thinking');
               if (msg.name === 'FIND_AVAILABLE_MANDIS') {
@@ -629,7 +623,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
               break;
             }
 
-            // 2. Booking Preview before verbal confirmation
             case 'booking_preview': {
               if (msg.data) {
                 setBookingPreview(msg.data);
@@ -639,7 +632,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
               break;
             }
 
-            // 3. Successful Booking Event
             case 'booking_confirmed': {
               if (msg.data) {
                 setConfirmedBooking(msg.data);
@@ -651,7 +643,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
               break;
             }
 
-            // 4. Navigate / Show QR Code Event
             case 'navigate_to_qr': {
               setShowQrCode(true);
               setActiveActionStep('showing_qr');
@@ -830,7 +821,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
         ===================================================================
       */}
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-        {/* Floating tooltip/label for farmers */}
         {!isOpen && (
           <div
             onClick={handleOpenPanel}
@@ -853,12 +843,10 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
               : 'bg-emerald-600 hover:bg-emerald-700 text-white ring-4 ring-white shadow-emerald-700/40 hover:scale-105'
           }`}
         >
-          {/* Animated pulsing wave when in active call */}
           {isCallActive && (
             <span className="absolute inset-0 rounded-full bg-emerald-400 opacity-60 animate-ping pointer-events-none" />
           )}
 
-          {/* Active green indicator pip */}
           <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-white border-2 border-emerald-600 flex items-center justify-center">
             <span
               className={`w-2 h-2 rounded-full ${
@@ -867,7 +855,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
             />
           </span>
 
-          {/* High contrast telephone icon */}
           {isCallActive ? (
             <PhoneCall className="w-8 h-8 animate-bounce text-white drop-shadow-sm" />
           ) : (
@@ -899,10 +886,8 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in"
         >
           <div className="relative w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl border border-emerald-100 overflow-hidden flex flex-col max-h-[92vh]">
-            {/* Top Accent Strip */}
             <div className="h-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-green-500" />
 
-            {/* Header */}
             <div className="p-4 sm:p-5 flex items-center justify-between border-b border-slate-100 bg-slate-50/70">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-600/30">
@@ -919,17 +904,14 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
               </div>
 
               <div className="flex items-center gap-2">
-                {/* Farmer badge */}
                 {profile?.farmerId && (
                   <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">
                     {profile.farmerId}
                   </span>
                 )}
-                {/* Language badge */}
                 <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
                   {i18n.langBadge}
                 </span>
-                {/* Close Button */}
                 <button
                   type="button"
                   onClick={handleClosePanel}
@@ -941,11 +923,8 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
               </div>
             </div>
 
-            {/* Scrollable Modal Content */}
             <div className="p-4 sm:p-6 overflow-y-auto space-y-4 text-center">
-              {/* Dynamic Animated Disc */}
               <div className="relative flex items-center justify-center py-2">
-                {/* Animated Pulsing Rings based on state & audio volume */}
                 {isCallActive && !isMuted && (
                   <>
                     <div
@@ -978,7 +957,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                   </>
                 )}
 
-                {/* Central Disc */}
                 <div
                   className={`relative z-10 w-24 h-24 sm:w-28 sm:h-28 rounded-full flex flex-col items-center justify-center transition-all duration-300 shadow-xl ${
                     isCallActive
@@ -1012,7 +990,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                 </div>
               </div>
 
-              {/* Status Badges & Spoken Message */}
               <div className="space-y-1.5 max-w-sm mx-auto">
                 <div className="flex items-center justify-center gap-2">
                   {callState === 'listening' ? (
@@ -1195,7 +1172,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                     </span>
                   </div>
 
-                  {/* Summary Details Grid */}
                   <div className="grid grid-cols-2 gap-2 text-xs text-slate-700 bg-white/90 p-3 rounded-xl border border-emerald-200">
                     <div>
                       <span className="text-[11px] text-slate-500 block">{i18n.bookingIdLabel}:</span>
@@ -1223,7 +1199,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                     </div>
                   </div>
 
-                  {/* 4. Standards-Compliant QR Code Rendering */}
                   {showQrCode && (
                     <div className="pt-2 pb-1 flex flex-col items-center bg-white p-3 rounded-2xl border border-emerald-200 animate-fade-in shadow-inner">
                       <BookingQRCode
@@ -1238,7 +1213,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                     </div>
                   )}
 
-                  {/* Action Buttons: Toggle QR & Open My Booking */}
                   <div className="flex items-center gap-2 pt-1">
                     <button
                       type="button"
@@ -1262,7 +1236,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                 </div>
               )}
 
-              {/* Suggestions Card */}
               {!bookingPreview && !confirmedBooking && (
                 <div className="w-full text-left bg-slate-50 rounded-2xl p-3.5 sm:p-4 border border-slate-100 space-y-2">
                   <p className="text-xs font-bold text-slate-600 flex items-center gap-1.5">
@@ -1286,18 +1259,15 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                 </div>
               )}
 
-              {/* Security & Database preservation note */}
               <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
                 <span>{i18n.securityNote}</span>
               </div>
             </div>
 
-            {/* Bottom Call Controls */}
             <div className="p-4 sm:p-5 bg-slate-50/90 border-t border-slate-100 flex items-center justify-around gap-4">
               {isCallActive ? (
                 <>
-                  {/* Mute / Unmute Button */}
                   <button
                     type="button"
                     onClick={handleToggleMute}
@@ -1312,7 +1282,6 @@ export const FarmerVoiceAgent = ({ onOpenTokenPass }) => {
                     <span>{isMuted ? i18n.unmute : i18n.mute}</span>
                   </button>
 
-                  {/* End Call Button */}
                   <button
                     type="button"
                     onClick={handleEndCall}

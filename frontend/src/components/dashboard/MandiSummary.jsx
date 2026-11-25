@@ -61,7 +61,6 @@ export const MandiSummary = () => {
               </Badge>
             </div>
 
-            {/* Handle crops */}
             <div className="flex flex-wrap gap-1 mt-2.5">
               {mandi.external.commodities.map((crop, index) => (
                 <span

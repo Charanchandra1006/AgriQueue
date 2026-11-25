@@ -297,7 +297,6 @@ export const MandiDetails = () => {
 
   return (
     <div className="space-y-6 pb-12 animate-in fade-in duration-300">
-      {/* Top Breadcrumb & Quick Actions Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <button
           onClick={() => navigate('/mandi-centers')}
@@ -347,7 +346,6 @@ export const MandiDetails = () => {
         </div>
       </div>
 
-      {/* Main Mandi Header Banner Card */}
       <Card className="p-6 md:p-8 bg-gradient-to-br from-white via-white to-emerald-50/30 border-slate-200 shadow-sm relative overflow-hidden rounded-2xl">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-3">
@@ -402,7 +400,6 @@ export const MandiDetails = () => {
             </div>
           </div>
 
-          {/* Primary Action Button */}
           <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0 lg:min-w-[220px]">
             <Button
               variant="primary"
@@ -428,11 +425,8 @@ export const MandiDetails = () => {
         </div>
       </Card>
 
-      {/* Grid of Key Info Sections */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left 2 Columns: Mandi Booking System & Commodities */}
         <div className="lg:col-span-2 space-y-6">
-          {/* AgriQueue Digital Slot Availability */}
           <Card className="p-6 border-slate-200 rounded-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
               <div className="flex items-center gap-2">
@@ -489,7 +483,6 @@ export const MandiDetails = () => {
               </div>
             </div>
 
-            {/* Quick booking CTA footer */}
             <div className="mt-5 p-4 bg-slate-50/70 border border-slate-100 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
@@ -508,7 +501,6 @@ export const MandiDetails = () => {
             </div>
           </Card>
 
-          {/* Commodities & Market Prices */}
           <Card className="p-6 border-slate-200 rounded-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
               <div className="flex items-center gap-2">
@@ -529,7 +521,6 @@ export const MandiDetails = () => {
               </span>
             </div>
 
-            {/* Handled Commodities Badges */}
             <div className="mb-5">
               <span className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
                 {t('mandi.handledCommodities')}
@@ -546,7 +537,6 @@ export const MandiDetails = () => {
               </div>
             </div>
 
-            {/* Price Table */}
             <div className="overflow-x-auto rounded-xl border border-slate-100 shadow-2xs">
               <table className="w-full text-left text-sm">
                 <thead className="bg-slate-50 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
@@ -576,9 +566,7 @@ export const MandiDetails = () => {
           </Card>
         </div>
 
-        {/* Right Column: Location, Access & Advisory */}
         <div className="space-y-6">
-          {/* Market Status Card */}
           <Card className="p-5 border-slate-200 rounded-2xl">
             <div className="flex items-center gap-2 mb-3">
               <div className="p-2 bg-blue-100 text-blue-800 rounded-xl">
@@ -598,7 +586,6 @@ export const MandiDetails = () => {
             </div>
           </Card>
 
-          {/* Location & Navigation Card */}
           <Card className="p-5 border-slate-200 space-y-4 rounded-2xl">
             <div className="flex items-center gap-2">
               <div className="p-2 bg-slate-100 text-slate-700 rounded-xl">
@@ -674,7 +661,6 @@ export const MandiDetails = () => {
             </div>
           </Card>
 
-          {/* Operating Advisory Note */}
           <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl text-xs space-y-2">
             <div className="flex items-center gap-2 font-bold text-amber-800">
               <AlertTriangle className="h-4 w-4 shrink-0" />
@@ -687,7 +673,6 @@ export const MandiDetails = () => {
         </div>
       </div>
 
-      {/* Dedicated Mandi Slot Booking Modal */}
       <SlotBookingModal
         mandi={mandi}
         isOpen={isBookingModalOpen}

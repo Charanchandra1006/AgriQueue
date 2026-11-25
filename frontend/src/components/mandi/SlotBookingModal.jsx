@@ -149,7 +149,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
         className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-6 max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/70 shrink-0">
           <div className="flex items-center gap-2">
             <span className="text-xl" role="img" aria-label="ticket"></span>
@@ -166,12 +165,10 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-5 flex-1">
           {isConfirmed && confirmedBooking ? (
             /* ================= CONFIRMATION SCREEN ================= */
             <div className="space-y-5 animate-in zoom-in-95 duration-200">
-              {/* Success Banner */}
               <div className="p-4 bg-emerald-50 border-2 border-emerald-400 rounded-2xl flex items-center gap-3.5 shadow-xs">
                 <div className="p-2.5 bg-emerald-600 text-white rounded-xl shrink-0 shadow-xs">
                   <CheckCircle2 className="h-7 w-7" />
@@ -186,7 +183,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Digital Pass Card */}
               <div className="bg-slate-900 text-white rounded-2xl p-5 relative overflow-hidden shadow-lg border border-slate-800">
                 <div className="flex items-start justify-between border-b border-slate-800 pb-4">
                   <div>
@@ -209,7 +205,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                   </div>
                 </div>
 
-                {/* Booking Key Metrics */}
                 <div className="grid grid-cols-2 gap-4 py-4 border-b border-slate-800 text-xs">
                   <div>
                     <span className="text-slate-400 block text-[10px] font-bold uppercase tracking-wider">
@@ -251,7 +246,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                   </div>
                 </div>
 
-                {/* Real Standards-Compliant Token & QR Code */}
                 <div className="mt-5 pt-4 border-t border-slate-800/80 flex flex-col items-center">
                   <BookingQRCode
                     bookingId={confirmedBooking.bookingId}
@@ -262,7 +256,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <Button
                   variant="primary"
@@ -312,7 +305,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
           ) : (
             /* ================= BOOKING FORM ================= */
             <form onSubmit={handleConfirm} className="space-y-5">
-              {/* Selected Mandi Details Banner (Carried over automatically) */}
               <div className="p-4 bg-gradient-to-r from-emerald-50/70 via-slate-50 to-slate-50 rounded-2xl border border-emerald-100/80 space-y-2.5">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-2.5">
@@ -364,7 +356,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Crop Selection */}
               <div className="space-y-2">
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
                   {t('booking.selectCropCategory')}
@@ -391,7 +382,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Date Selection */}
               <div className="space-y-2">
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
                   {t('booking.selectPreferredDate')}
@@ -431,7 +421,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Time Slots (Available vs Full/Unavailable) */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
@@ -506,7 +495,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                 )}
               </div>
 
-              {/* Quantity in Quintals */}
               <div className="space-y-2">
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
                   {t('booking.estimatedHarvestQuantity')}
@@ -545,7 +533,6 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                 </p>
               </div>
 
-              {/* Prototype Advisory Notice */}
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-500 flex items-start gap-2">
                 <AlertCircle className="h-4 w-4 text-slate-400 shrink-0 mt-0.5" />
                 <span className="text-[11px] leading-relaxed">
@@ -553,14 +540,12 @@ export const SlotBookingModal = ({ mandi, isOpen, onClose }) => {
                 </span>
               </div>
 
-              {/* Submit Error */}
               {submitError && (
                 <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs font-bold text-rose-700">
                   {submitError}
                 </div>
               )}
 
-              {/* Confirm Button */}
               <div className="pt-2">
                 <Button
                   type="submit"

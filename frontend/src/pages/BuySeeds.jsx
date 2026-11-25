@@ -76,7 +76,6 @@ export const BuySeeds = () => {
         </div>
       </div>
 
-      {/* Certification Trust banner */}
       <div className="flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-100 rounded-2xl">
         <Award className="h-6 w-6 text-emerald-600 shrink-0" />
         <p className="text-xs md:text-sm font-semibold text-emerald-800 leading-normal">
@@ -84,7 +83,6 @@ export const BuySeeds = () => {
         </p>
       </div>
 
-      {/* Search Input */}
       <div className="flex items-center gap-3 bg-white p-3.5 rounded-2xl border border-slate-100 shadow-2xs">
         <Search className="h-5 w-5 text-slate-400 shrink-0 ml-1.5" />
         <input
@@ -96,11 +94,9 @@ export const BuySeeds = () => {
         />
       </div>
 
-      {/* Seeds Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filteredSeeds.map((seed) => (
           <Card key={seed.id} className="border-slate-100 flex flex-col sm:flex-row gap-5">
-            {/* Thumbnail */}
             <div className="w-full sm:w-32 h-32 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-100">
               <img
                 src={seed.thumbnail}
@@ -109,7 +105,6 @@ export const BuySeeds = () => {
               />
             </div>
 
-            {/* Info */}
             <div className="flex-1 flex flex-col justify-between space-y-3">
               <div>
                 <div className="flex items-center justify-between gap-2">
@@ -130,7 +125,6 @@ export const BuySeeds = () => {
                 </p>
               </div>
 
-              {/* Seed Spec Row */}
               <div className="flex items-center gap-4 text-xs font-semibold text-slate-500">
                 <span>Germination: <strong className="text-slate-700">{seed.germination}</strong></span>
                 <span>•</span>
@@ -140,7 +134,6 @@ export const BuySeeds = () => {
                 </span>
               </div>
 
-              {/* Pricing & Button */}
               <div className="flex items-center justify-between pt-2 border-t border-slate-50 gap-3">
                 <div>
                   <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">Price</span>

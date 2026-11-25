@@ -95,7 +95,6 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
         className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-6 max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/80 shrink-0">
           <div className="flex items-center gap-2.5">
             <span className="text-2xl" role="img" aria-label="history"></span>
@@ -126,7 +125,6 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
           </button>
         </div>
 
-        {/* Content Body */}
         <div className="p-6 overflow-y-auto space-y-4 flex-1">
           {isLoading && (
             <div className="py-16 text-center space-y-3">
@@ -184,7 +182,6 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
                   key={booking.id || booking.bookingId}
                   className="p-4 sm:p-5 rounded-2xl border border-slate-200 hover:border-primary-400 bg-white shadow-2xs hover:shadow-sm transition-all space-y-3"
                 >
-                  {/* Top Bar: Center Name & Status */}
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 border-b border-slate-100 pb-3">
                     <div>
                       <div className="flex items-center gap-1.5 text-xs text-slate-500 font-semibold mb-1">
@@ -210,7 +207,6 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
                     </div>
                   </div>
 
-                  {/* Grid of Key Info with Farmer-Friendly Icons */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
                     <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
@@ -249,7 +245,6 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
                     </div>
                   </div>
 
-                  {/* Token Pass Row */}
                   <div className="pt-1 flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5 font-mono">
                       <Ticket className="h-4 w-4 text-primary-600" />
@@ -272,7 +267,6 @@ export const BookingHistoryModal = ({ isOpen, onClose, onBookNew }) => {
           )}
         </div>
 
-        {/* Footer */}
         <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between shrink-0">
           <Button
             variant="outline"

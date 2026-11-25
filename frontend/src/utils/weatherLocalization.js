@@ -7,17 +7,12 @@
  * Handles graceful fallback for unknown API values without breaking UI.
  */
 
-/**
- * Standard mapping from normalized lowercase weather conditions to translation keys
- */
 const CONDITION_MAP = {
-  // Sunny / Clear
   'sunny': 'weather.condition.sunny',
   'clear': 'weather.condition.clear',
   'clear sky': 'weather.condition.clear',
   'mostly sunny': 'weather.condition.sunny',
 
-  // Cloudy variations
   'cloudy': 'weather.condition.cloudy',
   'partly cloudy': 'weather.condition.partlyCloudy',
   'partly-cloudy': 'weather.condition.partlyCloudy',
@@ -25,7 +20,6 @@ const CONDITION_MAP = {
   'cloud-sun': 'weather.condition.partlyCloudy',
   'overcast': 'weather.condition.overcast',
 
-  // Rain variations
   'rain': 'weather.condition.rain',
   'rainy': 'weather.condition.rainy',
   'cloud-rain': 'weather.condition.rainy',
@@ -39,13 +33,11 @@ const CONDITION_MAP = {
   'drizzle': 'weather.condition.drizzle',
   'light drizzle': 'weather.condition.drizzle',
 
-  // Storm variations
   'thunderstorm': 'weather.condition.thunderstorm',
   'thunderstorms': 'weather.condition.thunderstorms',
   'thunder': 'weather.condition.thunderstorm',
   'storm': 'weather.condition.thunderstorm',
 
-  // Atmospheric conditions
   'mist': 'weather.condition.mist',
   'fog': 'weather.condition.fog',
   'foggy': 'weather.condition.fog',

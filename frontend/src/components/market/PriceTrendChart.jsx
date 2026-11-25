@@ -244,7 +244,6 @@ export const PriceTrendChart = ({ period, trendData, isLoading }) => {
 
   return (
     <div className="space-y-3">
-      {/* 4. Single-day historical data notice if <= 1 day in 7d/30d/1y */}
       {isSingleHistoricalDay && (
         <div className="p-3 bg-amber-50/90 border border-amber-200 rounded-2xl text-xs text-amber-900 flex items-start gap-2.5 shadow-2xs">
           <span className="text-base shrink-0 select-none"></span>
@@ -257,7 +256,6 @@ export const PriceTrendChart = ({ period, trendData, isLoading }) => {
         </div>
       )}
 
-      {/* Chart Canvas */}
       <div className="h-64 sm:h-72 w-full pt-1">
         <ResponsiveContainer width="100%" height="100%">
           {isToday ? (
@@ -359,7 +357,6 @@ export const PriceTrendChart = ({ period, trendData, isLoading }) => {
                   </span>
                 )}
               />
-              {/* Reported Modal Price Line (Hero Line) */}
               <Line
                 type="monotone"
                 dataKey="modalPrice"
@@ -370,7 +367,6 @@ export const PriceTrendChart = ({ period, trendData, isLoading }) => {
                 activeDot={{ r: 7, strokeWidth: 2 }}
                 connectNulls={false}
               />
-              {/* Approximate Range Boundary Lines */}
               <Line
                 type="monotone"
                 dataKey="maxPrice"
@@ -396,7 +392,6 @@ export const PriceTrendChart = ({ period, trendData, isLoading }) => {
         </ResponsiveContainer>
       </div>
 
-      {/* Simple Legend / Guide for Today Comparison Bar Chart */}
       {isToday && isTodaySingleComparison && (
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-1 text-xs">
           <div className="flex items-center gap-1.5">

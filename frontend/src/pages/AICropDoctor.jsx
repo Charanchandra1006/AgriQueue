@@ -56,7 +56,6 @@ export const AICropDoctor = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Upload and Capture Section */}
         <div className="lg:col-span-1">
           <Card className="border-slate-100 h-full flex flex-col justify-between">
             <CardHeader>
@@ -80,7 +79,6 @@ export const AICropDoctor = () => {
                   </div>
                 ) : (
                   <div className="border border-slate-100 rounded-2xl p-4 bg-slate-50/50 space-y-4">
-                    {/* Simulated leaf image placeholder */}
                     <div className="relative aspect-video rounded-xl bg-slate-800 overflow-hidden flex items-center justify-center text-white">
                       <img
                         src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=400&h=250&fit=crop"
@@ -126,12 +124,10 @@ export const AICropDoctor = () => {
           </Card>
         </div>
 
-        {/* Diagnosis Report Section */}
         <div className="lg:col-span-2">
           {isAnalyzing ? (
             <Card className="border-slate-100 h-full flex flex-col items-center justify-center py-16 text-center">
               <div className="relative h-16 w-16 mb-4">
-                {/* Simulated circular scanning effect */}
                 <div className="absolute inset-0 rounded-full border-4 border-primary-100 border-t-primary-600 animate-spin" />
                 <HeartPulse className="absolute inset-0 m-auto h-7 w-7 text-primary-600 animate-pulse" />
               </div>
@@ -158,7 +154,6 @@ export const AICropDoctor = () => {
               </CardHeader>
 
               <CardContent className="space-y-6 pt-4.5">
-                {/* Summary Info */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
                     <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Target Crop</span>
@@ -170,7 +165,6 @@ export const AICropDoctor = () => {
                   </div>
                 </div>
 
-                {/* Symptoms List */}
                 <div>
                   <h4 className="font-heading font-bold text-slate-800 text-sm mb-2.5">Identified Symptoms</h4>
                   <ul className="space-y-1.5">
@@ -183,9 +177,7 @@ export const AICropDoctor = () => {
                   </ul>
                 </div>
 
-                {/* Treatment tabs */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-slate-50">
-                  {/* Organic solutions */}
                   <div className="space-y-3">
                     <h5 className="font-heading font-bold text-emerald-800 text-sm flex items-center gap-1.5">
                       <span className="p-1 rounded-md bg-emerald-50 text-emerald-600"><ShieldCheck className="h-4 w-4" /></span>
@@ -201,7 +193,6 @@ export const AICropDoctor = () => {
                     </ul>
                   </div>
 
-                  {/* Chemical solutions */}
                   <div className="space-y-3">
                     <h5 className="font-heading font-bold text-slate-800 text-sm flex items-center gap-1.5">
                       <span className="p-1 rounded-md bg-slate-100 text-slate-600"><Eye className="h-4 w-4" /></span>

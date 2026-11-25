@@ -163,7 +163,6 @@ export const Dashboard = () => {
 
   return (
     <div className="space-y-5 pb-10 page-enter max-w-6xl mx-auto">
-      {/* ================= 1. WELCOME / FARMER HEADER ================= */}
       <div style={{ background: '#fffef8', border: '1.5px solid #e6dfc5', borderRadius: '16px', padding: '1.1rem 1.25rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', boxShadow: '0 2px 12px rgba(40,54,24,0.06)' }}>
         <div>
           <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.25rem', color: '#283618', margin: 0, letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -190,7 +189,6 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* ================= 2. TOP PRIORITY — MY PROCUREMENT TOKEN ================= */}
       <div>
         {isLoadingBooking ? (
           <Card style={{ padding: '2rem', textAlign: 'center' }}>
@@ -202,7 +200,6 @@ export const Dashboard = () => {
         ) : activeBooking ? (
           /* ACTIVE BOOKING CARD */
           <Card style={{ padding: '1.25rem', border: '2px solid #606C38', background: 'linear-gradient(135deg, rgba(96,108,56,0.04) 0%, #fffef8 100%)' }}>
-            {/* Header */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '0.875rem', borderBottom: '1.5px solid #e6dfc5', marginBottom: '1rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Ticket style={{ width: '18px', height: '18px', color: '#606C38' }} />
@@ -216,7 +213,6 @@ export const Dashboard = () => {
               </span>
             </div>
 
-            {/* Token number + buttons */}
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', marginBottom: '1rem' }}>
               <div>
                 <span style={{ fontSize: '0.62rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block' }}>
@@ -243,7 +239,6 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            {/* Booking Details Grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.625rem' }}>
               <div style={{ padding: '0.625rem 0.75rem', background: '#fffef8', borderRadius: '10px', border: '1px solid #e6dfc5' }}>
                 <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#a09472', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'flex', alignItems: 'center', gap: '4px' }}>
@@ -337,9 +332,7 @@ export const Dashboard = () => {
         )}
       </div>
 
-      {/* ================= 3. TWO-COLUMN CORE: MARKET PRICES & RECOMMENDED MANDI ================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Left: Market Prices */}
         <Card style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '0.75rem', borderBottom: '1.5px solid #e6dfc5', marginBottom: '0.75rem' }}>
@@ -375,7 +368,6 @@ export const Dashboard = () => {
           </div>
         </Card>
 
-        {/* Right: Recommended Mandi */}
         <Card style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '0.75rem', borderBottom: '1.5px solid #e6dfc5', marginBottom: '0.75rem' }}>
@@ -446,7 +438,6 @@ export const Dashboard = () => {
         </Card>
       </div>
 
-      {/* ================= 4. WEATHER CARD ================= */}
       <Card style={{ padding: '1.1rem', background: 'linear-gradient(135deg, rgba(188,108,37,0.05) 0%, #fffef8 100%)', border: '1.5px solid rgba(188,108,37,0.2)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '0.875rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -473,7 +464,6 @@ export const Dashboard = () => {
           </Button>
         </div>
 
-        {/* Weather metrics row */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.25rem', marginBottom: '0.875rem', fontSize: '0.78rem', fontWeight: 600, color: '#5c6245' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
             <Thermometer style={{ width: '13px', height: '13px', color: '#BC6C25' }} />
@@ -493,13 +483,11 @@ export const Dashboard = () => {
           </span>
         </div>
 
-        {/* Advisory */}
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', padding: '0.625rem 0.875rem', background: 'rgba(188,108,37,0.08)', border: '1px solid rgba(188,108,37,0.18)', borderRadius: '10px', fontSize: '0.78rem', color: '#7c5020', marginBottom: '0.875rem' }}>
           <AlertTriangle style={{ width: '14px', height: '14px', color: '#BC6C25', flexShrink: 0, marginTop: '1px' }} />
           <span><strong>{t('dashboard.farmWarning')}</strong> {getLocalizedWeatherAdvisory(weatherAlerts.alerts?.[0], t)}</span>
         </div>
 
-        {/* 4-Day Forecast */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', borderTop: '1px solid rgba(188,108,37,0.15)', paddingTop: '0.75rem' }}>
           {weatherAlerts.forecast.map((fc, index) => (
             <div key={index} style={{ padding: '0.5rem', background: 'rgba(255,254,248,0.7)', borderRadius: '10px', border: '1px solid rgba(188,108,37,0.12)', textAlign: 'center' }}>
@@ -511,7 +499,6 @@ export const Dashboard = () => {
         </div>
       </Card>
 
-      {/* ================= 5. QUICK ACTIONS ================= */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem' }}>
         {[
           { label: t('dashboard.bookingHistory'), sub: t('dashboard.pastSlotsTokens'), Icon: History, onClick: () => setIsHistoryOpen(true), color: '#606C38', bg: 'rgba(96,108,56,0.08)' },
@@ -546,14 +533,12 @@ export const Dashboard = () => {
         ))}
       </div>
 
-      {/* ================= DIGITAL TOKEN PASS MODAL ================= */}
       {isTokenPassOpen && activeBooking && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(28,31,22,0.65)', backdropFilter: 'blur(4px)' }}>
           <div
             style={{ width: '100%', maxWidth: '480px', background: '#fffef8', borderRadius: '20px', boxShadow: '0 24px 80px rgba(28,31,22,0.25)', border: '1.5px solid #e0d8be', overflow: 'hidden', animation: 'fadeUp 0.25s ease forwards' }}
             onClick={e => e.stopPropagation()}
           >
-            {/* Modal Header */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.875rem 1.25rem', borderBottom: '1.5px solid #e6dfc5', background: 'rgba(254,250,224,0.6)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Ticket style={{ width: '18px', height: '18px', color: '#606C38' }} />
@@ -566,7 +551,6 @@ export const Dashboard = () => {
               </button>
             </div>
 
-            {/* Pass Card — dark bg */}
             <div style={{ padding: '1.25rem' }}>
               <div style={{ background: '#283618', borderRadius: '14px', padding: '1.25rem', color: 'white', marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', paddingBottom: '0.875rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
@@ -650,14 +634,12 @@ export const Dashboard = () => {
         </div>
       )}
 
-      {/* Dedicated Booking History Modal */}
       <BookingHistoryModal
         isOpen={isHistoryOpen}
         onClose={() => setIsHistoryOpen(false)}
         onBookNew={() => navigate('/mandi-centers')}
       />
 
-      {/* Floating Voice Agent */}
       <FarmerVoiceAgent onOpenTokenPass={() => setIsTokenPassOpen(true)} />
     </div>
   );

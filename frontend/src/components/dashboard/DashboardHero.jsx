@@ -10,7 +10,6 @@ export const DashboardHero = () => {
 
   return (
     <div className="relative overflow-hidden rounded-3xl bg-primary-800 text-white p-6 md:p-8 lg:p-10 shadow-lg shadow-primary-900/10">
-      {/* Decorative farm pattern elements */}
       <div className="absolute right-0 bottom-0 opacity-15 w-80 h-80 pointer-events-none translate-x-20 translate-y-20 bg-radial from-emerald-100 to-transparent rounded-full" />
       <div className="absolute left-1/3 top-10 opacity-5 w-40 h-40 pointer-events-none bg-white rounded-full blur-xl" />
 

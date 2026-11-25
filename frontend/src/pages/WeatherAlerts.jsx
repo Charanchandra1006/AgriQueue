@@ -60,7 +60,6 @@ export const WeatherAlerts = () => {
         </p>
       </div>
 
-      {/* Main Alert Warning Banner */}
       {weatherAlerts.alerts.length > 0 && (
         <div className="flex items-start gap-4 p-5 rounded-2xl border border-rose-200 bg-rose-50/50 shadow-2xs">
           <AlertTriangle className="h-7 w-7 text-rose-500 shrink-0 mt-0.5" />
@@ -76,7 +75,6 @@ export const WeatherAlerts = () => {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left: Detailed Current Stats */}
         <div className="lg:col-span-1 space-y-6">
           <Card className="border-slate-100 bg-gradient-to-br from-white to-amber-50/10">
             <CardHeader>
@@ -97,7 +95,6 @@ export const WeatherAlerts = () => {
                 <Badge variant="warning">Alert Level: Yellow</Badge>
               </div>
 
-              {/* Weather Metres Grid */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-3 bg-white border border-slate-100 rounded-xl text-center">
                   <Droplets className="h-5 w-5 text-blue-500 mx-auto mb-1.5" />
@@ -127,9 +124,7 @@ export const WeatherAlerts = () => {
           </Card>
         </div>
 
-        {/* Right: Weekly Forecast & Advisories */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Weekly Forecast Card */}
           <Card className="border-slate-100">
             <CardHeader>
               <CardTitle>4-Day Outlook</CardTitle>
@@ -155,7 +150,6 @@ export const WeatherAlerts = () => {
             </CardContent>
           </Card>
 
-          {/* Expert Farmer Advisories */}
           <Card className="border-slate-100">
             <CardHeader>
               <div className="flex items-center gap-2">
