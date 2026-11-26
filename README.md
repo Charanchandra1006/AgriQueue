@@ -258,6 +258,3 @@ Six relational tables defined in `backend/database/schema.sql`:
 
 ---
 
-## License
-
-This project is an open initiative to digitize India's agricultural procurement and mandi queue management infrastructure, aligned with UN Sustainable Development Goal 12 (Responsible Consumption and Production).
